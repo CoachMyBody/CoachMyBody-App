@@ -1,7 +1,7 @@
 import 'package:coach_my_body/ui/home/home.dart';
 import 'package:coach_my_body/ui/info/info.dart';
 import 'package:coach_my_body/ui/record/record.dart';
-import 'package:coach_my_body/ui/status/sstatus.dart';
+import 'package:coach_my_body/ui/status/status.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

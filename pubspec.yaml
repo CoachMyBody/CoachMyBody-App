@@ -29,6 +29,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
+  sembast: ^3.0.0+4
+  xxtea: ^2.1.0
 
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.

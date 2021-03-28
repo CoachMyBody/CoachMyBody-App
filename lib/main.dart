@@ -1,3 +1,4 @@
+import 'package:coach_my_body/providers/sample.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/home/home.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+          value: Sample(
+            id: 'sampleId', 
+          description: 'sampleDesc'
+        ),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo2',

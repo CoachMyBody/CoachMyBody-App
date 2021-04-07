@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
           // children: SampleWidget()
         ),
       ),
-      bottomNavigationBar: BtnNavigationBar(),
     );
   }
 }

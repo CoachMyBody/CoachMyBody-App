@@ -31,6 +31,7 @@ dependencies:
   provider: ^5.0.0
   sembast: ^3.0.0+4
   xxtea: ^2.1.0
+  flutter_native_splash: ^1.1.7+1
 
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
@@ -52,6 +53,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+flutter_native_splash:
+  background_image: "assets/splash/Splash.png"
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

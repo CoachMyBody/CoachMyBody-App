@@ -7,4 +7,6 @@ class Assets {
   // login screen assets
   static const String carBackground = "assets/images/img_login.jpg";
 
+  // translations string assets
+  static const String translationsDirPath = "assets/translations";
 }

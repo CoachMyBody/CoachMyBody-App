@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/navigation/bottomNavigationBar.dart';
-import 'package:coach_my_body/widget/sampleWidget.dart';
+import 'package:coach_my_body/widgets/sampleWidget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title : Text('HomeScreen')
+        title : Text(HOME_MAIN_TITLE).tr(),
       ),
       body: Center(
         child: SampleWidget(

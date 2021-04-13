@@ -10,6 +10,5 @@ class SampleWidget extends StatelessWidget {
         child: Text('SampleWidget'),
       )
     );
-
   }
 }

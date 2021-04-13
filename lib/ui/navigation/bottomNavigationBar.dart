@@ -1,8 +1,10 @@
+import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/home/home.dart';
 import 'package:coach_my_body/ui/info/info.dart';
 import 'package:coach_my_body/ui/myPage/myPage.dart';
 import 'package:coach_my_body/ui/record/record.dart';
 import 'package:coach_my_body/ui/status/status.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class TabPage extends StatefulWidget {
@@ -51,7 +53,7 @@ class _TabPageState extends State<TabPage> {
         items: <BottomNavigationBarItem> [
           BottomNavigationBarItem(
             icon: Icon(Icons.home), 
-            label: '홈'
+            label: tr(NAV_HOME_NAME)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.square_foot), 

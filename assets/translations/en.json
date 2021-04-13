@@ -1,5 +1,7 @@
 {
   "APP_NAME": "Coach My Body",
 
-  "HOME_MAIN_TITLE": "HomeScreen"
+  "HOME_MAIN_TITLE": "HomeScreen",
+
+  "NAV_HOME_NAME": "HOME"
 }

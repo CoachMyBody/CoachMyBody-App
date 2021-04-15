@@ -1,8 +1,9 @@
 import 'package:coach_my_body/ui/home/home.dart';
-import 'package:coach_my_body/ui/info/info.dart';
-import 'package:coach_my_body/ui/navigation/bottomNavigationBar.dart';
+import 'package:coach_my_body/ui/mypage/mypage.dart';
+import 'package:coach_my_body/ui/routine/routine.dart';
+import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
 import 'package:coach_my_body/ui/record/record.dart';
-import 'package:coach_my_body/ui/status/status.dart';
+import 'package:coach_my_body/ui/write/write.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -10,16 +11,16 @@ class Routes {
 
   //static variables
   static const String home = '/home';
+  static const String routine = '/routine';
   static const String record = '/record';
-  static const String status = '/status';
-  static const String info = '/info';
+  static const String mypage = '/mypage';
   static const String tapPage = '/bottom-tab';
 
   static final routes = <String, WidgetBuilder> {
     home: (BuildContext context) => HomeScreen(),
+    routine: (BuildContext context) => RoutineScreen(),
     record: (BuildContext context) => RecordScreen(),
-    status: (BuildContext context) => StatusScreen(),
-    info: (BuildContext context) => InfoScreen(),
+    mypage: (BuildContext context) => MyPageScreen(),
     tapPage: (BuildContext context) => TabPage(),
   };
 }

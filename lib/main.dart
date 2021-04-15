@@ -3,7 +3,7 @@ import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/sample.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/home/home.dart';
-import 'package:coach_my_body/ui/navigation/bottomNavigationBar.dart';
+import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,9 +1,8 @@
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/home/home.dart';
-import 'package:coach_my_body/ui/info/info.dart';
-import 'package:coach_my_body/ui/myPage/myPage.dart';
+import 'package:coach_my_body/ui/routine/routine.dart';
+import 'package:coach_my_body/ui/mypage/mypage.dart';
 import 'package:coach_my_body/ui/record/record.dart';
-import 'package:coach_my_body/ui/status/status.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +20,8 @@ class _TabPageState extends State<TabPage> {
 
   List<Widget> _tabPages = [
     HomeScreen(),
-    InfoScreen(),
+    RoutineScreen(),
     RecordScreen(),
-    StatusScreen(),
     MyPageScreen()
   ];
 
@@ -58,10 +56,6 @@ class _TabPageState extends State<TabPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.square_foot), 
             label: '루틴관리'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feedback), 
-            label: '기록하기'
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.graphic_eq), 

@@ -2,8 +2,8 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/textstyles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/ui/navigation/bottomNavigationBar.dart';
-import 'package:coach_my_body/widgets/sampleWidget.dart';
+import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
+import 'package:coach_my_body/widgets/sample_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {

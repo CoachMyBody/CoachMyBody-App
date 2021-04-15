@@ -3,7 +3,7 @@ import 'colors.dart';
 
 class TextStyles {
   static TextStyle textFieldContent = TextStyle(
-    fontSize: 14,
+    fontSize: 24,
     color: AppColors.cmb_grey[300],
   );
 }

@@ -10,13 +10,12 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              _testBody(),
-            ],
-          ),
+      appBar: _testAppbar(),
+      body: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            // _testBody()
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -27,45 +26,84 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _testBody() {
-    return SizedBox(
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 3
+  Widget _testAppbar() {
+    return AppBar(
+      titleSpacing: 0,
+      backgroundColor: Colors.white,
+      title: Container(
+        margin: EdgeInsets.fromLTRB(16, 3, 0, 3),
+        decoration: BoxDecoration(
+            color: AppColors.cmb_grey[50],
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
         ),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.cmb_grey[100],
+        child: Container(
+          child: TextField(
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                  vertical: 10
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10
-                  ),
-                  border: InputBorder.none,
-                  hintText: '검색어를 입력하세요',
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20
-                    ),
-                    child: Icon(
-                      Icons.search,
-                      color: AppColors.cmb_grey[500],
-                      size: 18,
-                    ),
-                  ),
-                  hintStyle: TextStyles.textFieldContent,
+              border: InputBorder.none,
+              hintText: '검색어를 입력하세요',
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 8
                 ),
-                style: TextStyles.textFieldContent,
-                keyboardType: TextInputType.text,
+                child: Icon(
+                  Icons.search,
+                  color: AppColors.cmb_grey[500],
+                  size: 24,
+                ),
               ),
-            )
-          ],
+              hintStyle: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
+            ),
+            style: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
+            keyboardType: TextInputType.text,
+          ),
+        ),
+      ),
+      actions: <Widget>[
+        IconButton(icon: Icon(Icons.bookmark_border), color: Colors.black, onPressed: () {})
+      ],
+      elevation: 0,
+    );
+  }
+
+  /*
+  Widget _testBody() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.cmb_grey[100],
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+        ),
+        child: Container(
+          child: TextField(
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 10
+              ),
+              border: InputBorder.none,
+              hintText: '검색어를 입력하세요',
+              prefixIcon: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20
+                ),
+                child: Icon(
+                  Icons.search,
+                  color: AppColors.cmb_grey[500],
+                  size: 18,
+                ),
+              ),
+              hintStyle: TextStyles.textFieldContent,
+            ),
+            style: TextStyles.textFieldContent,
+            keyboardType: TextInputType.text,
+          ),
         ),
       ),
     );
   }
+  */
 }

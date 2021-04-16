@@ -3,7 +3,6 @@ import 'package:coach_my_body/ui/mypage/mypage.dart';
 import 'package:coach_my_body/ui/routine/routine.dart';
 import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
 import 'package:coach_my_body/ui/record/record.dart';
-import 'package:coach_my_body/ui/write/write.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

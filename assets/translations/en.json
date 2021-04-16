@@ -3,5 +3,9 @@
 
   "HOME_MAIN_TITLE": "HomeScreen",
 
-  "NAV_HOME_NAME": "HOME"
+  "NAV_HOME_NAME": "HOME",
+
+  "RECORD_MAIN_TITLE": "My History",
+  "RECORD_SUB_ROUTINES_TITLE": "Routines",
+  "RECORD_SUB_STATISTICS_TITLE": "Statistics"
 }

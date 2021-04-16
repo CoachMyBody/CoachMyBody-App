@@ -3,5 +3,9 @@
 
   "HOME_MAIN_TITLE": "홈스크린",
 
-  "NAV_HOME_NAME": "홈"
+  "NAV_HOME_NAME": "홈",
+
+  "RECORD_MAIN_TITLE": "운동현황",
+  "RECORD_SUB_ROUTINES_TITLE": "루틴 기록",
+  "RECORD_SUB_STATISTICS_TITLE": "통계"
 }

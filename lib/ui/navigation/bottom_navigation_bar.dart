@@ -18,7 +18,7 @@ class _TabPageState extends State<TabPage> {
 
   int _pageIndex = 0;
 
-  List<Widget> _tabPages = [
+  final List<Widget> _tabPages = [
     HomeScreen(),
     RoutineScreen(),
     RecordScreen(),
@@ -37,9 +37,10 @@ class _TabPageState extends State<TabPage> {
     return Scaffold(
 
       body: PageView(
-        children: _tabPages,
+        physics: NeverScrollableScrollPhysics(),
         onPageChanged: onPageChanged,
         controller: _pageController,
+        children: _tabPages,
       ),
     
       bottomNavigationBar: BottomNavigationBar(
@@ -72,12 +73,12 @@ class _TabPageState extends State<TabPage> {
 
   void onPageChanged(int page) {
     setState(() {
-      this._pageIndex = page;
+      _pageIndex = page;
     });
   }
 
   void onTabTapped(int index) {
-    this._pageController.animateToPage (
+    _pageController.animateToPage (
       index,
       duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut

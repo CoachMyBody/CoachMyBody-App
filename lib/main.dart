@@ -2,19 +2,16 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/sample.dart';
 import 'package:coach_my_body/routes.dart';
-import 'package:coach_my_body/ui/home/home.dart';
-import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  SystemChrome.setEnabledSystemUIOverlays(
+  await SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.bottom, SystemUiOverlay.top]);
 
   runApp(EasyLocalization(

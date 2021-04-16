@@ -22,21 +22,25 @@ import 'package:flutter/material.dart';
 /// ),
 ///
 
+class CMBPages {
+  const CMBPages({@required this.page, @required this.pageName});
+
+  final Widget page;
+  final String pageName;
+}
+
 class CustomTabPageView extends StatelessWidget {
   CustomTabPageView({
     @required this.title,
     @required this.pages,
     @required this.pageNum,
-    @required this.pageNames,
-  })  : this.titleTextStyle = TextStyle(color: Colors.black),
-        this.titleBackgroundColor = Colors.white,
-        this.labelColor = Colors.black,
-        this.indicatorColor = Colors.black {
-    assert(null != title && "" != title);
-    assert(pages.length > 0);
-    assert(pageNames.length > 0);
+  })  : titleTextStyle = TextStyle(color: Colors.black),
+        titleBackgroundColor = Colors.white,
+        labelColor = Colors.black,
+        indicatorColor = Colors.black {
+    assert(null != title && '' != title);
+    assert(pages.isNotEmpty);
     assert(pages.length == pageNum);
-    assert(pages.length == pageNames.length);
   }
 
   /// Title of tab page
@@ -44,11 +48,7 @@ class CustomTabPageView extends StatelessWidget {
 
   /// List of pages which will be showed with tab
   /// The number of this list should be same with pagesNum.
-  final List<Widget> pages;
-
-  /// List of pageNames which will be showed as title of each tab page
-  /// The number of this list should be same with pagesNum.
-  final List<String> pageNames;
+  final List<CMBPages> pages;
 
   /// This parameter let know the number of pages
   /// and let users double check the parameters whether they use properly or not.
@@ -78,14 +78,28 @@ class CustomTabPageView extends StatelessWidget {
     List<Tab> tabTitle = [];
 
     for (int i = 0; i < pageNum; i++) {
-      assert(null != pageNames[i] && "" != pageNames[i]);
-      tabTitle.add(Tab(text: pageNames[i]));
+      assert(null != pages[i].pageName && '' != pages[i].pageName);
+      tabTitle.add(Tab(text: pages[i].pageName));
     }
 
-    if (0 == tabTitle.length) {
-      assert(0 != tabTitle.length);
+    if (tabTitle.isEmpty) {
+      assert(tabTitle.isNotEmpty);
     }
     return tabTitle;
+  }
+
+  List<Widget> _buildPagesList() {
+    List<Widget> tabPages = [];
+
+    for (int i = 0; i < pageNum; i++) {
+      assert(null != pages[i].pageName && '' != pages[i].pageName);
+      tabPages.add(pages[i].page);
+    }
+
+    if (tabPages.isEmpty) {
+      assert(tabPages.isNotEmpty);
+    }
+    return tabPages;
   }
 
   @override
@@ -115,8 +129,8 @@ class CustomTabPageView extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: pages,
           physics: NeverScrollableScrollPhysics(),
+          children: _buildPagesList(),
         ),
       ),
     );

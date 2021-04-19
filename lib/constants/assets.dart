@@ -8,5 +8,5 @@ class Assets {
   static const String translationsDirPath = 'assets/translations';
 
   // muscles images
-  static const String musclesImgPath = 'assets/images/asdf.png';
+  static const String musclesImgPath = 'assets/images/whole_muscles.svg';
 }

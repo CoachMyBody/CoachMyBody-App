@@ -5,11 +5,31 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _testAppbar(),
+      appBar: SearchAppBar(),
       body: SafeArea(
+        // child: SingleChildScrollView(
+        //   scrollDirection: Axis.vertical,
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       HomeMenuWidget(),
+        //       PopularRoutineWidget(),
+        //       CMBRecommendWidget()
+        //     ],
+        //   ),
+        // ),
         child: ListView(
+          physics: ClampingScrollPhysics(),
           children: <Widget>[
-            // _testBody()
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                HomeMenuWidget(),
+                PopularRoutineWidget(),
+                CMBRecommendWidget()
+              ],
+            ),
+
           ],
         ),
       ),
@@ -20,18 +40,22 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _testAppbar() {
+class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
       titleSpacing: 0,
       backgroundColor: Colors.white,
       title: Container(
-        margin: EdgeInsets.fromLTRB(16, 3, 0, 3),
+        margin: EdgeInsets.only(left: 16),
         decoration: BoxDecoration(
-            color: AppColors.cmb_grey[50],
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          color: AppColors.cmb_grey[100],
+          borderRadius: BorderRadius.all(Radius.circular(10.0))
         ),
         child: Container(
+          padding: EdgeInsets.symmetric(vertical: 4.0),
           child: TextField(
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
@@ -64,41 +88,201 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /*
-  Widget _testBody() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 16.0),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.cmb_grey[100],
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => const Size.fromHeight(42);
+}
+
+
+class HomeMenuWidget extends StatefulWidget {
+  final List<String> menuList = <String>['전체', '헬스', '필라테스', '요가', '유산소', '스트레스'];
+  final List<Icon> iconList = <Icon>[Icon(Icons.padding), Icon(Icons.bookmark_border), Icon(Icons.search), Icon(Icons.ac_unit_sharp), Icon(Icons.account_balance_wallet_outlined), Icon(Icons.add_alarm_rounded)];
+
+  @override
+  _HomeMenuWidgetState createState() => _HomeMenuWidgetState();
+}
+
+class _HomeMenuWidgetState extends State<HomeMenuWidget> {
+  int _currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
+      height: 84,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 16,
         ),
-        child: Container(
-          child: TextField(
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 10
-              ),
-              border: InputBorder.none,
-              hintText: '검색어를 입력하세요',
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: widget.menuList.length,
+            itemBuilder: (BuildContext context, int index) {
+              var isSelected = _currentIndex == index;
+
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: isSelected ? AppColors.cmb_grey[100] : Colors.white10
+                  ),
+                  margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
+                  width: 60,
+                  height: 84,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                          child: Icon(widget.iconList[index].icon),
+                        ),
+                        Text('${widget.menuList[index]}'),
+                      ],
+                    ),
+                  ),
                 ),
-                child: Icon(
-                  Icons.search,
-                  color: AppColors.cmb_grey[500],
-                  size: 18,
-                ),
-              ),
-              hintStyle: TextStyles.textFieldContent,
-            ),
-            style: TextStyles.textFieldContent,
-            keyboardType: TextInputType.text,
-          ),
+              );
+            }
         ),
       ),
     );
   }
-  */
+}
+
+class PopularRoutineWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      height: 670,
+      child: Column(
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '인기 루틴',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                Icon(Icons.clear_all)
+              ],
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(top: 8)),
+          Expanded(
+            child: GridView.builder(
+              primary: false,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.0,
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing: 8.0,
+              ),
+              itemCount: 6,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 160,
+                  height: 217,
+                  color: Colors.grey[200],
+                );
+              }
+            )
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 42,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.cmb_grey[100],
+              ),
+              onPressed: () {},
+              child: Text(
+                '인기루틴 더보기',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CMBRecommendWidget extends StatelessWidget {
+  final int LIST_COUNT = 5;
+  final double CARD_HEIGHT = 88.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 53, 0, 0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      height: CARD_HEIGHT * LIST_COUNT + 100 + 50,
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.topLeft,
+            child: Text(
+              '코마바 추천',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(top: 8)),
+          Expanded(
+            child: ListView.builder(
+              primary: false,
+              itemCount: LIST_COUNT,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    height: CARD_HEIGHT,
+                    color: Colors.grey[200],
+                    margin: EdgeInsets.symmetric(vertical: 6),
+                  ),
+                );
+              }
+            ),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 42,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.cmb_grey[100],
+              ),
+              onPressed: () {},
+              child: Text(
+                '코마바 추천 더보기',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ),
+        ],
+      ),
+    );
+  }
 }

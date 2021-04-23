@@ -43,10 +43,18 @@ dependencies:
   chips_choice: ^2.0.1
   fl_chart: ^0.30.0
 
+  flutter_launcher_icons: ^0.9.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.0
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/images/cmb_icon.png"
+  image_path_android: "assets/images/cmb_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

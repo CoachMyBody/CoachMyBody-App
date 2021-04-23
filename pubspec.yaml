@@ -51,6 +51,7 @@ dev_dependencies:
   pedantic: ^1.11.0
 
 flutter_icons:
+  remove_alpha_ios: true
   ios: true
   android: true
   image_path_ios: "assets/images/cmb_icon.png"

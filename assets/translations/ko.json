@@ -7,5 +7,12 @@
 
   "RECORD_MAIN_TITLE": "운동현황",
   "RECORD_SUB_ROUTINES_TITLE": "루틴 기록",
-  "RECORD_SUB_STATISTICS_TITLE": "통계"
+  "RECORD_SUB_STATISTICS_TITLE": "통계",
+
+  "MYPAGE_SUB_TITLE": "마이페이지",
+  "COACHING_SEARCH": "코치 찾기",
+  "CONTACT_US": "문의하기",
+  "APP_SETTING":"앱 설정",
+  "LOGOUT": "로그아웃"
+
 }

@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 final ThemeData themeData = ThemeData(
     // fontFamily: FontFamily.productSans,
     brightness: Brightness.light,
-    primarySwatch: MaterialColor(AppColors.cmb_grey[500].value, AppColors.cmb_grey),
+    primarySwatch:
+        MaterialColor(AppColors.cmb_grey[500].value, AppColors.cmb_grey),
     primaryColor: AppColors.cmb_grey[500],
     primaryColorBrightness: Brightness.light,
     accentColor: AppColors.cmb_grey[500],
-    accentColorBrightness: Brightness.light);
-
+    accentColorBrightness: Brightness.light,
+    appBarTheme: AppBarTheme(backgroundColor: Colors.white, elevation: 0.0),
+    scaffoldBackgroundColor: AppColors.cmb_grey[00]);
 
 // final ThemeData themeDataDark;

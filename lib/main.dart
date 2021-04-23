@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:coach_my_body/constants/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,14 +34,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(
-          value: Sample(
-            id: 'sampleId', 
-          description: 'sampleDesc'
-        ),
+          value: Sample(id: 'sampleId', description: 'sampleDesc'),
         )
       ],
       child: MaterialApp(
@@ -55,6 +52,7 @@ class MyApp extends StatelessWidget {
         title: tr(APP_NAME),
         initialRoute: Routes.tapPage,
         routes: Routes.routes,
+        theme: themeData,
       ),
     );
   }

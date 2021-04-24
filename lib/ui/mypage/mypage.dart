@@ -2,7 +2,7 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/mypage/mypage_coach_searching.dart';
 import 'package:coach_my_body/ui/mypage/mypage_info.dart';
-import 'file:///D:/CoachMyBody/CoachMyBody-App/lib/ui/mypage/mypage_card_widget.dart';
+import 'package:coach_my_body/ui/mypage/mypage_card_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

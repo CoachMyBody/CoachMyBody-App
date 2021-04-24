@@ -1,5 +1,7 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,7 @@ class RecordSubStatisticsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(
-                  '인바디 변화',
+                  tr(RECORD_SUB_STATISTICS_INBODY_TXT),
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -25,7 +27,7 @@ class RecordSubStatisticsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '눈바디 변화',
+                  tr(RECORD_SUB_STATISTICS_PHOTOS_TXT),
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -47,7 +49,7 @@ class RecordSubStatisticsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '눈바디 타임라인',
+                  tr(RECORD_SUB_STATISTICS_TIMELINE_TXT),
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
               ),

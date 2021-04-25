@@ -46,46 +46,48 @@ class HomeScreen extends StatelessWidget {
 class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      titleSpacing: 0,
-      backgroundColor: Colors.white,
-      title: Container(
-        margin: EdgeInsets.only(left: 16),
-        decoration: BoxDecoration(
-          color: AppColors.cmb_grey[100],
-          borderRadius: BorderRadius.all(Radius.circular(10.0))
-        ),
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 4.0),
-          child: TextField(
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(
-                  vertical: 10
-              ),
-              border: InputBorder.none,
-              hintText: '검색어를 입력하세요',
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 8
+    return Padding(
+      padding: EdgeInsets.only(top: 4),
+      child: AppBar(
+        titleSpacing: 0,
+        backgroundColor: Colors.white,
+        title: Container(
+          margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+          decoration: BoxDecoration(
+            color: AppColors.cmb_grey[100],
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: Container(
+            child: TextField(
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10
                 ),
-                child: Icon(
-                  Icons.search,
-                  color: AppColors.cmb_grey[500],
-                  size: 24,
+                border: InputBorder.none,
+                hintText: '검색어를 입력하세요',
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8
+                  ),
+                  child: Icon(
+                    Icons.search,
+                    color: AppColors.cmb_grey[500],
+                    size: 24,
+                  ),
                 ),
+                hintStyle: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
               ),
-              hintStyle: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
+              style: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
+              keyboardType: TextInputType.text,
             ),
-            style: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
-            keyboardType: TextInputType.text,
           ),
         ),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.bookmark_border), color: Colors.black, onPressed: () {})
+        ],
+        elevation: 0,
       ),
-      actions: <Widget>[
-        IconButton(icon: Icon(Icons.bookmark_border), color: Colors.black, onPressed: () {})
-      ],
-      elevation: 0,
     );
   }
 
@@ -161,9 +163,6 @@ class PopularRoutineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height) / 2;
-    final double itemWidth = size.width / 2;
 
     return Container(
       margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
@@ -206,11 +205,19 @@ class PopularRoutineWidget extends StatelessWidget {
                       Container(
                         width: 180,
                         height: 114,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            "assets/images/cmb_icon.png",
-                            fit: BoxFit.fitWidth,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/cmb_icon.png'),
+                            fit: BoxFit.cover
+                          ),
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
+                          alignment: Alignment.bottomRight,
+                          child: Icon(
+                            index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
+                            color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
                           ),
                         ),
                       ),
@@ -220,64 +227,79 @@ class PopularRoutineWidget extends StatelessWidget {
                       ),
                       Padding(padding: EdgeInsets.only(top: 8.0)),
                       Row(
-                          children: [
-                            SizedBox(
-                              width: 18.0,
-                              height: 18.0,
-                              child: CircleAvatar(
-                                child: Image.asset(
-                                  "assets/images/test_image.png"
-                                ),
+                        children: [
+                          SizedBox(
+                            width: 18.0,
+                            height: 18.0,
+                            child: CircleAvatar(
+                              child: Image.asset(
+                                'assets/images/test_image.png'
                               ),
                             ),
-                            Padding(padding: EdgeInsets.only(right: 4)),
-                            Text(
-                              "홍길동 코치"
-                            )
-                          ],
+                          ),
+                          Padding(padding: EdgeInsets.only(right: 4)),
+                          Text(
+                            '홍길동 코치'
+                          )
+                        ],
                       ),
                       Padding(padding: EdgeInsets.only(top: 8)),
                       Row(
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                              ),
-                              backgroundColor: AppColors.cmb_grey[100],
+                          Container(
+                            color: Colors.grey[100],
+                            margin: EdgeInsets.only(right: 4),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                            child: Text(
+                              '#헬스',
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
-                              child: Text(
-                                '#헬스',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.cmb_grey[400]),
-                              ),
-                            )
                           ),
-                          Padding(padding: EdgeInsets.all(4)),
-                          TextButton(
-                              onPressed: () {},
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)
-                                ),
-                                backgroundColor: AppColors.cmb_grey[100],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
-                                child: Text(
-                                  '#다이어트',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.cmb_grey[400]),
-                                ),
-                              )
+                          Container(
+                            color: Colors.grey[100],
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                            child: Text(
+                              '#다이어트',
+                            ),
                           )
+                          // TextButton(
+                          //   onPressed: () {},
+                          //   style: TextButton.styleFrom(
+                          //     shape: RoundedRectangleBorder(
+                          //       borderRadius: BorderRadius.circular(8)
+                          //     ),
+                          //     backgroundColor: AppColors.cmb_grey[100],
+                          //   ),
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
+                          //     child: Text(
+                          //       '#헬스',
+                          //       style: TextStyle(
+                          //         fontSize: 10,
+                          //         fontWeight: FontWeight.bold,
+                          //         color: AppColors.cmb_grey[400]),
+                          //     ),
+                          //   )
+                          // ),
+                          // Padding(padding: EdgeInsets.all(4)),
+                          // TextButton(
+                          //     onPressed: () {},
+                          //     style: TextButton.styleFrom(
+                          //       shape: RoundedRectangleBorder(
+                          //           borderRadius: BorderRadius.circular(8)
+                          //       ),
+                          //       backgroundColor: AppColors.cmb_grey[100],
+                          //     ),
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
+                          //       child: Text(
+                          //         '#다이어트',
+                          //         style: TextStyle(
+                          //             fontSize: 10,
+                          //             fontWeight: FontWeight.bold,
+                          //             color: AppColors.cmb_grey[400]),
+                          //       ),
+                          //     )
+                          // )
                         ],
                       )
                     ],
@@ -344,8 +366,67 @@ class CMBRecommendWidget extends StatelessWidget {
                   },
                   child: Container(
                     height: CARD_HEIGHT,
-                    color: Colors.grey[200],
                     margin: EdgeInsets.symmetric(vertical: 6),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 160,
+                          height: 88,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/images/cmb_icon.png'),
+                                  fit: BoxFit.cover
+                              ),
+                              borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
+                            alignment: Alignment.bottomRight,
+                            child: Icon(
+                              index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
+                              color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
+                            ),
+                          ),
+                        ),
+                        Padding(padding: EdgeInsets.only(right: 12)),
+                        Expanded(
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '코마바가 추천하는 다이어트 루틴 짜는 팁',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(top: 4)),
+                                Row(
+                                  children: [
+                                    Container(
+                                      color: Colors.grey[100],
+                                      margin: EdgeInsets.only(right: 4),
+                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                      child: Text(
+                                        '#헬스',
+                                      ),
+                                    ),
+                                    Container(
+                                      color: Colors.grey[100],
+                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                      child: Text(
+                                        '#다이어트',
+                                      ),
+                                    )
+                                  ]
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               }

@@ -15,8 +15,8 @@ class Routes {
   static const String routine = '/routine';
   static const String record = '/record';
   static const String mypage = '/mypage';
+  static const String write = '/write';
   static const String tapPage = '/bottom-tab';
-  static const String writePage = '/write';
 
   static final routes = <String, WidgetBuilder>{
     home: (BuildContext context) => HomeScreen(),
@@ -24,6 +24,6 @@ class Routes {
     record: (BuildContext context) => RecordScreen(),
     mypage: (BuildContext context) => MyPageScreen(),
     tapPage: (BuildContext context) => TabPage(),
-    writePage: (BuildContext context) => WriteScreen(),
+    write: (BuildContext context) => WriteScreen(),
   };
 }

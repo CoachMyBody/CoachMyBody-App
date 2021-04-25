@@ -51,10 +51,10 @@ class WriteScreen extends StatefulWidget {
   }
 
   @override
-  _RecordScreenState createState() => _RecordScreenState();
+  _WriteScreenState createState() => _WriteScreenState();
 }
 
-class _RecordScreenState extends State<RecordScreen> {
+class _WriteScreenState extends State<WriteScreen> {
   var _dateTime = DateTime.now();
   var _routineCheck = false;
 

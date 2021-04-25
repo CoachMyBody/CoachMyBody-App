@@ -33,7 +33,7 @@ dependencies:
   xxtea: ^2.1.0
   flutter_native_splash: ^1.1.7+1
   step_progress_indicator: ^0.2.5+8
-  kakao_flutter_sdk: ^0.6.0
+#  kakao_flutter_sdk: ^0.6.0
   flutter_time_picker_spinner: ^1.0.6+1
 
   # MobX is a library for reactively managing the state of your applications. Use the power of

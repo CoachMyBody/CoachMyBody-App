@@ -15,7 +15,7 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('태현님의 운동루틴'),
+        title: const Text('코마바님의 운동루틴'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,15 +20,25 @@ class MypageCoachSearching extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(tr(COACHING_SEARCH)),
-            SizedBox(
-              height: 10.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 30.0),
+              child: Text(
+                tr(COACHING_SEARCH),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
+              ),
             ),
             Container(
+              margin: EdgeInsets.only(top: 19.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('내 고유 번호'),
+                  Text(
+                    '내 고유 번호',
+                    style: TextStyle(
+                      color: AppColors.cmb_grey[300],
+                      fontSize: 12.0,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -61,12 +72,22 @@ class MypageCoachSearching extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('코치 찾기'),
+                  Text(
+                    '코치 찾기',
+                    style: TextStyle(
+                      color: AppColors.cmb_grey[300],
+                      fontSize: 12.0,
+                    ),
+                  ),
                   TextField(
                     decoration: InputDecoration(
                         isDense: true,
                         contentPadding: EdgeInsets.all(5.0),
-                        hintText: '코치이름을 입력하세요'),
+                        hintText: '코치이름을 입력하세요',
+                        hintStyle: TextStyle(
+                          color: AppColors.cmb_grey[300],
+                          fontSize: 12.0,
+                        )),
                   )
                 ],
               ),

@@ -3,6 +3,7 @@ import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/mypage/mypage_coach_searching.dart';
 import 'package:coach_my_body/ui/mypage/mypage_info.dart';
 import 'package:coach_my_body/ui/mypage/mypage_card_widget.dart';
+import 'package:coach_my_body/ui/mypage/mypage_my_activity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,6 +90,10 @@ class MyPageScreen extends StatelessWidget {
                         TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
                   ),
                   trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyActicity()));
+                  },
                 ),
                 Container(
                   height: 80.0,

@@ -1,6 +1,9 @@
 {
   "APP_NAME": "Coach My Body",
 
+  "COMMON_OK_TXT" : "OK",
+  "COMMON_CANCEL_TXT": "Cancel",
+
   "HOME_MAIN_TITLE": "HomeScreen",
 
   "NAV_HOME_NAME": "HOME",

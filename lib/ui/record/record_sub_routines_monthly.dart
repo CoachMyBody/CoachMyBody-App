@@ -1,6 +1,7 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
+import 'package:coach_my_body/widgets/month_modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -19,15 +20,33 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text( // TODO: Dropdown button
-              '4월 16일',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          TextButton(
+            onPressed: () {
+              showModalBottomSheet<int>(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return MonthModalBottomSheet();
+                },
+              );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  '4월 16일',
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                ),
+                Icon(
+                  Icons.arrow_drop_down_rounded,
+                  color: AppColors.cmb_blue,
+                  size: 30.0,
+                ),
+              ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 8.0),
             child: Text(
               '총 3개\n루틴 완료했다.', // TODO: state provider
               style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),

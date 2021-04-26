@@ -1,6 +1,9 @@
 {
   "APP_NAME": "코치마이바디",
 
+  "COMMON_OK_TXT" : "확인",
+  "COMMON_CANCEL_TXT": "취소",
+
   "HOME_MAIN_TITLE": "홈스크린",
 
   "NAV_HOME_NAME": "홈",

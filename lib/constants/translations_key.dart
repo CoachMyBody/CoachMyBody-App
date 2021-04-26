@@ -3,6 +3,10 @@ const TW_KO = 'ko';
 
 const APP_NAME = 'APP_NAME';
 
+/* Common Text */
+const COMMON_OK_TXT = 'COMMON_OK_TXT';
+const COMMON_CANCEL_TXT = 'COMMON_CANCEL_TXT';
+
 /* Navigation Bar */
 const NAV_HOME_NAME = 'NAV_HOME_NAME'; // 네비게이션 바 홈 제목
 

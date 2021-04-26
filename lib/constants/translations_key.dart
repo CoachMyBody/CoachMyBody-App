@@ -3,6 +3,10 @@ const TW_KO = 'ko';
 
 const APP_NAME = 'APP_NAME';
 
+/* Common Text */
+const COMMON_OK_TXT = 'COMMON_OK_TXT';
+const COMMON_CANCEL_TXT = 'COMMON_CANCEL_TXT';
+
 /* Navigation Bar */
 const NAV_HOME_NAME = 'NAV_HOME_NAME'; // 네비게이션 바 홈 제목
 
@@ -11,6 +15,11 @@ const NAV_HOME_NAME = 'NAV_HOME_NAME'; // 네비게이션 바 홈 제목
 /* Home Screen */
 const HOME_MAIN_TITLE = 'HOME_MAIN_TITLE';
 /////////////////
+
+/* RoutineScreen */
+const ROUTINE_SUB_MYROUTINE_TITLE = 'ROUTINE_SUB_MYROUTINE_TITLE';
+const ROUTINE_SUB_BOOKMARK_TITLE = 'ROUTINE_SUB_BOOKMARK_TITLE';
+const ROUTINE_MAIN_TITLE = 'ROUTINE_MAIN_TITLE';
 
 /* RecordScreen */
 const RECORD_MAIN_TITLE = 'RECORD_MAIN_TITLE';

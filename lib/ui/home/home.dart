@@ -1,5 +1,4 @@
 import 'package:coach_my_body/constants/colors.dart';
-import 'package:coach_my_body/ui/home/home_detail_popular_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +36,10 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+                    Navigator.of(context).pushNamed(Routes.write);
+
+        },
         backgroundColor: Colors.black,
         child: Icon(Icons.carpenter),
       ),

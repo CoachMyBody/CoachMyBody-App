@@ -32,6 +32,9 @@ dependencies:
   sembast: ^3.0.0+4
   xxtea: ^2.1.0
   flutter_native_splash: ^1.1.7+1
+  step_progress_indicator: ^0.2.5+8
+#  kakao_flutter_sdk: ^0.6.0
+  flutter_time_picker_spinner: ^1.0.6+1
 
   # MobX is a library for reactively managing the state of your applications. Use the power of
   # observables, actions, and reactions to supercharge your Dart and Flutter apps.
@@ -42,6 +45,7 @@ dependencies:
   flutter_svg: ^0.21.0+1
   chips_choice: ^2.0.1
   fl_chart: ^0.30.0
+  modal_bottom_sheet: ^2.0.0
 
   flutter_launcher_icons: ^0.9.0
 

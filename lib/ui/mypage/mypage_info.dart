@@ -36,7 +36,13 @@ class MypageInfo extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('닉네임'),
+                    Text(
+                      '닉네임',
+                      style: TextStyle(
+                        color: AppColors.cmb_grey[300],
+                        fontSize: 12.0,
+                      ),
+                    ),
                     TextField(
                       decoration: InputDecoration(
                           isDense: true, contentPadding: EdgeInsets.all(5.0)),
@@ -49,7 +55,13 @@ class MypageInfo extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('생년월일'),
+                    Text(
+                      '생년월일',
+                      style: TextStyle(
+                        color: AppColors.cmb_grey[300],
+                        fontSize: 12.0,
+                      ),
+                    ),
                     TextField(
                       decoration: InputDecoration(
                           isDense: true, contentPadding: EdgeInsets.all(5.0)),
@@ -62,7 +74,13 @@ class MypageInfo extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('휴대폰번호'),
+                    Text(
+                      '휴대폰번호',
+                      style: TextStyle(
+                        color: AppColors.cmb_grey[300],
+                        fontSize: 12.0,
+                      ),
+                    ),
                     TextField(
                       decoration: InputDecoration(
                           isDense: true, contentPadding: EdgeInsets.all(5.0)),
@@ -75,7 +93,13 @@ class MypageInfo extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('신체정보'),
+                    Text(
+                      '신체정보',
+                      style: TextStyle(
+                        color: AppColors.cmb_grey[300],
+                        fontSize: 12.0,
+                      ),
+                    ),
                     TextField(
                       decoration: InputDecoration(
                           isDense: true, contentPadding: EdgeInsets.all(5.0)),

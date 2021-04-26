@@ -11,6 +11,7 @@ class RecordScreen extends StatelessWidget {
     CMBPages(
       page: RecordSubRoutinesScreen(),
       pageName: tr(RECORD_SUB_ROUTINES_TITLE),
+
     ),
     CMBPages(
       page: RecordSubStatisticsScreen(),

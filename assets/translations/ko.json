@@ -3,6 +3,9 @@
 
   "COMMON_OK_TXT" : "확인",
   "COMMON_CANCEL_TXT": "취소",
+  "COMMON_YEAR_TXT": "년",
+  "COMMON_MONTH_TXT": "월",
+  "COMMON_YEAR_MONTH_DIVIDER_TXT": " ",
 
   "HOME_MAIN_TITLE": "홈스크린",
 
@@ -27,5 +30,4 @@
   "CONTACT_US": "문의하기",
   "APP_SETTING":"앱 설정",
   "LOGOUT": "로그아웃"
-
 }

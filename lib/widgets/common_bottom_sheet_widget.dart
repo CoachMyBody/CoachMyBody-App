@@ -25,8 +25,6 @@ class Popover extends StatelessWidget {
   }
 
   Widget _buildHandle(BuildContext context) {
-    final theme = Theme.of(context);
-
     return FractionallySizedBox(
       widthFactor: 0.25,
       child: Container(
@@ -45,7 +43,33 @@ class Popover extends StatelessWidget {
   }
 }
 
+class ButtonEnableState extends ChangeNotifier {
+  ButtonEnableState() {
+    _isEnable = false;
+  }
+  bool _isEnable;
+
+  void setEnable() {
+    _isEnable = true;
+  }
+
+  void setDisable() {
+    _isEnable = false;
+  }
+
+  bool isEnable() {
+    return _isEnable;
+  }
+}
+
+// ignore: must_be_immutable
 class OKButtonInBottomSheet extends StatelessWidget {
+  OKButtonInBottomSheet(isEnable) {
+    _isEnable = isEnable;
+  }
+
+  bool _isEnable;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +77,7 @@ class OKButtonInBottomSheet extends StatelessWidget {
       width: 328.0,
       height: 52.0,
       decoration: BoxDecoration(
-        color: AppColors.cmb_grey[700],
+        color: _isEnable? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
       child: TextButton(

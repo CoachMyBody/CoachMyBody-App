@@ -1,4 +1,5 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/ui/home/home_detail_popular_routine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 HomeMenuWidget(),
                 PopularRoutineWidget(),
-                CMBRecommendWidget()
+                CMBRecommendWidget(),
+                Padding(padding: EdgeInsets.only(bottom: 16))
               ],
             ),
 
@@ -315,7 +317,10 @@ class PopularRoutineWidget extends StatelessWidget {
               style: TextButton.styleFrom(
                 backgroundColor: AppColors.cmb_grey[100],
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DetailPopulatRoutineScreen()));
+              },
               child: Text(
                 '인기루틴 더보기',
                 textAlign: TextAlign.center,

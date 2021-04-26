@@ -2,6 +2,9 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
+import 'home_detail_popular_routine.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
                     size: 24,
                   ),
                 ),
-                hintStyle: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
+                hintStyle: TextStyle(fontSize: 16, color: AppColors.cmb_grey[200]),
               ),
               style: TextStyle(fontSize: 20, color: AppColors.cmb_grey[300]),
               keyboardType: TextInputType.text,
@@ -88,7 +91,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.bookmark_border), color: Colors.black, onPressed: () {})
+          IconButton(icon: Icon(Icons.bookmark_border), iconSize: 28, color: Colors.black, onPressed: () {})
         ],
         elevation: 0,
       ),
@@ -148,7 +151,12 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                           child: Icon(widget.iconList[index].icon),
                         ),
-                        Text('${widget.menuList[index]}'),
+                        Text(
+                          '${widget.menuList[index]}',
+                          style: TextStyle(
+                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -167,7 +175,6 @@ class PopularRoutineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
       padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -181,7 +188,7 @@ class PopularRoutineWidget extends StatelessWidget {
                 Text(
                   '인기 루틴',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
                 ),
@@ -202,13 +209,11 @@ class PopularRoutineWidget extends StatelessWidget {
               itemCount: 6,
               itemBuilder: (context, index) {
                 return Container(
-                  width: 160,
-                  height: 216,
                   child: Column(
                     children: [
                       Container(
-                        width: 180,
-                        height: 114,
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.width * 114 / 160 / 2,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage('assets/images/cmb_icon.png'),
@@ -227,7 +232,12 @@ class PopularRoutineWidget extends StatelessWidget {
                       ),
                       Padding(padding: EdgeInsets.only(top: 4.0)),
                       Text(
-                        titleList[index % 2]
+                        titleList[index % 2],
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.cmb_grey[700]
+                        ),
                       ),
                       Padding(padding: EdgeInsets.only(top: 8.0)),
                       Row(
@@ -243,7 +253,12 @@ class PopularRoutineWidget extends StatelessWidget {
                           ),
                           Padding(padding: EdgeInsets.only(right: 4)),
                           Text(
-                            '홍길동 코치'
+                            '홍길동 코치',
+                            style: TextStyle(
+                              color: AppColors.cmb_grey[500],
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold
+                            ),
                           )
                         ],
                       ),
@@ -251,20 +266,35 @@ class PopularRoutineWidget extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            color: Colors.grey[100],
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey[100],
+                            ),
                             margin: EdgeInsets.only(right: 4),
-                            padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                             child: Text(
                               '#헬스',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: AppColors.cmb_grey[600]
+                              ),
                             ),
                           ),
                           Container(
-                            color: Colors.grey[100],
-                            padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey[100],
+                            ),
+                            margin: EdgeInsets.only(right: 4),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                             child: Text(
                               '#다이어트',
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: AppColors.cmb_grey[600]
+                              ),
                             ),
-                          )
+                          ),
                           // TextButton(
                           //   onPressed: () {},
                           //   style: TextButton.styleFrom(
@@ -356,7 +386,7 @@ class CMBRecommendWidget extends StatelessWidget {
             child: Text(
               '코마바 추천',
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold
               ),
             ),
@@ -405,27 +435,43 @@ class CMBRecommendWidget extends StatelessWidget {
                                   '코마바가 추천하는 다이어트 루틴 짜는 팁',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.bold
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.cmb_grey[700]
                                   ),
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 4)),
                                 Row(
                                   children: [
                                     Container(
-                                      color: Colors.grey[100],
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color: Colors.grey[100],
+                                      ),
                                       margin: EdgeInsets.only(right: 4),
-                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                                       child: Text(
                                         '#헬스',
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: AppColors.cmb_grey[600]
+                                        ),
                                       ),
                                     ),
                                     Container(
-                                      color: Colors.grey[100],
-                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color: Colors.grey[100],
+                                      ),
+                                      margin: EdgeInsets.only(right: 4),
+                                      padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
                                       child: Text(
                                         '#다이어트',
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: AppColors.cmb_grey[600]
+                                        ),
                                       ),
-                                    )
+                                    ),
                                   ]
                                 )
                               ],

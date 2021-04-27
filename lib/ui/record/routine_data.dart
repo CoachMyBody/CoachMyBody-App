@@ -18,14 +18,14 @@ class RoutineData {
     int hour = (mins / 60).floor();
     int min = mins % 60;
 
-    return '$hour시간 $min분';
+    return ' $hour시간 $min분';
   }
 
   String convertIsFeedbackToString() {
     if (false == isFeedback) {
-      return '피드백 대기 중';
+      return ' 강사 피드백 대기 중';
     } else {
-      return '피드백이 도착!';
+      return ' 피드백이 도착!';
     }
   }
 }
@@ -33,7 +33,7 @@ class RoutineData {
 /* Dummy Data */
 const routines = [
   RoutineData(
-      name: '안녕하세요! \n코마바입니다.',
+      name: '안녕하세요! \n코마바입니다. 이게 텍스트가 잘리나요?',
       mins: 100,
       isFeedback: true,
       date: '2021년 3월 16일'),
@@ -43,7 +43,7 @@ const routines = [
       isFeedback: false,
       date: '2021년 3월 19일'),
   RoutineData(
-      name: '어이 거기 거북이\n목 한 번 집어넣고 갈...',
+      name: '어이 거기 거북이\n목 한 번 집어넣고 갈까요?',
       mins: 20,
       isFeedback: false,
       date: '2021년 4월 1일'),

@@ -35,6 +35,7 @@ class CustomTabPageView extends StatelessWidget {
     @required this.title,
     @required this.pages,
     @required this.pageNum,
+    this.actions,
   })  : titleTextStyle = TextStyle(color: Colors.black),
         titleBackgroundColor = Colors.white,
         labelColor = Colors.black,
@@ -46,6 +47,8 @@ class CustomTabPageView extends StatelessWidget {
 
   /// Title of tab page
   final String title;
+
+  final List<Widget> actions;
 
   /// List of pages which will be showed with tab
   /// The number of this list should be same with pagesNum.
@@ -116,6 +119,7 @@ class CustomTabPageView extends StatelessWidget {
             title,
             style: titleTextStyle,
           ),
+          actions: actions,
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(30.0),
             child: Align(

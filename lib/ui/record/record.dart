@@ -1,4 +1,5 @@
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/ui/record/record_notification.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines.dart';
 import 'package:coach_my_body/ui/record/record_sub_statistics.dart';
 import 'package:coach_my_body/widgets/custom_tab_pages_widget.dart';
@@ -25,6 +26,13 @@ class RecordScreen extends StatelessWidget {
       title: tr(RECORD_MAIN_TITLE),
       pages: _supPages,
       pageNum: _supPages.length,
+      actions: <Widget>[
+        IconButton(icon: Icon(Icons.notifications_none_rounded,), onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return RecordNotificationScreen();
+          }));
+        })
+      ],
     );
   }
 }

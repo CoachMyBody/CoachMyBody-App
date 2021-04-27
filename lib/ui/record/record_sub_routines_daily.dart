@@ -1,27 +1,33 @@
 import 'dart:math';
 
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
 import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 ///
 /// Daily Routines View
 ///
 class RecordSubDailyRoutines extends StatelessWidget {
+  double _width;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.cmb_grey[0],
-      padding: EdgeInsets.only(left: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 30.0,
-          ),
-          TextButton(
+    _width = MediaQuery.of(context).size.width;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          height: _width * 0.072,
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: _width * 0.027),
+          child: TextButton(
             onPressed: () {
               showModalBottomSheet<int>(
                 backgroundColor: Colors.transparent,
@@ -36,40 +42,88 @@ class RecordSubDailyRoutines extends StatelessWidget {
               children: <Widget>[
                 Text(
                   '4월 16일',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: _width * 0.0667,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.cmb_grey[700]),
                 ),
                 Icon(
                   Icons.arrow_drop_down_rounded,
                   color: AppColors.cmb_blue,
-                  size: 30.0,
+                  size: _width * 0.083,
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              '총 3개\n루틴 완료했다.', // TODO: state provider
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: _width * 0.0472),
+          child: Text(
+            '총 3개\n루틴 완료했다.', // TODO: state provider
+            style: TextStyle(
+                fontSize: _width * 0.0667, fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: _width * 0.536,
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: _width * 0.0444),
+          child: SizedBox(
+            height: _width * 0.35,
+            child: routines.isEmpty
+                ? _buildEmptyItem(context)
+                : ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: routines.length, // TODO: Server API
+                    itemBuilder: (BuildContext context, int index) =>
+                        RecordRoutineListItem(routine: routines[index])),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmptyItem(BuildContext context) {
+    return Container(
+      width: _width * 0.6,
+      height: _width * 0.35,
+      decoration: BoxDecoration(
+        color: AppColors.cmb_grey[100],
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(left: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              RECORD_SUB_ROUTINES_EMPTY_TXT,
+              style: TextStyle(fontSize: 16.0),
+            ).tr(),
+            SizedBox(
+              height: 7.0,
             ),
-          ),
-          SizedBox(
-            height: 250.0,
-          ),
-          SizedBox(
-            height: 121.0,
-            child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: routines.length, // TODO: Server API
-                itemBuilder: (BuildContext context, int index) =>
-                    RecordRoutineListItem(routine: routines[index])),
-          ),
-          Expanded(
-              child: SizedBox(
-            height: 50,
-          )),
-        ],
+            Container(
+              width: _width * 0.331,
+              height: _width * 0.116,
+              decoration: BoxDecoration(
+                color: AppColors.cmb_grey[200],
+                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(Routes.write);
+                },
+                child: Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
+                    style: TextStyle(
+                        fontSize: 14.0, color: AppColors.cmb_grey[0])).tr(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -84,18 +138,21 @@ class RecordRoutineListItem extends StatelessWidget {
 
   final RoutineData routine;
 
+  double _width;
+
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
+
     return Hero(
       tag: routine.date,
       child: SizedBox(
-        width: 216.0,
-        height: 121.0,
+        width: _width * 0.6,
+        height: _width * 0.336,
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          color: AppColors.cmb_grey[700],
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(4.0))),
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -111,44 +168,81 @@ class RecordRoutineListItem extends StatelessWidget {
   }
 
   Widget _buildItem() {
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            top: 8.0,
-            left: 8.0,
-            child: Text(
-              routine.name,
-              style: TextStyle(color: AppColors.cmb_grey[100], fontSize: 16.0),
-            ),
-          ),
-          Positioned(
-            bottom: 8.0,
-            left: 8.0,
-            child: Text(
-              routine.convertMinToString(),
-              style: TextStyle(color: AppColors.cmb_grey[100], fontSize: 12.0),
-            ),
-          ),
-          Positioned(
-            bottom: 8.0,
-            right: 4.0,
-            child: Container(
-              padding: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.0),
-                color: AppColors.cmb_grey[100],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          height: _width * 0.011,
+          color: AppColors.cmb_grey[600],
+        ),
+        Expanded(
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                left: _width * 0.0222,
+                top: _width * 0.0333,
+                child: SizedBox(
+                  width: _width * 0.555,
+                  child: Text(
+                    routine.name,
+                    style: TextStyle(
+                        color: AppColors.cmb_grey[600],
+                        fontSize: _width * 0.04,
+                        fontWeight: FontWeight.w600),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
-              child: Text(
-                routine.convertIsFeedbackToString(),
-                style:
-                    TextStyle(color: AppColors.cmb_grey[500], fontSize: 10.0),
+              Positioned(
+                left: _width * 0.0222,
+                top: _width * 0.177,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.alarm,
+                      size: _width * 0.038,
+                      color: AppColors.cmb_grey[300],
+                    ),
+                    Text(
+                      routine.convertMinToString(),
+                      style: TextStyle(
+                          color: AppColors.cmb_grey[300],
+                          fontSize: _width * 0.0333,
+                          fontWeight: FontWeight.w300),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-            ),
+              Positioned(
+                left: _width * 0.0222,
+                top: _width * 0.233,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.mode_comment_outlined,
+                      size: _width * 0.038,
+                      color: AppColors.cmb_grey[300],
+                    ),
+                    Text(
+                      routine.convertIsFeedbackToString(),
+                      style: TextStyle(
+                          color: AppColors.cmb_grey[300],
+                          fontSize: _width * 0.0333,
+                          fontWeight: FontWeight.w300),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        )
+      ],
     );
   }
 }
@@ -161,22 +255,35 @@ class RecordDetailScreen extends StatelessWidget {
 
   final RoutineData routine;
 
+  double _width;
+
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Text(routine.date),
+            title: Text(
+              routine.date,
+              style: TextStyle(
+                  color: AppColors.cmb_grey[100],
+                  fontSize: _width * 0.0333,
+                  fontWeight: FontWeight.w700),
+            ),
             automaticallyImplyLeading: false,
             pinned: true,
             floating: true,
-            expandedHeight: 3.5 * kToolbarHeight,
-            backgroundColor: AppColors.cmb_grey[700],
+            expandedHeight: _width * 0.705,
+            backgroundColor: AppColors.cmb_grey[800],
             flexibleSpace: _buildDetailHeaderSpace(routine),
             actions: <Widget>[
               IconButton(
-                icon: const Icon(Icons.close),
+                icon: Icon(
+                  Icons.close_sharp,
+                  color: AppColors.cmb_grey[100],
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -211,7 +318,7 @@ class RecordDetailScreen extends StatelessWidget {
         final t =
             (1.0 - (settings.currentExtent - settings.minExtent) / deltaExtent)
                 .clamp(0.0, 1.0) as double;
-        final fadeStart = max(0.0, 1.0 - kToolbarHeight / deltaExtent);
+        final fadeStart = max(0.0, 1.0 - kToolbarHeight * 3 / deltaExtent);
         const fadeEnd = 1.0;
 
         final opacity = 1.0 - Interval(fadeStart, fadeEnd).transform(t);
@@ -224,9 +331,9 @@ class RecordDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Expanded(
-                  flex: 4,
+                  flex: 3,
                   child: SizedBox(
-                    height: 10,
+                    height: _width * 0.111,
                   ),
                 ),
                 Expanded(
@@ -237,34 +344,37 @@ class RecordDetailScreen extends StatelessWidget {
                       Icon(
                         Icons.alarm,
                         color: AppColors.cmb_blue,
-                      ),
-                      SizedBox(
-                        width: 3,
+                        size: _width * 0.0388 * opacity,
                       ),
                       Text(
                         inRoutine.convertMinToString(),
                         style: TextStyle(
                           color: AppColors.cmb_blue,
-                          fontSize: 15.0 * opacity,
+                          fontSize: _width * 0.0388 * opacity,
                         ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: _width * 0.0333,
                 ),
-                Text(
-                  inRoutine.name,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26.0 * opacity,
+                SizedBox(
+                  width: _width * 0.622,
+                  child: Text(
+                    inRoutine.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: _width * 0.0722 * opacity,
+                    ),
+                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Expanded(
                   flex: 1,
                   child: SizedBox(
-                    height: 20,
+                    height: _width * 0.0555,
                   ),
                 ),
               ],

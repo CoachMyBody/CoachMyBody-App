@@ -35,7 +35,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
               children: <Widget>[
                 Text(
                   '4월 16일',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppColors.cmb_grey[700]),
                 ),
                 Icon(
                   Icons.arrow_drop_down_rounded,

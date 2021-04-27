@@ -7,14 +7,7 @@ class MypageCoachSearching extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      appBar: AppBar(elevation: 1.0),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
@@ -69,6 +62,7 @@ class MypageCoachSearching extends StatelessWidget {
               height: 10.0,
             ),
             Container(
+              margin: EdgeInsets.only(top: 38.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

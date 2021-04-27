@@ -23,130 +23,134 @@ class MyPageScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SwitchListTile(
-              title: Text(
-                '코치 전환',
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              SwitchListTile(
+                title: Text(
+                  '코치 전환',
+                ),
+                value: coach,
+                onChanged: (bool coach) {},
               ),
-              value: coach,
-              onChanged: (bool coach) {},
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            Column(
-              children: [
-                CircleAvatar(
-                  radius: 50.0,
-                  backgroundColor: Color(0xFFC4C4C4),
-                ),
-                SizedBox(height: 21.0),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MypageInfo()));
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '코마바',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 16.0),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 3.0),
-                        child: Icon(
-                          Icons.keyboard_arrow_right,
-                          color: Colors.black,
-                        ),
-                      )
-                    ],
+              SizedBox(
+                height: 10.0,
+              ),
+              Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50.0,
+                    backgroundColor: Color(0xFFC4C4C4),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 3.0),
-                  child: Text(
+                  SizedBox(height: 10.0),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MypageInfo()));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '코마바',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16.0),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 3.0),
+                          child: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Text(
                     'cmb@gmail.com',
                     style: TextStyle(
                       color: AppColors.cmb_grey[300],
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
                     ),
+                  )
+                ],
+              ),
+              Column(
+                children: [
+                  ListTile(
+                    visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
+                    title: Text(
+                      '내 활동',
+                      style: TextStyle(
+                          fontSize: 16.0, fontWeight: FontWeight.w700),
+                    ),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyActicity()));
+                    },
                   ),
-                )
-              ],
-            ),
-            Column(
-              children: [
-                ListTile(
-                  visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
-                  title: Text(
-                    '내 활동',
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                  Container(
+                    height: 80.0,
+                    width: 328.0,
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.cmb_grey[50],
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        MypageCard(text: '내 레벨', count: '3'),
+                        Container(
+                            height: 22.0,
+                            width: 1.0,
+                            color: AppColors.cmb_grey[400]),
+                        MypageCard(text: '획득 뱃지', count: '5'),
+                        Container(
+                            height: 22.0,
+                            width: 1.0,
+                            color: AppColors.cmb_grey[400]),
+                        MypageCard(text: '운동 일수', count: '27')
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                height: 5.0,
+                color: AppColors.cmb_grey[50],
+              ),
+              Column(
+                children: [
+                  MypageList(
+                    text: tr(COACHING_SEARCH),
+                    route: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MypageCoachSearching()));
+                    },
                   ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyActicity()));
-                  },
-                ),
-                Container(
-                  height: 80.0,
-                  width: 328.0,
-                  margin: EdgeInsets.all(10.0),
-                  decoration: BoxDecoration(
-                    color: AppColors.cmb_grey[50],
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      MypageCard(text: '내 레벨', count: '3'),
-                      Container(
-                          height: 22.0,
-                          width: 1.0,
-                          color: AppColors.cmb_grey[400]),
-                      MypageCard(text: '획득 뱃지', count: '5'),
-                      Container(
-                          height: 22.0,
-                          width: 1.0,
-                          color: AppColors.cmb_grey[400]),
-                      MypageCard(text: '운동 일수', count: '27')
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Container(
-              height: 5.0,
-              color: AppColors.cmb_grey[50],
-            ),
-            Column(
-              children: [
-                MypageList(
-                  text: tr(COACHING_SEARCH),
-                  route: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MypageCoachSearching()));
-                  },
-                ),
-                MypageList(text: tr(CONTACT_US)),
-                MypageList(text: tr(APP_SETTING)),
-                ListTile(
-                  visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
-                  title: Text(tr(LOGOUT)),
-                  onTap: () {},
-                )
-              ],
-            )
-          ],
+                  MypageList(text: tr(CONTACT_US)),
+                  MypageList(text: tr(APP_SETTING)),
+                  ListTile(
+                    visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
+                    title: Text(tr(LOGOUT)),
+                    onTap: () {},
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

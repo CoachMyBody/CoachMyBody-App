@@ -7,17 +7,19 @@ import 'package:flutter/material.dart';
 class MonthModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Popover(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: Text('연도'),
-          ),
-          ListTile(
-            leading: Text('월'),
-          ),
-          OKButtonInBottomSheet(false), // Button 활성화...
-        ],
+    return FractionallySizedBox(
+      child: Popover(
+        child: Column(
+          children: <Widget>[
+            ListTile(
+              leading: Text('연도'),
+            ),
+            ListTile(
+              leading: Text('월'),
+            ),
+            OKButtonInBottomSheet(false), // Button 활성화...
+          ],
+        ),
       ),
     );
   }

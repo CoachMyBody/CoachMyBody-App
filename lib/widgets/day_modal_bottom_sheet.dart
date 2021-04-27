@@ -50,31 +50,65 @@ class CurrentDate extends ChangeNotifier {
   }
 }
 
+class SelectedDate extends ChangeNotifier {
+  SelectedDate() {
+    _isSelected = false;
+  }
+
+  bool _isSelected;
+
+  bool getSelected() {
+    return _isSelected;
+  }
+
+  void setSelected(bool b) {
+    _isSelected = b;
+    notifyListeners();
+  }
+
+  void setSelectedToNegative() {
+    _isSelected = !_isSelected;
+    notifyListeners();
+  }
+}
+
 class DayModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => CurrentDate()),
-      ],
-      child: Popover(
-        child: Column(
-          children: <Widget>[
-            MonthlyIndicatorWidget(),
-            OKButtonInBottomSheet(false), // Button 활성화
-          ],
-        ),
+    return FractionallySizedBox(
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => CurrentDate()),
+          ChangeNotifierProvider(create: (context) => SelectedDate()),
+        ],
+        child: Builder(builder: (context) {
+          return Popover(
+            child: Column(
+              children: <Widget>[
+                MonthlyIndicatorWidget(),
+                Consumer<SelectedDate>(builder: (_, selected, child) {
+                  return OKButtonInBottomSheet(selected.getSelected());
+                }),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
 }
 
+// ignore: must_be_immutable
 class MonthlyIndicatorWidget extends StatelessWidget {
+  double _width;
+
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
+
     return SizedBox(
-      height: 308,
-      width: 360,
+      height: _width * 0.855,
+      width: _width,
       child: Column(
         children: <Widget>[
           Padding(
@@ -87,6 +121,8 @@ class MonthlyIndicatorWidget extends StatelessWidget {
                   onPressed: () {
                     Provider.of<CurrentDate>(context, listen: false)
                         .setToPreviousMonth();
+                    Provider.of<SelectedDate>(context, listen: false)
+                        .setSelected(false);
                   },
                 ),
                 Consumer<CurrentDate>(
@@ -102,6 +138,8 @@ class MonthlyIndicatorWidget extends StatelessWidget {
                   onPressed: () {
                     Provider.of<CurrentDate>(context, listen: false)
                         .setToNextMonth();
+                    Provider.of<SelectedDate>(context, listen: false)
+                        .setSelected(false);
                   },
                 ),
               ],
@@ -111,9 +149,7 @@ class MonthlyIndicatorWidget extends StatelessWidget {
             // child: MonthlyCalendarWidget(),
             child: Consumer<CurrentDate>(
               builder: (_, date, child) => MonthlyCalendarWidget(
-                date.getCurrentYear(),
-                date.getCurrentMonth(),
-              ),
+                  date.getCurrentYear(), date.getCurrentMonth(), _width),
             ),
           ),
         ],
@@ -124,7 +160,7 @@ class MonthlyIndicatorWidget extends StatelessWidget {
 
 // ignore: must_be_immutable
 class MonthlyCalendarWidget extends StatefulWidget {
-  MonthlyCalendarWidget(this.year, this.month) {
+  MonthlyCalendarWidget(this.year, this.month, this.width) {
     assert(year > 0 && month < 13);
     _lastDate = DateTime(year, month + 1, 0).day;
     _startDayOfWeek = DateTime.utc(year, month, 1).weekday;
@@ -139,6 +175,7 @@ class MonthlyCalendarWidget extends StatefulWidget {
 
   final int year;
   final int month;
+  final double width;
 
   int _lastDate;
   int _startDayOfWeek;
@@ -149,14 +186,16 @@ class MonthlyCalendarWidget extends StatefulWidget {
 }
 
 class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     // TODO: 사이즈 overflow
     // TODO: 4주 6주 될 때 세로 길이 줄어들었다 늘어났다....
     return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      // physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 7,
+        crossAxisCount: DateTime.daysPerWeek,
       ),
       itemCount: _getDateNum(),
       itemBuilder: (context, index) {
@@ -164,16 +203,43 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
           onTap: () {
             // TODO: save selected index
             print(index - widget._startDayOfWeek + 1);
+            if (0 < index - widget._startDayOfWeek + 1 &&
+                index - widget._startDayOfWeek < widget._lastDate) {
+              if (_selectedIndex == index) {
+                Provider.of<SelectedDate>(context, listen: false)
+                    .setSelectedToNegative();
+              } else {
+                Provider.of<SelectedDate>(context, listen: false)
+                    .setSelected(true);
+              }
+              _selectedIndex = index;
+            }
           },
-          child: Container(
-            width: 40.0,
-            height: 44.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _buildDate(index, widget._startDayOfWeek, widget._lastDate),
-              ],
-            ),
+          child: Consumer<SelectedDate>(
+            builder: (_, selected, child) {
+              return Container(
+                width: widget.width * 0.111,
+                height: widget.width * 0.122,
+                decoration: BoxDecoration(
+                  color: _selectedIndex > 0 &&
+                          _selectedIndex == index &&
+                          selected.getSelected() == true
+                      ? AppColors.cmb_grey[800]
+                      : AppColors.cmb_grey[0],
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Consumer<SelectedDate>(builder: (_, selected, child) {
+                      return _buildDate(selected.getSelected(), index,
+                          widget._startDayOfWeek, widget._lastDate);
+                    }),
+                    // _buildDate(index, widget._startDayOfWeek, widget._lastDate),
+                  ],
+                ),
+              );
+            },
           ),
         );
       },
@@ -197,7 +263,7 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
     return dateNum;
   }
 
-  Text _buildDate(int index, int startDayOfWeek, int lastDate) {
+  Text _buildDate(bool selected, int index, int startDayOfWeek, int lastDate) {
     TextStyle dateStyle = TextStyle(color: AppColors.cmb_grey[700]);
     int date = index - startDayOfWeek + 1;
 
@@ -208,6 +274,10 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
     } else if (date > lastDate) {
       date = index - startDayOfWeek + 1 - lastDate;
       dateStyle = TextStyle(color: AppColors.cmb_grey[200]);
+    }
+
+    if (_selectedIndex > 0 && _selectedIndex == index && selected == true) {
+      dateStyle = TextStyle(color: AppColors.cmb_grey[0]);
     }
 
     return Text(

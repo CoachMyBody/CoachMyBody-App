@@ -31,6 +31,7 @@ class RecordSubDailyRoutines extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet<int>(
                 backgroundColor: Colors.transparent,
+                isScrollControlled: true,
                 context: context,
                 builder: (context) {
                   return DayModalBottomSheet();
@@ -118,8 +119,9 @@ class RecordSubDailyRoutines extends StatelessWidget {
                   Navigator.of(context).pushNamed(Routes.write);
                 },
                 child: Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
-                    style: TextStyle(
-                        fontSize: 14.0, color: AppColors.cmb_grey[0])).tr(),
+                        style: TextStyle(
+                            fontSize: 14.0, color: AppColors.cmb_grey[0]))
+                    .tr(),
               ),
             ),
           ],
@@ -129,6 +131,7 @@ class RecordSubDailyRoutines extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class RecordRoutineListItem extends StatelessWidget {
   RecordRoutineListItem({@required this.routine}) {
     assert(null != routine);
@@ -250,6 +253,7 @@ class RecordRoutineListItem extends StatelessWidget {
 ///
 /// Record detail view
 ///
+// ignore: must_be_immutable
 class RecordDetailScreen extends StatelessWidget {
   RecordDetailScreen({@required this.routine});
 
@@ -272,6 +276,7 @@ class RecordDetailScreen extends StatelessWidget {
                   fontSize: _width * 0.0333,
                   fontWeight: FontWeight.w700),
             ),
+            centerTitle: true,
             automaticallyImplyLeading: false,
             pinned: true,
             floating: true,

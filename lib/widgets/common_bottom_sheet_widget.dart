@@ -47,6 +47,7 @@ class ButtonEnableState extends ChangeNotifier {
   ButtonEnableState() {
     _isEnable = false;
   }
+
   bool _isEnable;
 
   void setEnable() {
@@ -69,15 +70,18 @@ class OKButtonInBottomSheet extends StatelessWidget {
   }
 
   bool _isEnable;
+  double _width;
 
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
+
     return Container(
       margin: EdgeInsets.all(16.0),
-      width: 328.0,
-      height: 52.0,
+      width: _width * 0.911,
+      height: _width * 0.144,
       decoration: BoxDecoration(
-        color: _isEnable? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
+        color: _isEnable ? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
       ),
       child: TextButton(

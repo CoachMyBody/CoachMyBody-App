@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../routes.dart';
+import 'home_detail_cmb_recommend.dart';
 import 'home_detail_popular_routine.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -172,6 +173,8 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
 class PopularRoutineWidget extends StatelessWidget {
 
   final List<String> titleList = <String>['홍길동 코치의 7일만에 어깡 만들기 루틴!', '7일만에 허벅지 다이어트 일주일 루틴!'];
+  final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
+    AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
   @override
   Widget build(BuildContext context) {
@@ -216,7 +219,7 @@ class PopularRoutineWidget extends StatelessWidget {
                         height: MediaQuery.of(context).size.width * 114 / 160 / 2,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/cmb_icon.png'),
+                            image: imageList[index % 4],
                             fit: BoxFit.cover
                           ),
                           borderRadius: BorderRadius.circular(8)
@@ -351,7 +354,7 @@ class PopularRoutineWidget extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DetailPopulatRoutineScreen()));
+                  MaterialPageRoute(builder: (context) => DetailPopularRoutineScreen()));
               },
               child: Text(
                 '인기루틴 더보기',
@@ -372,6 +375,9 @@ class PopularRoutineWidget extends StatelessWidget {
 class CMBRecommendWidget extends StatelessWidget {
   final int LIST_COUNT = 5;
   final double CARD_HEIGHT = 88.0;
+
+  final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
+    AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
   @override
   Widget build(BuildContext context) {
@@ -411,7 +417,7 @@ class CMBRecommendWidget extends StatelessWidget {
                           height: 88,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/images/cmb_icon.png'),
+                                  image: imageList[index % 4],
                                   fit: BoxFit.cover
                               ),
                               borderRadius: BorderRadius.circular(8)
@@ -492,7 +498,10 @@ class CMBRecommendWidget extends StatelessWidget {
               style: TextButton.styleFrom(
                 backgroundColor: AppColors.cmb_grey[100],
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DetailCMBRecommendScreen()));
+              },
               child: Text(
                 '코마바 추천 더보기',
                 textAlign: TextAlign.center,

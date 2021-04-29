@@ -13,9 +13,14 @@ class DetailPopularRoutineScreen extends StatelessWidget {
         child: ListView(
           physics: ClampingScrollPhysics(),
           children: [
-            HeaderRoutineWidget(),
-            Padding(padding: EdgeInsets.only(top: 16)),
-            BodyRoutineWidget()
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                HeaderRoutineWidget(),
+                SizedBox(height: 16,),
+                //Expanded(child: BodyRoutineWidget())
+              ],
+            )
           ],
         ),
       ),
@@ -148,26 +153,171 @@ class HeaderRoutineWidget extends StatelessWidget {
   }
 }
 
-class BodyRoutineWidget extends StatelessWidget {
+class BodyRoutineWidget extends StatefulWidget {
+  @override
+  _BodyRoutineWidgetState createState() => _BodyRoutineWidgetState();
+}
+
+class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
+  final List<String> titleList = <String>['홍길동 코치의 7일만에 어깡 만들기 루틴!', '7일만에 허벅지 다이어트 일주일 루틴!'];
+  final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
+    AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
+
+  List<String> realTitleList = <String>[];
+  List<AssetImage> realImageList = <AssetImage>[];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchFour();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-      child: Container(
-        color: Colors.grey[300],
-        child: Column(
-          children: [
-            Container(
-              height: 24,
-              alignment: Alignment.centerRight,
-              child: Icon(Icons.clear_all),
-            ),
-            Padding(padding: EdgeInsets.only(top: 16)),
-
-          ],
-        ),
+    return Container(
+      child: Text(
+        '야야야'
       ),
     );
+    // return Padding(
+    //   padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+    //   child: Container(
+    //     color: Colors.grey[300],
+    //     child: Column(
+    //       children: [
+    //         Container(
+    //           height: 24,
+    //           alignment: Alignment.centerRight,
+    //           child: Icon(Icons.clear_all),
+    //         ),
+    //         SizedBox(height: 16,),
+    //         Expanded(
+    //           child: GridView.builder(
+    //               physics: NeverScrollableScrollPhysics(),
+    //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //                 crossAxisCount: 2,
+    //                 childAspectRatio: 2 / 3,
+    //                 mainAxisSpacing: 16.0,
+    //                 crossAxisSpacing: 8.0,
+    //               ),
+    //               itemCount: realTitleList.length,
+    //               itemBuilder: (context, index) {
+    //                 return Container(
+    //                   child: Column(
+    //                     children: [
+    //                       Container(
+    //                         width: double.infinity,
+    //                         height: MediaQuery.of(context).size.width * 114 / 160 / 2,
+    //                         decoration: BoxDecoration(
+    //                             image: DecorationImage(
+    //                                 image: realImageList[index],
+    //                                 fit: BoxFit.cover
+    //                             ),
+    //                             borderRadius: BorderRadius.circular(8)
+    //                         ),
+    //                         child: Container(
+    //                           margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
+    //                           alignment: Alignment.bottomRight,
+    //                           child: Icon(
+    //                             index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
+    //                             color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
+    //                           ),
+    //                         ),
+    //                       ),
+    //                       SizedBox(height: 4,),
+    //                       Text(
+    //                         realTitleList[index],
+    //                         style: TextStyle(
+    //                             fontSize: 14,
+    //                             fontWeight: FontWeight.bold,
+    //                             color: AppColors.cmb_grey[700]
+    //                         ),
+    //                       ),
+    //                       SizedBox(height: 8,),
+    //                       Row(
+    //                         children: [
+    //                           SizedBox(
+    //                             width: 18.0,
+    //                             height: 18.0,
+    //                             child: CircleAvatar(
+    //                               child: Image.asset(
+    //                                   'assets/images/test_image.png'
+    //                               ),
+    //                             ),
+    //                           ),
+    //                           Padding(padding: EdgeInsets.only(right: 4)),
+    //                           Text(
+    //                             '홍길동 코치',
+    //                             style: TextStyle(
+    //                                 color: AppColors.cmb_grey[500],
+    //                                 fontSize: 12,
+    //                                 fontWeight: FontWeight.bold
+    //                             ),
+    //                           )
+    //                         ],
+    //                       ),
+    //                       SizedBox(height: 8,),
+    //                       Row(
+    //                         children: [
+    //                           Container(
+    //                             decoration: BoxDecoration(
+    //                               borderRadius: BorderRadius.circular(4),
+    //                               color: Colors.grey[100],
+    //                             ),
+    //                             height: 50,
+    //                             margin: EdgeInsets.only(right: 4),
+    //                             padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+    //                             child: Text(
+    //                               '#헬스',
+    //                               style: TextStyle(
+    //                                   fontSize: 10,
+    //                                   color: AppColors.cmb_grey[600]
+    //                               ),
+    //                             ),
+    //                           ),
+    //                           Container(
+    //                             decoration: BoxDecoration(
+    //                               borderRadius: BorderRadius.circular(4),
+    //                               color: Colors.grey[100],
+    //                             ),
+    //                             height: 50,
+    //                             margin: EdgeInsets.only(right: 4),
+    //                             padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+    //                             child: Text(
+    //                               '#다이어트',
+    //                               style: TextStyle(
+    //                                   fontSize: 10,
+    //                                   color: AppColors.cmb_grey[600]
+    //                               ),
+    //                             ),
+    //                           ),
+    //                         ],
+    //                       )
+    //                     ],
+    //                   ),
+    //                 );
+    //               }
+    //           ),
+    //         )
+    //       ],
+    //     ),
+    //   ),
+    // );
+  }
+
+  // 원래는 비동기 처리해야함
+  void fetch(int index) {
+    setState(() {
+      realTitleList.add(titleList[index % titleList.length]);
+      realImageList.add(imageList[index % imageList.length]);
+    });
+  }
+
+  void fetchFour() {
+    for (var i = 0; i < 4; i++) {
+      fetch(i);
+    }
   }
 }
 

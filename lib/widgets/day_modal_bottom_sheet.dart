@@ -1,93 +1,40 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/widgets/common_bottom_sheet_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CurrentDate extends ChangeNotifier {
-  CurrentDate() : currentTime = DateTime.now() {
-    _year = currentTime.year;
-    _month = currentTime.month;
-  }
-
-  final DateTime currentTime;
-  int _year;
-  int _month;
-
-  int getCurrentYear() {
-    return _year;
-  }
-
-  void setCurrentYear(int inYear) {
-    _year = inYear;
-    notifyListeners();
-  }
-
-  int getCurrentMonth() {
-    assert(_month > 0 && _month < 13);
-    return _month;
-  }
-
-  void setToNextMonth() {
-    if (DateTime.december == _month) {
-      _month = DateTime.january;
-      _year++;
-    } else {
-      _month++;
-    }
-    notifyListeners();
-  }
-
-  void setToPreviousMonth() {
-    if (DateTime.january == _month) {
-      _month = DateTime.december;
-      _year--;
-    } else {
-      _month--;
-    }
-    notifyListeners();
-  }
-}
-
-class SelectedDate extends ChangeNotifier {
-  SelectedDate() {
-    _isSelected = false;
-  }
-
-  bool _isSelected;
-
-  bool getSelected() {
-    return _isSelected;
-  }
-
-  void setSelected(bool b) {
-    _isSelected = b;
-    notifyListeners();
-  }
-
-  void setSelectedToNegative() {
-    _isSelected = !_isSelected;
-    notifyListeners();
-  }
-}
-
 class DayModalBottomSheet extends StatelessWidget {
+  void _callBackDayModalOKBtn(BuildContext context) {
+    print('_callBackDayModalOKBtn');
+
+    Provider.of<SelectedDateViewModel>(context, listen: false)
+        .setSelectedDate(2021, 1, 1);
+
+    Provider.of<SelectedDateViewModel>(context, listen: false)
+        .getSelectedTime();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => CurrentDate()),
-          ChangeNotifierProvider(create: (context) => SelectedDate()),
+          ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
+          ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
         ],
         child: Builder(builder: (context) {
           return Popover(
             child: Column(
               children: <Widget>[
                 MonthlyIndicatorWidget(),
-                Consumer<SelectedDate>(builder: (_, selected, child) {
-                  return OKButtonInBottomSheet(selected.getSelected());
+                Consumer<SelectedDateViewModel>(builder: (_, selected, child) {
+                  return OKButtonInBottomSheet(
+                    selected.getSelected(),
+                    onPressed: () => _callBackDayModalOKBtn(context),
+                  );
                 }),
               ],
             ),
@@ -119,13 +66,13 @@ class MonthlyIndicatorWidget extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.navigate_before),
                   onPressed: () {
-                    Provider.of<CurrentDate>(context, listen: false)
+                    Provider.of<MonthlyViewModel>(context, listen: false)
                         .setToPreviousMonth();
-                    Provider.of<SelectedDate>(context, listen: false)
+                    Provider.of<SelectedDateViewModel>(context, listen: false)
                         .setSelected(false);
                   },
                 ),
-                Consumer<CurrentDate>(
+                Consumer<MonthlyViewModel>(
                   builder: (_, date, child) => Text(
                       date.getCurrentYear().toString() +
                           tr(COMMON_YEAR_TXT) +
@@ -136,9 +83,9 @@ class MonthlyIndicatorWidget extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.navigate_next),
                   onPressed: () {
-                    Provider.of<CurrentDate>(context, listen: false)
+                    Provider.of<MonthlyViewModel>(context, listen: false)
                         .setToNextMonth();
-                    Provider.of<SelectedDate>(context, listen: false)
+                    Provider.of<SelectedDateViewModel>(context, listen: false)
                         .setSelected(false);
                   },
                 ),
@@ -147,7 +94,7 @@ class MonthlyIndicatorWidget extends StatelessWidget {
           ),
           Expanded(
             // child: MonthlyCalendarWidget(),
-            child: Consumer<CurrentDate>(
+            child: Consumer<MonthlyViewModel>(
               builder: (_, date, child) => MonthlyCalendarWidget(
                   date.getCurrentYear(), date.getCurrentMonth(), _width),
             ),
@@ -206,16 +153,16 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
             if (0 < index - widget._startDayOfWeek + 1 &&
                 index - widget._startDayOfWeek < widget._lastDate) {
               if (_selectedIndex == index) {
-                Provider.of<SelectedDate>(context, listen: false)
+                Provider.of<SelectedDateViewModel>(context, listen: false)
                     .setSelectedToNegative();
               } else {
-                Provider.of<SelectedDate>(context, listen: false)
+                Provider.of<SelectedDateViewModel>(context, listen: false)
                     .setSelected(true);
               }
               _selectedIndex = index;
             }
           },
-          child: Consumer<SelectedDate>(
+          child: Consumer<SelectedDateViewModel>(
             builder: (_, selected, child) {
               return Container(
                 width: widget.width * 0.111,
@@ -231,7 +178,8 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Consumer<SelectedDate>(builder: (_, selected, child) {
+                    Consumer<SelectedDateViewModel>(
+                        builder: (_, selected, child) {
                       return _buildDate(selected.getSelected(), index,
                           widget._startDayOfWeek, widget._lastDate);
                     }),

@@ -2,15 +2,18 @@ import 'dart:math';
 
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
 import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 ///
 /// Daily Routines View
 ///
+// ignore: must_be_immutable
 class RecordSubDailyRoutines extends StatelessWidget {
   double _width;
 

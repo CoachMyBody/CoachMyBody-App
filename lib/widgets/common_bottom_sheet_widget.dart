@@ -43,33 +43,13 @@ class Popover extends StatelessWidget {
   }
 }
 
-class ButtonEnableState extends ChangeNotifier {
-  ButtonEnableState() {
-    _isEnable = false;
-  }
-
-  bool _isEnable;
-
-  void setEnable() {
-    _isEnable = true;
-  }
-
-  void setDisable() {
-    _isEnable = false;
-  }
-
-  bool isEnable() {
-    return _isEnable;
-  }
-}
-
 // ignore: must_be_immutable
 class OKButtonInBottomSheet extends StatelessWidget {
-  OKButtonInBottomSheet(isEnable) {
-    _isEnable = isEnable;
-  }
+  OKButtonInBottomSheet(this.isEnable, {this.onPressed});
 
-  bool _isEnable;
+  final bool isEnable;
+  final Function onPressed;
+
   double _width;
 
   @override
@@ -77,15 +57,15 @@ class OKButtonInBottomSheet extends StatelessWidget {
     _width = MediaQuery.of(context).size.width;
 
     return Container(
-      margin: EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(16.0),
       width: _width * 0.911,
       height: _width * 0.144,
       decoration: BoxDecoration(
-        color: _isEnable ? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        color: isEnable ? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
+        borderRadius: const BorderRadius.all(Radius.circular(4.0)),
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: false == isEnable || null == onPressed ? null : onPressed,
         child: Text(
           COMMON_OK_TXT,
           style: TextStyle(color: AppColors.cmb_grey[0]),

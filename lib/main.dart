@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // (04/30) 가로 방향 미지원, 추후 지원 예정
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(

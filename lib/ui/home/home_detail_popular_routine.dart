@@ -4,25 +4,52 @@ import 'package:flutter/material.dart';
 
 import '../../routes.dart';
 
-class DetailPopularRoutineScreen extends StatelessWidget {
+GlobalKey<_BodyRoutineWidgetState> globalKey = GlobalKey();
+
+class DetailPopularRoutineScreen extends StatefulWidget {
+  @override
+  _DetailPopularRoutineScreenState createState() => _DetailPopularRoutineScreenState();
+}
+
+class _DetailPopularRoutineScreenState extends State<DetailPopularRoutineScreen> {
+  ScrollController scrollController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      print('offset = ${scrollController.offset}');
+      if (scrollController.offset >= scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange) {
+        globalKey.currentState.fetchFour();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DetailAppBar(),
       body: SafeArea(
-        child: ListView(
-          physics: ClampingScrollPhysics(),
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
+          child: SingleChildScrollView(
+            controller: scrollController,
+            child: Column(
               children: [
                 HeaderRoutineWidget(),
                 SizedBox(height: 16,),
-                //Expanded(child: BodyRoutineWidget())
+                BodyRoutineWidget(key: globalKey,)
               ],
             )
-          ],
-        ),
+          )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -154,6 +181,8 @@ class HeaderRoutineWidget extends StatelessWidget {
 }
 
 class BodyRoutineWidget extends StatefulWidget {
+  BodyRoutineWidget({Key key}) : super(key: key);
+
   @override
   _BodyRoutineWidgetState createState() => _BodyRoutineWidgetState();
 }
@@ -174,136 +203,134 @@ class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        '야야야'
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: 24,
+              alignment: Alignment.centerRight,
+              child: Icon(Icons.clear_all),
+            ),
+            SizedBox(height: 16,),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2 / 3,
+                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 8.0,
+              ),
+              itemCount: realTitleList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.width * 114 / 160 / 2,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: realImageList[index],
+                                fit: BoxFit.cover
+                            ),
+                            borderRadius: BorderRadius.circular(8)
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
+                          alignment: Alignment.bottomRight,
+                          child: Icon(
+                            index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
+                            color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 4,),
+                      Text(
+                        realTitleList[index],
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.cmb_grey[700]
+                        ),
+                      ),
+                      SizedBox(height: 8,),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 18.0,
+                            height: 18.0,
+                            child: CircleAvatar(
+                              child: Image.asset(
+                                  'assets/images/test_image.png'
+                              ),
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.only(right: 4)),
+                          Text(
+                            '홍길동 코치',
+                            style: TextStyle(
+                                color: AppColors.cmb_grey[500],
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 8,),
+                      Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey[100],
+                            ),
+                            margin: EdgeInsets.only(right: 4),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+                            child: Text(
+                              '#헬스',
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: AppColors.cmb_grey[600]
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey[100],
+                            ),
+                            margin: EdgeInsets.only(right: 4),
+                            padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+                            child: Text(
+                              '#다이어트',
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: AppColors.cmb_grey[600]
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              }
+            ),
+          ],
+        ),
       ),
     );
-    // return Padding(
-    //   padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-    //   child: Container(
-    //     color: Colors.grey[300],
-    //     child: Column(
-    //       children: [
-    //         Container(
-    //           height: 24,
-    //           alignment: Alignment.centerRight,
-    //           child: Icon(Icons.clear_all),
-    //         ),
-    //         SizedBox(height: 16,),
-    //         Expanded(
-    //           child: GridView.builder(
-    //               physics: NeverScrollableScrollPhysics(),
-    //               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //                 crossAxisCount: 2,
-    //                 childAspectRatio: 2 / 3,
-    //                 mainAxisSpacing: 16.0,
-    //                 crossAxisSpacing: 8.0,
-    //               ),
-    //               itemCount: realTitleList.length,
-    //               itemBuilder: (context, index) {
-    //                 return Container(
-    //                   child: Column(
-    //                     children: [
-    //                       Container(
-    //                         width: double.infinity,
-    //                         height: MediaQuery.of(context).size.width * 114 / 160 / 2,
-    //                         decoration: BoxDecoration(
-    //                             image: DecorationImage(
-    //                                 image: realImageList[index],
-    //                                 fit: BoxFit.cover
-    //                             ),
-    //                             borderRadius: BorderRadius.circular(8)
-    //                         ),
-    //                         child: Container(
-    //                           margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
-    //                           alignment: Alignment.bottomRight,
-    //                           child: Icon(
-    //                             index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
-    //                             color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
-    //                           ),
-    //                         ),
-    //                       ),
-    //                       SizedBox(height: 4,),
-    //                       Text(
-    //                         realTitleList[index],
-    //                         style: TextStyle(
-    //                             fontSize: 14,
-    //                             fontWeight: FontWeight.bold,
-    //                             color: AppColors.cmb_grey[700]
-    //                         ),
-    //                       ),
-    //                       SizedBox(height: 8,),
-    //                       Row(
-    //                         children: [
-    //                           SizedBox(
-    //                             width: 18.0,
-    //                             height: 18.0,
-    //                             child: CircleAvatar(
-    //                               child: Image.asset(
-    //                                   'assets/images/test_image.png'
-    //                               ),
-    //                             ),
-    //                           ),
-    //                           Padding(padding: EdgeInsets.only(right: 4)),
-    //                           Text(
-    //                             '홍길동 코치',
-    //                             style: TextStyle(
-    //                                 color: AppColors.cmb_grey[500],
-    //                                 fontSize: 12,
-    //                                 fontWeight: FontWeight.bold
-    //                             ),
-    //                           )
-    //                         ],
-    //                       ),
-    //                       SizedBox(height: 8,),
-    //                       Row(
-    //                         children: [
-    //                           Container(
-    //                             decoration: BoxDecoration(
-    //                               borderRadius: BorderRadius.circular(4),
-    //                               color: Colors.grey[100],
-    //                             ),
-    //                             height: 50,
-    //                             margin: EdgeInsets.only(right: 4),
-    //                             padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-    //                             child: Text(
-    //                               '#헬스',
-    //                               style: TextStyle(
-    //                                   fontSize: 10,
-    //                                   color: AppColors.cmb_grey[600]
-    //                               ),
-    //                             ),
-    //                           ),
-    //                           Container(
-    //                             decoration: BoxDecoration(
-    //                               borderRadius: BorderRadius.circular(4),
-    //                               color: Colors.grey[100],
-    //                             ),
-    //                             height: 50,
-    //                             margin: EdgeInsets.only(right: 4),
-    //                             padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-    //                             child: Text(
-    //                               '#다이어트',
-    //                               style: TextStyle(
-    //                                   fontSize: 10,
-    //                                   color: AppColors.cmb_grey[600]
-    //                               ),
-    //                             ),
-    //                           ),
-    //                         ],
-    //                       )
-    //                     ],
-    //                   ),
-    //                 );
-    //               }
-    //           ),
-    //         )
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   // 원래는 비동기 처리해야함
@@ -314,10 +341,14 @@ class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
     });
   }
 
-  void fetchFour() {
+  Future<void> fetchFour() {
     for (var i = 0; i < 4; i++) {
-      fetch(i);
+      realTitleList.add(titleList[i % titleList.length]);
+      realImageList.add(imageList[i % imageList.length]);
     }
+    setState(() {
+
+    });
   }
 }
 

@@ -1,4 +1,6 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class MypageInfo extends StatelessWidget {
@@ -33,34 +35,16 @@ class MypageInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '닉네임',
+                        tr(NICKNAME),
                         style: TextStyle(
                           color: AppColors.cmb_grey[300],
                           fontSize: 12.0,
                         ),
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          isDense: true,
-                          contentPadding: EdgeInsets.all(5.0),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '생년월일',
+                      TextFormField(
+                        initialValue: '코마바',
                         style: TextStyle(
-                          color: AppColors.cmb_grey[300],
-                          fontSize: 12.0,
-                        ),
-                      ),
-                      TextField(
+                            fontSize: 16.0, fontWeight: FontWeight.w500),
                         decoration: InputDecoration(
                             isDense: true, contentPadding: EdgeInsets.all(5.0)),
                       )
@@ -73,13 +57,16 @@ class MypageInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '휴대폰번호',
+                        tr(BIRTHDAY),
                         style: TextStyle(
                           color: AppColors.cmb_grey[300],
                           fontSize: 12.0,
                         ),
                       ),
-                      TextField(
+                      TextFormField(
+                        initialValue: '1999.01.31',
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w500),
                         decoration: InputDecoration(
                             isDense: true, contentPadding: EdgeInsets.all(5.0)),
                       )
@@ -92,13 +79,38 @@ class MypageInfo extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '신체정보',
+                        tr(PHONE_NUMBER),
                         style: TextStyle(
                           color: AppColors.cmb_grey[300],
                           fontSize: 12.0,
                         ),
                       ),
-                      TextField(
+                      TextFormField(
+                        initialValue: '010 3606 05**',
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w500),
+                        decoration: InputDecoration(
+                            isDense: true, contentPadding: EdgeInsets.all(5.0)),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        tr(HEIGHT),
+                        style: TextStyle(
+                          color: AppColors.cmb_grey[300],
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      TextFormField(
+                        initialValue: '160cm',
+                        style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w500),
                         decoration: InputDecoration(
                             isDense: true, contentPadding: EdgeInsets.all(5.0)),
                       )

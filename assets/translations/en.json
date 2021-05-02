@@ -37,8 +37,19 @@
 
 
   "MYPAGE_SUB_TITLE": "My Page",
-  "COACHING_SEARCH": "COACHING_SEARCH",
-  "CONTACT_US": "CONTACT_US",
-  "APP_SETTING":"APP_SETTING",
-  "LOGOUT": "LOGOUT"
+  "SWITCH_TO_COACH_MODE" : "Switch to coach mode",
+  "NICKNAME": "Nickname",
+  "BIRTHDAY": "Birthday",
+  "PHONE_NUMBER": "Phone Number",
+  "HEIGHT": "Height",
+  "MY_ACTIVITY": "My Activity",
+  "MY_LEVEL": "My Level",
+  "BADGES_EARNED": "Badges Earned",
+  "WORKOUT_DAYS": "Workout days",
+  "BADGE" : "Badge",
+  "COACH_SEARCHING": "Coach Searching",
+  "UNIQUE_NUMBER": "Unique Number",
+  "CONTACT_US": "Contact Us",
+  "APP_SETTING":"App Setting",
+  "LOGOUT": "Logout"
 }

@@ -35,7 +35,18 @@
 
 
   "MYPAGE_SUB_TITLE": "마이페이지",
-  "COACHING_SEARCH": "코치 찾기",
+  "SWITCH_TO_COACH_MODE" : "코치 전환",
+  "NICKNAME": "닉네임",
+  "BIRTHDAY": "생년월일",
+  "PHONE_NUMBER": "휴대폰번호",
+  "HEIGHT": "신체정보",
+  "MY_ACTIVITY": "내 활동",
+  "MY_LEVEL": "내 레벨",
+  "BADGES_EARNED": "획득 뱃지",
+  "WORKOUT_DAYS": "운동 일수",
+  "BADGE" : "뱃지",
+  "COACH_SEARCHING": "코치 찾기",
+  "UNIQUE_NUMBER": "내 고유 번호",
   "CONTACT_US": "문의하기",
   "APP_SETTING":"앱 설정",
   "LOGOUT": "로그아웃"

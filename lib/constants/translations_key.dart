@@ -1,3 +1,5 @@
+import 'package:coach_my_body/ui/mypage/mypage_my_activity.dart';
+
 const TW_EN = 'en';
 const TW_KO = 'ko';
 
@@ -44,7 +46,18 @@ const RECORD_NOTI_SETTINGS_TITLE = 'RECORD_NOTI_SETTINGS_TITLE';
 
 /* MyPageScreen */
 const MYPAGE_SUB_TITLE = 'MYPAGE_SUB_TITLE';
-const COACHING_SEARCH = 'COACHING_SEARCH';
+const SWITCH_TO_COACH_MODE = 'SWITCH_TO_COACH_MODE';
+const NICKNAME = 'NICKNAME';
+const BIRTHDAY = 'BIRTHDAY';
+const PHONE_NUMBER = 'PHONE_NUMBER';
+const HEIGHT = 'HEIGHT';
+const MY_ACTIVITY = 'MY_ACTIVITY';
+const MY_LEVEL = 'MY_LEVEL';
+const BADGES_EARNED = 'BADGES_EARNED';
+const WORKOUT_DAYS = 'WORKOUT_DAYS';
+const COACH_SEARCHING = 'COACH_SEARCHING';
+const BADGE = 'BADGE';
+const UNIQUE_NUMBER = 'UNIQUE_NUMBER';
 const CONTACT_US = 'CONTACT_US';
 const APP_SETTING = 'APP_SETTING';
 const LOGOUT = 'LOGOUT';

@@ -16,7 +16,7 @@ class MypageCoachSearching extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 30.0),
               child: Text(
-                tr(COACHING_SEARCH),
+                tr(COACH_SEARCHING),
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
               ),
             ),

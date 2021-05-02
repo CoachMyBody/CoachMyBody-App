@@ -29,7 +29,7 @@ class MyPageScreen extends StatelessWidget {
             children: [
               SwitchListTile(
                 title: Text(
-                  '코치 전환',
+                  tr(SWITCH_TO_COACH_MODE),
                 ),
                 value: coach,
                 onChanged: (bool coach) {},
@@ -86,7 +86,7 @@ class MyPageScreen extends StatelessWidget {
                   ListTile(
                     visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
                     title: Text(
-                      '내 활동',
+                      tr(MY_ACTIVITY),
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.w700),
                     ),
@@ -109,17 +109,17 @@ class MyPageScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        MypageCard(text: '내 레벨', count: '3'),
+                        MypageCard(text: tr(MY_LEVEL), count: '3'),
                         Container(
                             height: 22.0,
                             width: 1.0,
                             color: AppColors.cmb_grey[400]),
-                        MypageCard(text: '획득 뱃지', count: '5'),
+                        MypageCard(text: tr(BADGES_EARNED), count: '5'),
                         Container(
                             height: 22.0,
                             width: 1.0,
                             color: AppColors.cmb_grey[400]),
-                        MypageCard(text: '운동 일수', count: '27')
+                        MypageCard(text: tr(WORKOUT_DAYS), count: '27')
                       ],
                     ),
                   )
@@ -132,7 +132,7 @@ class MyPageScreen extends StatelessWidget {
               Column(
                 children: [
                   MypageList(
-                    text: tr(COACHING_SEARCH),
+                    text: tr(COACH_SEARCHING),
                     route: () {
                       Navigator.push(
                           context,

@@ -1,4 +1,6 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Badge extends StatelessWidget {
@@ -7,7 +9,7 @@ class Badge extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Center(child: Text('뱃지')),
+            title: Center(child: Text(tr(BADGE))),
             actions: [
               IconButton(
                   icon: Icon(Icons.close),
@@ -34,7 +36,7 @@ class Badge extends StatelessWidget {
               SizedBox(height: 20.0),
               Text('?? 뱃지', style: TextStyle(color: AppColors.cmb_grey[400])),
               SizedBox(height: 12.0),
-              Text('3일 연속으로 루틱을 기록해보세요!',
+              Text('3일 연속으로 루틴을 기록해보세요!',
                   style: TextStyle(color: AppColors.cmb_grey[400])),
               Text('새로운 뱃지를 획득할 수 있어요.',
                   style: TextStyle(color: AppColors.cmb_grey[400]))

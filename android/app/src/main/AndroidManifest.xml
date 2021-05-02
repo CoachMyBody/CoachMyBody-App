@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cmb.coach_my_body">
    <application
-        android:label="coach_my_body"
+        android:label="Coach My Body"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

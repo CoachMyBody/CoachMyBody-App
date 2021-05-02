@@ -11,6 +11,9 @@ class RecordSubRoutinesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final double width = MediaQuery.of(context).size.width;
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
@@ -18,6 +21,16 @@ class RecordSubRoutinesScreen extends StatelessWidget {
       ],
       child: Stack(
         children: <Widget>[
+          Positioned(
+            // TODO: Apply Muscles State
+            top: width * 0.0893,
+            right: width * 0.1421,
+            child: SvgPicture.asset(
+              Assets.musclesImgPath,
+              height: 267.64,
+              width: 88.63,
+            ),
+          ),
           PageView(
             controller: _pageController,
             scrollDirection: Axis.vertical,
@@ -25,16 +38,6 @@ class RecordSubRoutinesScreen extends StatelessWidget {
               RecordSubDailyRoutines(),
               RecordSubMonthlyRoutines()
             ],
-          ),
-          Positioned(
-            // TODO: Apply Muscles State
-            top: 50,
-            right: 52.18,
-            child: SvgPicture.asset(
-              Assets.musclesImgPath,
-              height: 267.64,
-              width: 88.63,
-            ),
           ),
         ],
       ),

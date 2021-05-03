@@ -1,9 +1,10 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/textstyles.dart';
 
 import 'package:flutter/material.dart';
 
 final ThemeData themeData = ThemeData(
-  // fontFamily: FontFamily.productSans,
+  fontFamily: FontFamily.spoqaHanSansNeo,
   brightness: Brightness.light,
   primarySwatch:
       MaterialColor(AppColors.cmb_grey[500].value, AppColors.cmb_grey),

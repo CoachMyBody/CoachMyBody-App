@@ -1,4 +1,5 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/textstyles.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -36,7 +37,8 @@ class CustomTabPageView extends StatelessWidget {
     @required this.pages,
     @required this.pageNum,
     this.actions,
-  })  : titleTextStyle = TextStyle(color: Colors.black),
+  })  : titleTextStyle = TextStyle(
+            color: Colors.black, fontFamily: FontFamily.spoqaHanSansNeo),
         titleBackgroundColor = Colors.white,
         labelColor = Colors.black,
         indicatorColor = Colors.black {

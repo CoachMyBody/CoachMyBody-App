@@ -78,14 +78,6 @@ class _TabPageState extends State<TabPage> {
   }
 
   void onTabTapped(int index) {
-    if ((_pageIndex - index).abs() == 1) {
-      _pageController.animateToPage (
-          index,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut
-      );
-    } else {
-      _pageController.jumpToPage(index);
-    }
+    _pageController.jumpToPage(index);
   }
 }

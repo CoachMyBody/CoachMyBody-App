@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:coach_my_body/ui/routine/routine_sub_myroutines_list.dart';
-import 'package:coach_my_body/ui/routine/routine_sub_myroutines_detail.dart';
+import 'package:coach_my_body/ui/routine/routine_sub_myroutines/routine_sub_myroutines_list.dart';
+import 'package:coach_my_body/ui/routine/routine_sub_myroutines/routine_sub_myroutines_detail.dart';
 
 //routine_sub_myroutines
 class RoutineSubMyroutinesScreen extends StatelessWidget {

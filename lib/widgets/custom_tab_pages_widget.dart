@@ -38,10 +38,10 @@ class CustomTabPageView extends StatelessWidget {
     @required this.pageNum,
     this.actions,
   })  : titleTextStyle = TextStyle(
-            color: Colors.black, fontFamily: FontFamily.spoqaHanSansNeo),
-        titleBackgroundColor = Colors.white,
-        labelColor = Colors.black,
-        indicatorColor = Colors.black {
+            color: AppColors.cmb_grey[700], fontFamily: FontFamily.spoqaHanSansNeo),
+        titleBackgroundColor = AppColors.cmb_grey[0],
+        labelColor = AppColors.cmb_grey[700],
+        indicatorColor = AppColors.cmb_grey[700] {
     assert(null != title && '' != title);
     assert(pages.isNotEmpty);
     assert(pages.length == pageNum);
@@ -110,27 +110,32 @@ class CustomTabPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return DefaultTabController(
       length: pageNum,
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: false,
-          backgroundColor: titleBackgroundColor,
-          elevation: 0.3,
-          title: Text(
-            title,
-            style: titleTextStyle,
-          ),
-          actions: actions,
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(30.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: TabBar(
-                isScrollable: true,
-                indicatorColor: indicatorColor,
-                labelColor: labelColor,
-                tabs: _buildTabTitleList(),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(size.width * 0.26),
+          child: AppBar(
+            centerTitle: false,
+            backgroundColor: titleBackgroundColor,
+            elevation: 0.3,
+            title: Text(
+              title,
+              style: titleTextStyle,
+            ),
+            actions: actions,
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(size.width * 0.116),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: TabBar(
+                  isScrollable: true,
+                  indicatorColor: indicatorColor,
+                  labelColor: labelColor,
+                  tabs: _buildTabTitleList(),
+                ),
               ),
             ),
           ),

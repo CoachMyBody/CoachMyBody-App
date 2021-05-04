@@ -61,7 +61,7 @@ class OKButtonInBottomSheet extends StatelessWidget {
       width: _width * 0.911,
       height: _width * 0.144,
       decoration: BoxDecoration(
-        color: isEnable ? AppColors.cmb_grey[700] : AppColors.cmb_grey[200],
+        color: isEnable ? AppColors.cmb_blue : AppColors.cmb_grey[200],
         borderRadius: const BorderRadius.all(Radius.circular(4.0)),
       ),
       child: TextButton(

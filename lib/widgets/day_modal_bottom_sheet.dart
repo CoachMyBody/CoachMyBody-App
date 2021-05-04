@@ -8,13 +8,12 @@ import 'package:provider/provider.dart';
 
 class DayModalBottomSheet extends StatelessWidget {
   void _callBackDayModalOKBtn(BuildContext context) {
-    print('_callBackDayModalOKBtn');
+    var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
 
-    Provider.of<SelectedDateViewModel>(context, listen: false)
-        .setSelectedDate(2021, 1, 1);
-
-    Provider.of<SelectedDateViewModel>(context, listen: false)
-        .getSelectedTime();
+    selected.getSelectedDate();
+    selected.setCurrentDate();
+    selected.getCurrentDate();
+    Navigator.pop(context);
   }
 
   @override
@@ -137,6 +136,8 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
+
     // TODO: 사이즈 overflow
     // TODO: 4주 6주 될 때 세로 길이 줄어들었다 늘어났다....
     return GridView.builder(
@@ -153,13 +154,16 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
             if (0 < index - widget._startDayOfWeek + 1 &&
                 index - widget._startDayOfWeek < widget._lastDate) {
               if (_selectedIndex == index) {
-                Provider.of<SelectedDateViewModel>(context, listen: false)
-                    .setSelectedToNegative();
+                selected.setSelectedToNegative();
               } else {
-                Provider.of<SelectedDateViewModel>(context, listen: false)
-                    .setSelected(true);
+                selected.setSelected(true);
               }
               _selectedIndex = index;
+              var curr = Provider.of<MonthlyViewModel>(context, listen: false);
+              selected.setSelectedDate(
+                      curr.getCurrentYear(),
+                      curr.getCurrentMonth(),
+                      index - widget._startDayOfWeek + 1);
             }
           },
           child: Consumer<SelectedDateViewModel>(

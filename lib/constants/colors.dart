@@ -4,7 +4,15 @@ class AppColors {
   AppColors._(); // this basically makes it so you can't instantiate this class
 
   // https://www.figma.com/file/SoQShDNTuCUo6uxsnkIGeu/CoachMyBody?node-id=40%3A64
-  static const Color cmb_blue = Color(0xFF1CB9FF);
+  static Color cmb_blue = cmb_accent[100];
+
+  static const Map<int, Color> cmb_accent = const <int, Color>{
+    10: const Color.fromARGB(0x19, 0x23, 0x55, 0xF5),
+    30: const Color.fromARGB(0x4C, 0x23, 0x55, 0xF5),
+    60: const Color.fromARGB(0x99, 0x23, 0x55, 0xF5),
+    80: const Color.fromARGB(0xCC, 0x23, 0x55, 0xF5),
+    100: const Color.fromARGB(0xFF, 0x23, 0x55, 0xF5),
+  };
 
   // https://www.figma.com/file/SoQShDNTuCUo6uxsnkIGeu/CoachMyBody?node-id=40%3A7
   static const Map<int, Color> cmb_grey = const <int, Color>{

@@ -12,7 +12,7 @@ class RecordSubRoutinesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final double width = MediaQuery.of(context).size.width;
+    final Size size = MediaQuery.of(context).size;
 
     return MultiProvider(
       providers: [
@@ -23,12 +23,12 @@ class RecordSubRoutinesScreen extends StatelessWidget {
         children: <Widget>[
           Positioned(
             // TODO: Apply Muscles State
-            top: width * 0.0893,
-            right: width * 0.1421,
+            top: size.width * 0.0893,
+            right: size.width * 0.1421,
             child: SvgPicture.asset(
               Assets.musclesImgPath,
-              height: 267.64,
-              width: 88.63,
+              // height: size.height * 0.567,
+              width: size.width * 0.246,
             ),
           ),
           PageView(

@@ -3,6 +3,7 @@ import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
+import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
 import 'package:coach_my_body/widgets/month_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,23 +11,25 @@ import 'package:flutter/material.dart';
 ///
 /// Monthly Routines View
 ///
+// ignore: must_be_immutable
 class RecordSubMonthlyRoutines extends StatelessWidget {
-  double _width;
+  Size _size;
 
   @override
   Widget build(BuildContext context) {
-    _width = MediaQuery.of(context).size.width;
+    _size = MediaQuery.of(context).size;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox(
-          height: _width * 0.072,
+          height: _size.width * 0.072,
         ),
         Padding(
-          padding: EdgeInsets.only(left: _width * 0.027),
-          child: TextButton(
+          padding: EdgeInsets.only(left: _size.width * 0.027),
+          child: CustomDropDownWidget(
+            label: '21년 4월',
             onPressed: () {
               showModalBottomSheet<int>(
                 backgroundColor: Colors.transparent,
@@ -36,59 +39,52 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
                   return MonthModalBottomSheet();
                 },
               );
-            },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(
-                  '4월 16일',
-                  style: TextStyle(
-                      fontSize: _width * 0.0667,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.cmb_grey[700]),
-                ),
-                Icon(
-                  Icons.arrow_drop_down_rounded,
-                  color: AppColors.cmb_blue,
-                  size: _width * 0.083,
-                ),
-              ],
-            ),
-          ),
+            }),
         ),
         Padding(
-          padding: EdgeInsets.only(left: _width * 0.0472),
-          child: Text(
-            '총 3개\n루틴 완료했다.', // TODO: state provider
-            style: TextStyle(
-                fontSize: _width * 0.0667, fontWeight: FontWeight.bold),
-          ),
+          padding: EdgeInsets.only(left: _size.width * 0.0555, top: 12),
+          child: _buildDailyRoutinesTxt(),
         ),
         SizedBox(
-          height: _width * 0.536,
+          height: _size.width * 0.536,
         ),
         Padding(
-          padding: EdgeInsets.only(left: _width * 0.0444),
+          padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: SizedBox(
-            height: _width * 0.35,
+            height: _size.width * 0.35,
             child: routines.isEmpty
                 ? _buildEmptyItem(context)
                 : ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: routines.length, // TODO: Server API
-                itemBuilder: (BuildContext context, int index) =>
-                    RecordRoutineListItem(routine: routines[index])),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: routines.length, // TODO: Server API
+                    itemBuilder: (BuildContext context, int index) =>
+                        RecordRoutineListItem(routine: routines[index])),
           ),
         ),
       ],
     );
   }
 
+  Widget _buildDailyRoutinesTxt() {
+    return RichText(
+      text: TextSpan(
+        style: TextStyle(
+            color: AppColors.cmb_grey[700], fontSize: _size.width * 0.0667),
+        children: <TextSpan>[
+          TextSpan(
+              text: '총 3일', // TODO: provider
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          TextSpan(text: '동안\n운동했어요.'),
+        ],
+      ),
+    );
+  }
+
   Widget _buildEmptyItem(BuildContext context) {
     return Container(
-      width: _width * 0.6,
-      height: _width * 0.35,
+      width: _size.width * 0.6,
+      height: _size.width * 0.35,
       decoration: BoxDecoration(
         color: AppColors.cmb_grey[100],
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -107,8 +103,8 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
               height: 7.0,
             ),
             Container(
-              width: _width * 0.331,
-              height: _width * 0.116,
+              width: _size.width * 0.331,
+              height: _size.width * 0.116,
               decoration: BoxDecoration(
                 color: AppColors.cmb_grey[200],
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -118,8 +114,8 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
                   Navigator.of(context).pushNamed(Routes.write);
                 },
                 child: Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
-                    style: TextStyle(
-                        fontSize: 14.0, color: AppColors.cmb_grey[0]))
+                        style: TextStyle(
+                            fontSize: 14.0, color: AppColors.cmb_grey[0]))
                     .tr(),
               ),
             ),

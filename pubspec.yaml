@@ -78,9 +78,6 @@ flutter:
     - assets/images/
     - assets/images/test/
 
-flutter_native_splash:
-  background_image: "assets/splash/Splash.png"
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -107,3 +104,5 @@ flutter_native_splash:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  background_image: "assets/splash/Splash.png"

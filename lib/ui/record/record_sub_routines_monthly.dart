@@ -2,9 +2,6 @@ import 'dart:math';
 
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/routes.dart';
-import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
-import 'package:coach_my_body/ui/record/routine_data.dart';
 import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
 import 'package:coach_my_body/widgets/month_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,7 +26,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
           height: _size.width * 0.072,
         ),
         Padding(
-          padding: EdgeInsets.only(left: _size.width * 0.027),
+          padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: CustomDropDownWidget(
             label: '21년 4월',
             onPressed: () {

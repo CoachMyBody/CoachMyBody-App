@@ -1,5 +1,3 @@
-import 'package:coach_my_body/ui/mypage/mypage_my_activity.dart';
-
 const TW_EN = 'en';
 const TW_KO = 'ko';
 
@@ -15,6 +13,9 @@ const COMMON_YEAR_MONTH_DIVIDER_TXT = 'COMMON_YEAR_MONTH_DIVIDER_TXT';
 
 /* Navigation Bar */
 const NAV_HOME_NAME = 'NAV_HOME_NAME'; // 네비게이션 바 홈 제목
+const NAV_ROUT_MAN_NAME = 'NAV_ROUT_MAN_NAME';
+const NAV_REC_STAT_NAME = 'NAV_REC_STAT_NAME';
+const NAV_MYPAGE_NAME = 'NAV_MYPAGE_NAME';
 
 ////////////////////
 

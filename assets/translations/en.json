@@ -10,7 +10,10 @@
 
   "HOME_MAIN_TITLE": "HomeScreen",
 
-  "NAV_HOME_NAME": "HOME",
+  "NAV_HOME_NAME": "Home",
+  "NAV_ROUT_MAN_NAME": "Routines",
+  "NAV_REC_STAT_NAME": "Status",
+  "NAV_MYPAGE_NAME": "MyPage",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "My Routines",

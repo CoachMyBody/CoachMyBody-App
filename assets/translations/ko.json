@@ -11,6 +11,9 @@
   "HOME_MAIN_TITLE": "홈스크린",
 
   "NAV_HOME_NAME": "홈",
+  "NAV_ROUT_MAN_NAME": "루틴관리",
+  "NAV_REC_STAT_NAME": "운동현황",
+  "NAV_MYPAGE_NAME": "마이페이지",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "나의 루틴",

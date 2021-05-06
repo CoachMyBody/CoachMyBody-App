@@ -1,3 +1,5 @@
+import 'package:coach_my_body/constants/assets.dart';
+import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/home/home.dart';
 import 'package:coach_my_body/ui/routine/routine.dart';
@@ -5,15 +7,14 @@ import 'package:coach_my_body/ui/mypage/mypage.dart';
 import 'package:coach_my_body/ui/record/record.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TabPage extends StatefulWidget {
-
   @override
   _TabPageState createState() => _TabPageState();
 }
 
 class _TabPageState extends State<TabPage> {
-
   PageController _pageController;
 
   int _pageIndex = 0;
@@ -26,48 +27,53 @@ class _TabPageState extends State<TabPage> {
   ];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _pageController = PageController(initialPage: _pageIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         onPageChanged: onPageChanged,
         controller: _pageController,
         children: _tabPages,
       ),
-    
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.black,
-        onTap: onTabTapped,
-        currentIndex: _pageIndex,
-
-        items: <BottomNavigationBarItem> [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), 
-            label: tr(NAV_HOME_NAME)
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.square_foot), 
-            label: '루틴관리'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.graphic_eq), 
-            label: '운동현황'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feedback), 
-            label: '마이페이지'
-          )
-        ]
-      ),
+          type: BottomNavigationBarType.fixed,
+          // fixedColor: Colors.black,
+          onTap: onTabTapped,
+          currentIndex: _pageIndex,
+          selectedItemColor: AppColors.cmb_blue,
+          unselectedItemColor: AppColors.cmb_grey[700],
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.homeIconPath,
+                    color: 0 == _pageIndex
+                        ? AppColors.cmb_blue
+                        : AppColors.cmb_grey[700]),
+                label: tr(NAV_HOME_NAME)),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.routineManIconPath,
+                    color: 1 == _pageIndex
+                        ? AppColors.cmb_blue
+                        : AppColors.cmb_grey[700]),
+                label: tr(NAV_ROUT_MAN_NAME)),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.recordStatusIconPath,
+                    color: 2 == _pageIndex
+                        ? AppColors.cmb_blue
+                        : AppColors.cmb_grey[700]),
+                label: tr(NAV_REC_STAT_NAME)),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(Assets.mypageIconPath,
+                    color: 3 == _pageIndex
+                        ? AppColors.cmb_blue
+                        : AppColors.cmb_grey[700]),
+                label: tr(NAV_MYPAGE_NAME))
+          ]),
     );
   }
 

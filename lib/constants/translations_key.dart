@@ -20,7 +20,6 @@ const NAV_HOME_NAME = 'NAV_HOME_NAME'; // 네비게이션 바 홈 제목
 
 /* Home Screen */
 const HOME_MAIN_TITLE = 'HOME_MAIN_TITLE';
-/////////////////
 
 /* RoutineScreen */
 const ROUTINE_SUB_MYROUTINE_TITLE = 'ROUTINE_SUB_MYROUTINE_TITLE';

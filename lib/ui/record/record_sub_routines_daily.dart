@@ -149,7 +149,7 @@ class RecordRoutineListItem extends StatelessWidget {
           width: _width * 0.755,
           height: _width * 0.25,
           child: Card(
-            elevation: 10,
+            elevation: 6,
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(8.0))),

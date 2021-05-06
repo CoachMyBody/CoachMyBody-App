@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/routes.dart';
@@ -50,17 +52,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
-          child: SizedBox(
-            height: _size.width * 0.35,
-            child: routines.isEmpty
-                ? _buildEmptyItem(context)
-                : ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: routines.length, // TODO: Server API
-                    itemBuilder: (BuildContext context, int index) =>
-                        RecordRoutineListItem(routine: routines[index])),
-          ),
+          child: MonthlyRoutinesView(),
         ),
       ],
     );
@@ -80,48 +72,135 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildEmptyItem(BuildContext context) {
-    return Container(
-      width: _size.width * 0.6,
-      height: _size.width * 0.35,
-      decoration: BoxDecoration(
-        color: AppColors.cmb_grey[100],
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(left: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              RECORD_SUB_ROUTINES_EMPTY_TXT,
-              style: TextStyle(fontSize: 16.0),
-            ).tr(),
-            SizedBox(
-              height: 7.0,
-            ),
-            Container(
-              width: _size.width * 0.331,
-              height: _size.width * 0.116,
-              decoration: BoxDecoration(
-                color: AppColors.cmb_grey[200],
-                borderRadius: BorderRadius.all(Radius.circular(4.0)),
+
+///
+/// Day routine lists
+/// 
+
+class MonthlyRoutinesView extends StatefulWidget {
+@override
+_MonthlyRoutinesViewState createState() => _MonthlyRoutinesViewState();
+}
+
+class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
+
+  PageController _pageController;
+  double _viewPortFraction = 0.2;
+  double _page = 2.0;
+  int _currentPage = 2;
+
+  static const double _fullScale = 1.0;
+  static const _minHeightScale = 0.83;
+
+  @override
+  void initState() {
+    _pageController = PageController(
+        initialPage: _currentPage, viewportFraction: _viewPortFraction);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    Size size = MediaQuery.of(context).size;
+    double maxHeight = size.width * 0.305;
+
+    return Column(
+      children: <Widget>[
+        Container(
+          height: maxHeight,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (ScrollNotification notification) {
+              if (notification is ScrollUpdateNotification) {
+                setState(() {
+                  _page = _pageController.page;
+                });
+              }
+            },
+            child: _buildDailyListView(maxHeight),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDailyListView(double height) {
+    return PageView.builder(
+      onPageChanged: (pos) {
+        setState(() {
+          _currentPage = pos;
+        });
+      },
+      physics: BouncingScrollPhysics(),
+      controller: _pageController,
+      itemCount: dailyRoutinesData.length,
+      itemBuilder: (context, index) {
+        final scale = max(_minHeightScale,
+            (_fullScale - (index - _page).abs()) + _viewPortFraction);
+        bool bActive = false;
+        if ((index - _page).abs() < 0.5) {
+          bActive = true;
+        }
+        return _buildDailyContent(dailyRoutinesData[index], dailyRoutinesData[index]['num'], scale, bActive, height);
+      },
+    );
+  }
+
+  Widget _buildDailyContent(Map content, String num, double scale, bool b, double height) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Center(
+        child: Container(
+          height: height * scale,
+          width: height * scale,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if ('0' != num) Icon(Icons.check),
+              Text(
+                content['day'],
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15 * scale,
+                    fontWeight: FontWeight.bold),
               ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(Routes.write);
-                },
-                child: Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
-                        style: TextStyle(
-                            fontSize: 14.0, color: AppColors.cmb_grey[0]))
-                    .tr(),
+              Text(
+                content['date'],
+                style: TextStyle(color: Colors.black),
               ),
-            ),
-          ],
+              if (true == b)
+                Container(
+                  child: Text('$num개 기록'),
+                  margin: EdgeInsets.only(top: 4.0),
+                  padding: EdgeInsets.all(4.0),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.all(Radius.circular(4.0))
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+List<Map<String, String>> dailyRoutinesData = [
+  {'day': "월요일", 'date': "5/3", 'num': '0'},
+  {'day': "화요일", 'date': "5/4", 'num': '1'},
+  {'day': "수요일", 'date': "5/5", 'num': '2'},
+  {'day': "목요일", 'date': "Today", 'num': '0'},
+  {'day': "금요일", 'date': "5/7", 'num': '1'},
+  {'day': "토요일", 'date': "5/8", 'num': '0'},
+  {'day': "일요일", 'date': "5/9", 'num': '1'},
+];
+

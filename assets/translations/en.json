@@ -26,6 +26,8 @@
   "RECORD_SUB_ROUTINES_TITLE": "Routines",
   "RECORD_SUB_ROUTINES_EMPTY_TXT": "Hi!\nLet's put your workout.",
   "RECORD_SUB_ROUTINES_WRITE_BTN_TXT": "Go to write",
+  "RECORD_SUB_ROUTINES_DETAIL_TOTAL_TXT": "Total: ",
+  "RECORD_SUB_ROUTINES_DETAIL_WORKOUT_TXT": " Workout",
 
   "RECORD_SUB_STATISTICS_TITLE": "Statistics",
   "RECORD_SUB_STATISTICS_INBODY_TXT": "Inbody History",
@@ -37,6 +39,7 @@
 
   "RECORD_NOTI_TITLE": "Notification",
   "RECORD_NOTI_SETTINGS_TITLE": "Settings",
+  "RECORD_NOTI_EMPTY_TXT": "There isn't notification.",
 
 
 

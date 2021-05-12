@@ -20,7 +20,7 @@ class RoutineData {
     int hour = (mins / 60).floor();
     int min = mins % 60;
 
-    return ' $hour시간 $min분';
+    return '$hour시간 $min분';
   }
 
   String convertIsFeedbackToString() {

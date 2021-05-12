@@ -1,4 +1,5 @@
 import 'package:coach_my_body/providers/record/record_date_model.dart';
+import 'package:coach_my_body/providers/record/record_noti_model.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_monthly.dart';
@@ -18,6 +19,7 @@ class RecordSubRoutinesScreen extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
         ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
+        ChangeNotifierProvider(create: (context) => NotiStatusModel())
       ],
       child: Stack(
         children: <Widget>[

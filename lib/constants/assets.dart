@@ -15,4 +15,7 @@ class Assets {
   static const String routineManIconPath = 'assets/icons/routine_man_icon.svg';
   static const String recordStatusIconPath = 'assets/icons/record_status_icon.svg';
   static const String mypageIconPath = 'assets/icons/mypage_icon.svg';
+
+  // record page
+  static const String notiEmptyImagePath = 'assets/images/record/empty_notification.png';
 }

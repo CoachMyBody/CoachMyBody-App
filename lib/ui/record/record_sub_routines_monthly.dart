@@ -175,13 +175,13 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
               ),
               if (true == b)
                 Container(
-                  child: Text('$num개 기록'),
                   margin: EdgeInsets.only(top: 4.0),
                   padding: EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.all(Radius.circular(4.0))
                   ),
+                  child: Text('$num개 기록'),
                 ),
             ],
           ),
@@ -192,12 +192,12 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
 }
 
 List<Map<String, String>> dailyRoutinesData = [
-  {'day': "월요일", 'date': "5/3", 'num': '0'},
-  {'day': "화요일", 'date': "5/4", 'num': '1'},
-  {'day': "수요일", 'date': "5/5", 'num': '2'},
-  {'day': "목요일", 'date': "Today", 'num': '0'},
-  {'day': "금요일", 'date': "5/7", 'num': '1'},
-  {'day': "토요일", 'date': "5/8", 'num': '0'},
-  {'day': "일요일", 'date': "5/9", 'num': '1'},
+  {'day': '월요일', 'date': '5/3', 'num': '0'},
+  {'day': '화요일', 'date': '5/4', 'num': '1'},
+  {'day': '수요일', 'date': '5/5', 'num': '2'},
+  {'day': '목요일', 'date': 'Today', 'num': '0'},
+  {'day': '금요일', 'date': '5/7', 'num': '0'},
+  {'day': '토요일', 'date': '5/8', 'num': '0'},
+  {'day': '일요일', 'date': '5/9', 'num': '0'},
 ];
 

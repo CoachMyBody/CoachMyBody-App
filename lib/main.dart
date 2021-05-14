@@ -1,7 +1,6 @@
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_date_model.dart';
-import 'package:coach_my_body/providers/sample.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     // (04/30) 가로 방향 미지원, 추후 지원 예정

@@ -1,29 +1,8 @@
 import 'package:chips_choice/chips_choice.dart';
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-class PhotoViewModel extends ChangeNotifier {
-  String _imagePath;
-  DateTime _dateTime;
-
-  void setImagePath(String imgPath) {
-    _imagePath = imgPath;
-    notifyListeners();
-  }
-
-  String getImagePath() {
-    return _imagePath;
-  }
-
-  void setDateTime(DateTime time) {
-    _dateTime = time;
-    notifyListeners();
-  }
-
-  DateTime getDateTime() {
-    return _dateTime;
-  }
-}
 
 class PhotoHistoryView extends StatelessWidget {
   const PhotoHistoryView();
@@ -32,15 +11,27 @@ class PhotoHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _buildPhotoView(size, true, '', '21.01.13'),
-        SizedBox(
-          width: 8.0,
+        Padding(
+          padding: const EdgeInsets.only(top: 17.0, bottom: 12.0),
+          child: Text(
+            tr(RECORD_SUB_STATISTICS_PHOTOS_TXT),
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          ),
         ),
-        _buildPhotoView(
-            size, false, 'assets/images/test/statistics_test.png', '21.03.12'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            _buildPhotoView(size, true, '', '21.01.13'),
+            SizedBox(
+              width: 8.0,
+            ),
+            _buildPhotoView(
+                size, false, 'assets/images/test/statistics_test.png', '21.03.12'),
+          ],
+        ),
       ],
     );
   }
@@ -145,6 +136,17 @@ class _PhotoTimelineViewState extends State<PhotoTimelineView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(top: 37.0),
+          child: Row(
+            children: <Widget>[
+              Text(
+                tr(RECORD_SUB_STATISTICS_TIMELINE_TXT),
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
         ChipsChoice<int>.single(
           value: _tag,
           onChanged: (val) {

@@ -16,52 +16,62 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ChipsChoice<int>.single(
-          value: _tag,
-          onChanged: (val) {
-            setState(() {
-              _tag = val;
-              switch (_tag) {
-                case 0:
-                  _opts = InbodyOptions.weight;
-                  break;
-                case 1:
-                  _opts = InbodyOptions.smm;
-                  break;
-                case 2:
-                  _opts = InbodyOptions.pbf;
-                  break;
-                default:
-                  print('Invalid param');
-              }
-            });
-          },
-          choiceItems: C2Choice.listFrom<int, String>(
-            source: inbodyOptions,
-            value: (i, v) => i,
-            label: (i, v) => v,
+    return Padding(
+      padding: const EdgeInsets.only(top: 37.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              tr(RECORD_SUB_STATISTICS_INBODY_TXT),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
           ),
-          choiceStyle: C2ChoiceStyle(
-            showCheckmark: false,
-            color: AppColors.cmb_grey[700],
-            borderColor: AppColors.cmb_grey[700],
+          ChipsChoice<int>.single(
+            value: _tag,
+            onChanged: (val) {
+              setState(() {
+                _tag = val;
+                switch (_tag) {
+                  case 0:
+                    _opts = InbodyOptions.weight;
+                    break;
+                  case 1:
+                    _opts = InbodyOptions.smm;
+                    break;
+                  case 2:
+                    _opts = InbodyOptions.pbf;
+                    break;
+                  default:
+                    print('Invalid param');
+                }
+              });
+            },
+            choiceItems: C2Choice.listFrom<int, String>(
+              source: inbodyOptions,
+              value: (i, v) => i,
+              label: (i, v) => v,
+            ),
+            choiceStyle: C2ChoiceStyle(
+              showCheckmark: false,
+              color: AppColors.cmb_grey[700],
+              borderColor: AppColors.cmb_grey[700],
+            ),
+            choiceActiveStyle: C2ChoiceStyle(
+              brightness: Brightness.dark,
+              color: AppColors.cmb_grey[700],
+            ),
           ),
-          choiceActiveStyle: C2ChoiceStyle(
-            brightness: Brightness.dark,
-            color: AppColors.cmb_grey[700],
+          SizedBox(
+            height: 230,
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              child: LineChart(_buildWeightChartData(_opts)),
+            ),
           ),
-        ),
-        SizedBox(
-          height: 230,
-          child: Container(
-            padding: EdgeInsets.all(10.0),
-            child: LineChart(_buildWeightChartData(_opts)),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

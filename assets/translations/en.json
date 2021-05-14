@@ -23,7 +23,10 @@
 
 
   "RECORD_MAIN_TITLE": "My History",
+
   "RECORD_SUB_ROUTINES_TITLE": "Routines",
+  "RECORD_SUB_ROUTINES_TODAY_PREFIX_TXT": "My records, ",
+  "RECORD_SUB_ROUTINES_TODAY_SUFFIX_TXT": "\nJust do it!",
   "RECORD_SUB_ROUTINES_EMPTY_TXT": "Hi!\nLet's put your workout.",
   "RECORD_SUB_ROUTINES_WRITE_BTN_TXT": "Go to write",
   "RECORD_SUB_ROUTINES_DETAIL_TOTAL_TXT": "Total: ",

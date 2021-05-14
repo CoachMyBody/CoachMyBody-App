@@ -18,7 +18,6 @@ class RecordSubRoutinesScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
-        ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
         ChangeNotifierProvider(create: (context) => NotiStatusModel())
       ],
       child: Stack(

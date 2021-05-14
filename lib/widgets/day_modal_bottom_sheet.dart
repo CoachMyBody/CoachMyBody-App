@@ -10,9 +10,8 @@ class DayModalBottomSheet extends StatelessWidget {
   void _callBackDayModalOKBtn(BuildContext context) {
     var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
 
-    selected.getSelectedDate();
-    selected.setCurrentDate();
-    selected.getCurrentDate();
+    selected.setReturnedDate();
+    selected.setSelected(false);
     Navigator.pop(context);
   }
 
@@ -22,7 +21,6 @@ class DayModalBottomSheet extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
-          ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
         ],
         child: Builder(builder: (context) {
           return Popover(
@@ -138,8 +136,6 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
   Widget build(BuildContext context) {
     var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
 
-    // TODO: 사이즈 overflow
-    // TODO: 4주 6주 될 때 세로 길이 줄어들었다 늘어났다....
     return GridView.builder(
       // physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -149,8 +145,6 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            // TODO: save selected index
-            print(index - widget._startDayOfWeek + 1);
             if (0 < index - widget._startDayOfWeek + 1 &&
                 index - widget._startDayOfWeek < widget._lastDate) {
               if (_selectedIndex == index) {
@@ -171,10 +165,11 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
               return Container(
                 width: widget.width * 0.111,
                 height: widget.width * 0.122,
+                margin: EdgeInsets.all(4.0),
                 decoration: BoxDecoration(
                   color: _selectedIndex > 0 &&
-                          _selectedIndex == index &&
-                          selected.getSelected() == true
+                      _selectedIndex == index &&
+                      selected.getSelected() == true
                       ? AppColors.cmb_grey[800]
                       : AppColors.cmb_grey[0],
                   borderRadius: BorderRadius.circular(100),
@@ -184,10 +179,9 @@ class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
                   children: <Widget>[
                     Consumer<SelectedDateViewModel>(
                         builder: (_, selected, child) {
-                      return _buildDate(selected.getSelected(), index,
-                          widget._startDayOfWeek, widget._lastDate);
-                    }),
-                    // _buildDate(index, widget._startDayOfWeek, widget._lastDate),
+                          return _buildDate(selected.getSelected(), index,
+                              widget._startDayOfWeek, widget._lastDate);
+                        }),
                   ],
                 ),
               );

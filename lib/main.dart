@@ -1,5 +1,6 @@
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/providers/sample.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,9 +40,7 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: Sample(id: 'sampleId', description: 'sampleDesc'),
-        )
+        ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
       ],
       child: MaterialApp(
         // 다국어 지원

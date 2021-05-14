@@ -48,12 +48,12 @@ class MonthlyViewModel extends ChangeNotifier {
 class SelectedDateViewModel extends ChangeNotifier {
   SelectedDateViewModel() {
     _isSelected = false;
-    _currentDate = DateTime.now();
+    _returnedDate = DateTime.now();
   }
 
   bool _isSelected;
   DateTime _selectedDate;
-  DateTime _currentDate;
+  DateTime _returnedDate;
 
   bool getSelected() {
     return _isSelected;
@@ -70,24 +70,20 @@ class SelectedDateViewModel extends ChangeNotifier {
   }
 
   DateTime getSelectedDate() {
-    print('getSelectedDate ' + _selectedDate.toString());
     return _selectedDate;
   }
 
   void setSelectedDate(int inYear, int inMonth, int inDay) {
-    print('setSelectedDate');
     _selectedDate = DateTime(inYear, inMonth, inDay);
     notifyListeners();
   }
 
-  DateTime getCurrentDate() {
-    print('getCurrentDate ' + _currentDate.toString());
-    return _currentDate;
+  DateTime getReturnedDate() {
+    return _returnedDate;
   }
 
-  void setCurrentDate() {
-    print('setCurrentDate');
-    _currentDate = _selectedDate;
+  void setReturnedDate() {
+    _returnedDate = _selectedDate;
     notifyListeners();
   }
 }

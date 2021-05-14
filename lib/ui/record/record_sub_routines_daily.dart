@@ -1,5 +1,6 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_detail.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
@@ -7,6 +8,7 @@ import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
 import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 ///
 /// Daily Routines View
@@ -28,20 +30,29 @@ class RecordSubDailyRoutines extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
-          child: CustomDropDownWidget(
-            label: '4월 16일',
-            onPressed: () {
-              showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (_) => DayModalBottomSheet());
-            },
-          ),
+          child: Consumer<SelectedDateViewModel>(builder: (_, selected, child) {
+            var viewedDate = selected.getReturnedDate().month.toString() +
+                COMMON_MONTH_TXT.tr() +
+                COMMON_YEAR_MONTH_DIVIDER_TXT.tr() +
+                selected.getReturnedDate().day.toString() +
+                COMMON_DAY_TXT.tr();
+            assert(viewedDate.isNotEmpty);
+
+            return CustomDropDownWidget(
+              label: viewedDate,
+              onPressed: () {
+                showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (_) => DayModalBottomSheet());
+              },
+            );
+          }),
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0555, top: 12),
-          child: _buildDailyRoutinesTxt(),
+          child: _buildDailyRoutinesTxt(routines: routines),
         ),
         SizedBox(
           height: _size.width * 0.538,
@@ -50,43 +61,54 @@ class RecordSubDailyRoutines extends StatelessWidget {
           padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: SizedBox(
             height: _size.width * 0.3,
-            child: routines.isEmpty
-                ? _buildEmptyItem(context)
-                : ListView.builder(
-                    shrinkWrap: false,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: routines.length, // TODO: Server API
-                    itemBuilder: (BuildContext context, int index) =>
-                        RecordRoutineListItem(routine: routines[index])),
+            child: DailyRoutinesView(routines: routines),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildDailyRoutinesTxt() {
+  Widget _buildDailyRoutinesTxt({@required List routines}) {
+    String routinesNum = RECORD_SUB_ROUTINES_TODAY_PREFIX_TXT.tr() +
+        ' ' +
+        routines.length.toString();
+    assert(routinesNum.isNotEmpty);
+
     return RichText(
       text: TextSpan(
         style: TextStyle(
             color: AppColors.cmb_grey[700], fontSize: _size.width * 0.0667),
         children: <TextSpan>[
           TextSpan(
-              text: '루틴 3개', // TODO: provider
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          TextSpan(text: '를\n기록했어요.'),
+              text: routinesNum, style: TextStyle(fontWeight: FontWeight.bold)),
+          TextSpan(text: RECORD_SUB_ROUTINES_TODAY_SUFFIX_TXT.tr()),
         ],
       ),
     );
   }
+}
 
-  Widget _buildEmptyItem(BuildContext context) {
+class DailyRoutinesView extends StatelessWidget {
+  DailyRoutinesView({@required List routines});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return routines.isEmpty
+        ? _buildEmptyItem(context, size)
+        : ListView.builder(
+            shrinkWrap: false,
+            scrollDirection: Axis.horizontal,
+            itemCount: routines.length, // TODO: Server API
+            itemBuilder: (BuildContext context, int index) =>
+                RecordRoutineListItem(routine: routines[index]));
+  }
+
+  Widget _buildEmptyItem(BuildContext context, Size size) {
     return Container(
-      width: _size.width * 0.6,
-      height: _size.width * 0.35,
-      decoration: BoxDecoration(
-        color: AppColors.cmb_grey[100],
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-      ),
+      width: size.width * 0.6,
+      height: size.width * 0.35,
       child: Padding(
         padding: EdgeInsets.only(left: 8.0),
         child: Column(
@@ -98,23 +120,37 @@ class RecordSubDailyRoutines extends StatelessWidget {
               style: TextStyle(fontSize: 16.0),
             ).tr(),
             SizedBox(
-              height: 7.0,
+              height: 12.0,
             ),
             Container(
-              width: _size.width * 0.331,
-              height: _size.width * 0.116,
+              width: size.width * 0.331,
+              height: size.width * 0.116,
               decoration: BoxDecoration(
-                color: AppColors.cmb_grey[200],
+                color: AppColors.cmb_blue,
                 borderRadius: BorderRadius.all(Radius.circular(4.0)),
               ),
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(Routes.write);
                 },
-                child: Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
-                        style: TextStyle(
-                            fontSize: 14.0, color: AppColors.cmb_grey[0]))
-                    .tr(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      color: AppColors.cmb_grey[0],
+                      size: 14,
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(RECORD_SUB_ROUTINES_WRITE_BTN_TXT,
+                            style: TextStyle(
+                                fontSize: 14.0, color: AppColors.cmb_grey[0]))
+                        .tr(),
+                  ],
+                ),
               ),
             ),
           ],

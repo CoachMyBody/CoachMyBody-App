@@ -1,4 +1,6 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +43,7 @@ class RecentSearchWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '최근 검색어',
+                    HOME_SEARCH_RECENT_SEARCH_WORD_TXT.tr(),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -49,7 +51,7 @@ class RecentSearchWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '비우기',
+                    HOME_SEARCH_EMPTY.tr(),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
@@ -127,7 +129,7 @@ class SearchExerciseBySportWidget extends StatelessWidget {
               height: 20,
               width: double.infinity,
               child: Text(
-                '종목별 운동 찾기',
+                HOME_SEARCH_EXERCISE_BY_TYPES.tr(),
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 14,
@@ -203,7 +205,7 @@ class SearchExerciseByBodyWidget extends StatelessWidget {
               height: 20,
               width: double.infinity,
               child: Text(
-                '부위별 운동 찾기',
+                HOME_SEARCH_EXERCISE_BY_BODY.tr(),
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 14,
@@ -279,7 +281,7 @@ class ExerciseKeywordWidget extends StatelessWidget {
               height: 20,
               width: double.infinity,
               child: Text(
-                '운동 목적 키워드',
+                HOME_SEARCH_KEYWORDS.tr(),
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     fontSize: 14,

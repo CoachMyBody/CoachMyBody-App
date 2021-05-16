@@ -9,6 +9,17 @@
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " ",
 
   "HOME_MAIN_TITLE": "홈스크린",
+  "HOME_MAIN_POPULAR_ROUTINES_TXT": "인기 루틴",
+  "HOME_MAIN_MORE_POPULAR_ROUTINES_TXT": "인기루틴 더보기",
+  "HOME_MAIN_CMB_RECOMMENDS_TXT": "코마바 추천",
+  "HOME_MAIN_MORE_CMB_RECOMMENDS_TXT": "코마바 추천 더보기",
+  "HOME_MAIN_HINT_SEARCH_TXT": "검색어를 입력하세요.",
+
+  "HOME_SEARCH_RECENT_SEARCH_WORD_TXT": "최근 검색어",
+  "HOME_SEARCH_EMPTY": "비우기",
+  "HOME_SEARCH_EXERCISE_BY_TYPES": "종목별 운동 찾기",
+  "HOME_SEARCH_EXERCISE_BY_BODY": "부위별 운동 찾기",
+  "HOME_SEARCH_KEYWORDS": "운동 목적 키워드",
 
   "NAV_HOME_NAME": "홈",
   "NAV_ROUT_MAN_NAME": "루틴관리",

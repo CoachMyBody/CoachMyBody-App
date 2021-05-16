@@ -1,6 +1,8 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/home/home_search_model.dart';
 import 'package:coach_my_body/ui/home/home_search.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -94,7 +96,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                     vertical: 10
                 ),
                 border: InputBorder.none,
-                hintText: '검색어를 입력하세요',
+                hintText: HOME_MAIN_HINT_SEARCH_TXT.tr(),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8
@@ -122,7 +124,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                 // });
               },
               child: Text(
-                '취소',
+                COMMON_CANCEL_TXT.tr(),
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400
@@ -220,7 +222,7 @@ class PopularRoutineWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '인기 루틴',
+                  HOME_MAIN_POPULAR_ROUTINES_TXT.tr(),
                   style: TextStyle(
                       fontFamily: "SpoqaHanSansNeo",
                       fontSize: 20,
@@ -389,7 +391,7 @@ class PopularRoutineWidget extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => DetailPopularRoutineScreen()));
                 },
                 child: Text(
-                  '인기루틴 더보기',
+                  HOME_MAIN_MORE_POPULAR_ROUTINES_TXT.tr(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -422,7 +424,7 @@ class CMBRecommendWidget extends StatelessWidget {
           Container(
             alignment: Alignment.topLeft,
             child: Text(
-              '코마바 추천',
+              HOME_MAIN_CMB_RECOMMENDS_TXT.tr(),
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold
@@ -535,7 +537,7 @@ class CMBRecommendWidget extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => DetailCMBRecommendScreen()));
                 },
                 child: Text(
-                  '코마바 추천 더보기',
+                  HOME_MAIN_MORE_CMB_RECOMMENDS_TXT.tr(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,

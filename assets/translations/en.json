@@ -9,6 +9,17 @@
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " / ",
 
   "HOME_MAIN_TITLE": "HomeScreen",
+  "HOME_MAIN_POPULAR_ROUTINES_TXT": "Popular Routines",
+  "HOME_MAIN_MORE_POPULAR_ROUTINES_TXT": "More Popular Routines",
+  "HOME_MAIN_CMB_RECOMMENDS_TXT": "CMB Recommends",
+  "HOME_MAIN_MORE_CMB_RECOMMENDS_TXT": "More CMB Recommends",
+  "HOME_MAIN_HINT_SEARCH_TXT": "ENG_검색어를 입력하세요.",
+
+  "HOME_SEARCH_RECENT_SEARCH_WORD_TXT": "Recent Search Words",
+  "HOME_SEARCH_EMPTY": "Empty",
+  "HOME_SEARCH_EXERCISE_BY_TYPES": "ENG_종목별 운동 찾기",
+  "HOME_SEARCH_EXERCISE_BY_BODY": "ENG_부위별 운동 찾기",
+  "HOME_SEARCH_KEYWORDS": "ENG_운동 목적 키워드",
 
   "NAV_HOME_NAME": "Home",
   "NAV_ROUT_MAN_NAME": "Routines",

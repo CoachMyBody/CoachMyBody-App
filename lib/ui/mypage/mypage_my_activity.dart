@@ -2,14 +2,15 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/mypage/mypage_badge.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-class MyActicity extends StatelessWidget {
+class MyActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 1.0),
+      appBar: AppBar(),
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: Padding(
@@ -30,27 +31,29 @@ class MyActicity extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tr(MY_LEVEL),
+                      'Level 3',
                       style: TextStyle(
-                          fontSize: 14.0, fontWeight: FontWeight.bold),
+                        color: AppColors.cmb_grey[700],
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(height: 6.0),
                     Text(
-                      '레벨 4까지 운동 기록 4회가 남았어요',
+                      '다음 레벨까지 운동 기록 6회가 남았어요',
                       style: TextStyle(
                           color: AppColors.cmb_grey[300], fontSize: 12.0),
                     ),
                     SizedBox(height: 10.0),
                     StepProgressIndicator(
-                      totalSteps: 8,
+                      totalSteps: 10,
                       currentStep: 4,
-                      size: 25,
-                      selectedColor: AppColors.cmb_grey[600],
-                      unselectedColor: Color(0xFFC4C4C4),
+                      size: 13,
+                      selectedColor: AppColors.cmb_accent[100],
+                      unselectedColor: AppColors.cmb_grey[100],
                       customStep: (index, color, _) => Container(
                         decoration: BoxDecoration(
                           color: color,
-                          borderRadius: BorderRadius.circular(5.0),
                         ),
                       ),
                     )
@@ -72,7 +75,7 @@ class MyActicity extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '시작 기준일',
+                          '운동 시작일',
                           style: TextStyle(
                             color: AppColors.cmb_grey[300],
                             fontSize: 12.0,
@@ -81,24 +84,19 @@ class MyActicity extends StatelessWidget {
                         Text(
                           '2021.04.04',
                           style: TextStyle(
-                            color: AppColors.cmb_grey[300],
-                            fontSize: 12.0,
+                            color: AppColors.cmb_grey[700],
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 11.0),
-                      color: Color(0xFF9AA5AF),
-                      width: double.infinity,
-                      height: 0.25,
                     ),
                     SizedBox(height: 13.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '코마바와 운동 시작한지',
+                          '운동 시작한지',
                           style: TextStyle(
                             color: AppColors.cmb_grey[300],
                             fontSize: 12.0,
@@ -107,7 +105,10 @@ class MyActicity extends StatelessWidget {
                         Text(
                           '27일',
                           style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                            color: AppColors.cmb_grey[700],
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -121,7 +122,7 @@ class MyActicity extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '획득한 뱃지 0',
+                        '획득 뱃지 0',
                         style: TextStyle(
                             fontSize: 14.0, fontWeight: FontWeight.bold),
                       ),
@@ -131,14 +132,16 @@ class MyActicity extends StatelessWidget {
                             itemCount: 12,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3),
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 3,
+                            ),
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Badge()));
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => Badge(),
+                                      barrierColor: Color(0xCC000000));
                                 },
                                 child: GridTile(
                                   child: Column(
@@ -148,24 +151,23 @@ class MyActicity extends StatelessWidget {
                                           width: 104.0,
                                           height: 104.0,
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              border: Border.all(
-                                                  color:
-                                                      AppColors.cmb_grey[300],
-                                                  width: 1.0)),
+                                            color: Color(0xFFF6F8F9),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                           child: Center(
-                                            child: Icon(
-                                              Icons.lock,
-                                              color: AppColors.cmb_grey[300],
-                                            ),
+                                            child: Icon(CupertinoIcons.lock,
+                                                color: Color(0xFFBFC6CD),
+                                                size: 25.0),
                                           ),
                                         ),
                                       ),
                                       Text(
                                         '비공개',
                                         style: TextStyle(
-                                            color: AppColors.cmb_grey[300]),
+                                            color: AppColors.cmb_grey[200],
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w500),
                                       )
                                     ],
                                   ),

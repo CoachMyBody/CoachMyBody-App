@@ -7,6 +7,7 @@
   "COMMON_MONTH_TXT": "월",
   "COMMON_DAY_TXT": "일",
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " ",
+  "COMMON_EDIT_TXT": "수정",
 
   "HOME_MAIN_TITLE": "홈스크린",
   "HOME_MAIN_POPULAR_ROUTINES_TXT": "인기 루틴",
@@ -57,9 +58,10 @@
 
   "MYPAGE_SUB_TITLE": "마이페이지",
   "SWITCH_TO_COACH_MODE" : "코치 전환",
+  "PROFILE_SETTING": "프로필 설정",
   "NICKNAME": "닉네임",
   "BIRTHDAY": "생년월일",
-  "PHONE_NUMBER": "휴대폰번호",
+  "PHONE_NUMBER": "연락처",
   "HEIGHT": "신체정보",
   "MY_ACTIVITY": "내 활동",
   "MY_LEVEL": "내 레벨",
@@ -69,6 +71,6 @@
   "COACH_SEARCHING": "코치 찾기",
   "UNIQUE_NUMBER": "내 고유 번호",
   "CONTACT_US": "문의하기",
-  "APP_SETTING":"앱 설정",
+  "APP_SETTING":"설정",
   "LOGOUT": "로그아웃"
 }

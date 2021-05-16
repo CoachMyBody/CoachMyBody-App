@@ -7,6 +7,7 @@
   "COMMON_MONTH_TXT": "",
   "COMMON_DAY_TXT": "",
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " / ",
+  "COMMON_EDIT_TXT": "Edit",
 
   "HOME_MAIN_TITLE": "HomeScreen",
   "HOME_MAIN_POPULAR_ROUTINES_TXT": "Popular Routines",
@@ -59,18 +60,18 @@
 
   "MYPAGE_SUB_TITLE": "My Page",
   "SWITCH_TO_COACH_MODE" : "Switch to coach mode",
+  "PROFILE_SETTING" : "Profile",
   "NICKNAME": "Nickname",
   "BIRTHDAY": "Birthday",
   "PHONE_NUMBER": "Phone Number",
-  "HEIGHT": "Height",
   "MY_ACTIVITY": "My Activity",
   "MY_LEVEL": "My Level",
   "BADGES_EARNED": "Badges Earned",
   "WORKOUT_DAYS": "Workout days",
   "BADGE" : "Badge",
   "COACH_SEARCHING": "Coach Searching",
-  "UNIQUE_NUMBER": "Unique Number",
+  "UNIQUE_NUMBER": "My Unique Number",
   "CONTACT_US": "Contact Us",
-  "APP_SETTING":"App Setting",
+  "APP_SETTING":"Setting",
   "LOGOUT": "Logout"
 }

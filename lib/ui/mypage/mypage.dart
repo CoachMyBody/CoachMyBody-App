@@ -4,13 +4,15 @@ import 'package:coach_my_body/ui/mypage/mypage_coach_searching.dart';
 import 'package:coach_my_body/ui/mypage/mypage_info.dart';
 import 'package:coach_my_body/ui/mypage/mypage_card_widget.dart';
 import 'package:coach_my_body/ui/mypage/mypage_my_activity.dart';
+import 'package:coach_my_body/ui/mypage/mypage_setting.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'mypage_list_widget.dart';
 
 class MyPageScreen extends StatelessWidget {
-  bool coach = false;
+  bool isCoachMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,24 @@ class MyPageScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              SwitchListTile(
-                title: Text(
-                  tr(SWITCH_TO_COACH_MODE),
-                ),
-                value: coach,
-                onChanged: (bool coach) {},
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FlutterSwitch(
+                    width: 35.0,
+                    height: 20.0,
+                    padding: 2.0,
+                    toggleSize: 15.0,
+                    value: isCoachMode,
+                    onToggle: (value) {},
+                    activeColor: AppColors.cmb_accent[100],
+                    inactiveColor: AppColors.cmb_grey[100],
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(SWITCH_TO_COACH_MODE).tr(),
+                ],
               ),
               SizedBox(
                 height: 10.0,
@@ -71,34 +85,22 @@ class MyPageScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text(
-                    'cmb@gmail.com',
-                    style: TextStyle(
-                      color: AppColors.cmb_grey[300],
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ListTile(
-                    visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
-                    title: Text(
-                      tr(MY_ACTIVITY),
-                      style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w700),
-                    ),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
+                  MypageList(
+                    text: tr(MY_ACTIVITY),
+                    route: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyActicity()));
+                              builder: (context) => MyActivity()));
                     },
                   ),
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 40.0),
                     height: 80.0,
                     width: 328.0,
                     margin: EdgeInsets.all(10.0),
@@ -107,27 +109,15 @@ class MyPageScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         MypageCard(text: tr(MY_LEVEL), count: '3'),
-                        Container(
-                            height: 22.0,
-                            width: 1.0,
-                            color: AppColors.cmb_grey[400]),
                         MypageCard(text: tr(BADGES_EARNED), count: '5'),
-                        Container(
-                            height: 22.0,
-                            width: 1.0,
-                            color: AppColors.cmb_grey[400]),
                         MypageCard(text: tr(WORKOUT_DAYS), count: '27')
                       ],
                     ),
                   )
                 ],
-              ),
-              Container(
-                height: 5.0,
-                color: AppColors.cmb_grey[50],
               ),
               Column(
                 children: [
@@ -140,13 +130,13 @@ class MyPageScreen extends StatelessWidget {
                               builder: (context) => MypageCoachSearching()));
                     },
                   ),
-                  MypageList(text: tr(CONTACT_US)),
-                  MypageList(text: tr(APP_SETTING)),
-                  ListTile(
-                    visualDensity: VisualDensity(horizontal: 0.0, vertical: -2),
-                    title: Text(tr(LOGOUT)),
-                    onTap: () {},
-                  )
+                  MypageList(
+                    text: tr(APP_SETTING),
+                    route: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Setting()));
+                    },
+                  ),
                 ],
               )
             ],

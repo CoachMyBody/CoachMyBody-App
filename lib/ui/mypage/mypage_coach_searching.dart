@@ -7,87 +7,91 @@ class MypageCoachSearching extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 1.0),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: Text(
-                tr(COACH_SEARCHING),
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-              ),
+      appBar: AppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            tr(COACH_SEARCHING),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
+          ),
+          MergeSemantics(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      UNIQUE_NUMBER,
+                      style: TextStyle(
+                        color: AppColors.cmb_grey[500],
+                      ),
+                    ).tr(),
+                    Text('9590808')
+                  ],
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('복사'),
+                )
+              ],
             ),
-            Container(
-              margin: EdgeInsets.only(top: 19.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '내 고유 번호',
-                    style: TextStyle(
-                      color: AppColors.cmb_grey[300],
-                      fontSize: 12.0,
-                    ),
+          ),
+          MergeSemantics(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  COACH_SEARCHING,
+                  style: TextStyle(
+                    color: AppColors.cmb_grey[300],
+                    fontSize: 12.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('9590808'),
-                      TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          primary: Colors.white,
-                          padding: EdgeInsets.all(3.0),
-                          visualDensity:
-                              VisualDensity(horizontal: 0.0, vertical: -2.0),
-                          side: BorderSide(color: Colors.black),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        child: Text(
-                          '복사',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 38.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '코치 찾기',
-                    style: TextStyle(
-                      color: AppColors.cmb_grey[300],
-                      fontSize: 12.0,
-                    ),
-                  ),
-                  TextField(
+                ).tr(),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: AppColors.cmb_grey[50]),
+                  child: TextFormField(
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                     decoration: InputDecoration(
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(5.0),
-                        hintText: '코치이름을 입력하세요',
-                        hintStyle: TextStyle(
-                          color: AppColors.cmb_grey[300],
-                          fontSize: 12.0,
+                        hintText: '코치 이름을 입력하세요',
+                        hintStyle: TextStyle(color: AppColors.cmb_grey[200]),
+                        contentPadding: EdgeInsets.zero,
+                        border: InputBorder.none,
+                        suffix: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            COMMON_EDIT_TXT,
+                            style: TextStyle(color: AppColors.cmb_accent[100]),
+                          ).tr(),
                         )),
-                  )
-                ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                      backgroundColor: AppColors.cmb_accent[100],
+                      minimumSize: Size(double.infinity, 60.0)),
+                  onPressed: () {},
+                  child: Text(
+                    '검색',
+                    style: TextStyle(color: AppColors.cmb_grey[00]),
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

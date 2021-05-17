@@ -7,22 +7,28 @@ class MypageCard extends StatelessWidget {
   final String text;
   final String count;
 
+  double _width;
+
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           text,
           style: TextStyle(
-            fontSize: 12.0,
-            color: AppColors.cmb_grey[400],
-          ),
+              color: AppColors.cmb_grey[500],
+              fontSize: _width * 0.0333,
+              fontWeight: FontWeight.w400),
         ),
-        SizedBox(height: 10.0),
+        SizedBox(height: _width * 0.01),
         Text(
           count,
-          style: TextStyle(fontSize: 18.0, color: AppColors.cmb_grey[800]),
+          style: TextStyle(
+              color: AppColors.cmb_grey[700],
+              fontSize: _width * 0.05,
+              fontWeight: FontWeight.w500),
         )
       ],
     );

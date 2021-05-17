@@ -7,79 +7,132 @@ import 'package:flutter_switch/flutter_switch.dart';
 
 class Setting extends StatelessWidget {
   bool isNotiTurnOn = true;
+  double _width;
 
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
+
     return Scaffold(
         appBar: AppBar(
-          title: Text(APP_SETTING).tr(),
+          title: Text(
+            APP_SETTING,
+            style: TextStyle(
+              color: AppColors.cmb_grey[700],
+              fontSize: _width * 0.0444,
+              fontWeight: FontWeight.w700,
+            ),
+          ).tr(),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(_width * 0.0444),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               '알림설정',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                  color: AppColors.cmb_grey[700],
+                  fontSize: _width * 0.0444,
+                  fontWeight: FontWeight.w700),
             ),
+            SizedBox(height: _width * 0.075),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('푸시알림'),
+                Text(
+                  '푸시알림',
+                  style: TextStyle(
+                      color: AppColors.cmb_grey[700],
+                      fontSize: _width * 0.0388,
+                      fontWeight: FontWeight.w400),
+                ),
                 FlutterSwitch(
-                  width: 35.0,
-                  height: 20.0,
-                  padding: 2.0,
-                  toggleSize: 15.0,
+                  width: _width * 0.0777,
+                  height: _width * 0.0444,
+                  padding: _width * 0.005,
+                  toggleSize: _width * 0.0333,
                   value: isNotiTurnOn,
                   onToggle: (value) {},
-                  activeColor: AppColors.cmb_accent[100],
+                  activeColor: AppColors.cmb_blue,
                   inactiveColor: AppColors.cmb_grey[100],
                 ),
               ],
             ),
+            SizedBox(height: _width * 0.075),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('알림 지정 요일'),
+                Text(
+                  '알림 지정 요일',
+                  style: TextStyle(
+                      color: AppColors.cmb_grey[700],
+                      fontSize: _width * 0.0388,
+                      fontWeight: FontWeight.w400),
+                ),
                 TextButton.icon(
                   onPressed: () {},
                   label: Icon(
                     CupertinoIcons.right_chevron,
-                    size: 16,
+                    size: _width * 0.036,
+                    color: AppColors.cmb_grey[700],
                   ),
-                  icon: Text('월요일'),
-                  style: TextButton.styleFrom()
-                      .copyWith(visualDensity: VisualDensity(horizontal: -2.0)),
+                  icon: Text(
+                    '월요일',
+                    style: TextStyle(
+                        color: AppColors.cmb_grey[700],
+                        fontSize: _width * 0.0388,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity(horizontal: _width * -0.005),
+                  ),
                 )
               ],
             ),
+            SizedBox(height: _width * 0.075),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('알림 지정 시간'),
+                Text(
+                  '알림 지정 시간',
+                  style: TextStyle(
+                      color: AppColors.cmb_grey[700],
+                      fontSize: _width * 0.0388,
+                      fontWeight: FontWeight.w400),
+                ),
                 TextButton.icon(
                   onPressed: () {},
                   label: Icon(
                     CupertinoIcons.right_chevron,
-                    size: 16,
+                    size: _width * 0.036,
+                    color: AppColors.cmb_grey[700],
                   ),
-                  icon: Text('09:00'),
-                  style: TextButton.styleFrom()
-                      .copyWith(visualDensity: VisualDensity(horizontal: -2.0)),
+                  icon: Text(
+                    '09:00',
+                    style: TextStyle(
+                        color: AppColors.cmb_grey[700],
+                        fontSize: _width * 0.0388,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity(horizontal: _width * -0.005),
+                  ),
                 )
               ],
             ),
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: TextButton(
-                    style: TextButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {},
-                    child: Text(LOGOUT).tr(),
-                  ),
+                child: TextButton(
+                  style: TextButton.styleFrom(backgroundColor: Colors.white),
+                  onPressed: () {},
+                  child: Text(
+                    LOGOUT,
+                    style: TextStyle(
+                        color: AppColors.cmb_grey[700],
+                        fontSize: _width * 0.0388,
+                        fontWeight: FontWeight.w400),
+                  ).tr(),
                 ),
               ),
             )

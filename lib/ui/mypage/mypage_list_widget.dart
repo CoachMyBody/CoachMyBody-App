@@ -8,15 +8,19 @@ class MypageList extends StatelessWidget {
   final String text;
   final Function route;
 
+  double _width;
+
   @override
   Widget build(BuildContext context) {
+    _width = MediaQuery.of(context).size.width;
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(
         text,
         style: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold,
+          color: AppColors.cmb_grey[700],
+          fontSize: _width * 0.0444,
+          fontWeight: FontWeight.w700,
         ),
       ),
       trailing: Icon(

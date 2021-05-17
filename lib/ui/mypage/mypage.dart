@@ -12,80 +12,103 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'mypage_list_widget.dart';
 
 class MyPageScreen extends StatelessWidget {
+  double _width;
   bool isCoachMode = false;
+  final String _nickname = '코마바';
+  final int _level = 3;
+  final int _badge = 5;
+  final int _record = 27;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          tr(MYPAGE_SUB_TITLE),
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20.0),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
+    _width = MediaQuery.of(context).size.width;
+
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(_width * 0.0444),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  FlutterSwitch(
-                    width: 35.0,
-                    height: 20.0,
-                    padding: 2.0,
-                    toggleSize: 15.0,
-                    value: isCoachMode,
-                    onToggle: (value) {},
-                    activeColor: AppColors.cmb_accent[100],
-                    inactiveColor: AppColors.cmb_grey[100],
-                  ),
-                  SizedBox(
-                    width: 8.0,
-                  ),
-                  Text(SWITCH_TO_COACH_MODE).tr(),
-                ],
+              Text(
+                tr(MYPAGE_SUB_TITLE),
+                style: TextStyle(
+                    color: AppColors.cmb_grey[700],
+                    fontWeight: FontWeight.w700,
+                    fontSize: _width * 0.0555),
+              ),
+              SizedBox(height: _width * 0.0222),
+              MergeSemantics(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FlutterSwitch(
+                      width: _width * 0.0777,
+                      height: _width * 0.0444,
+                      padding: _width * 0.005,
+                      toggleSize: _width * 0.0333,
+                      value: isCoachMode,
+                      onToggle: (value) {},
+                      activeColor: AppColors.cmb_blue,
+                      inactiveColor: AppColors.cmb_grey[100],
+                    ),
+                    SizedBox(
+                      width: _width * 0.0222,
+                    ),
+                    Text(
+                      SWITCH_TO_COACH_MODE,
+                      style: TextStyle(
+                          color: AppColors.cmb_grey[700],
+                          fontSize: _width * 0.0444,
+                          fontWeight: FontWeight.w400),
+                    ).tr(),
+                  ],
+                ),
               ),
               SizedBox(
-                height: 10.0,
+                height: _width * 0.05555,
               ),
-              Column(
-                children: [
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundColor: Color(0xFFC4C4C4),
-                  ),
-                  SizedBox(height: 10.0),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MypageInfo()));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '코마바',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16.0),
+              Center(
+                child: Column(
+                  children: [
+                    Stack(children: [
+                      CircleAvatar(
+                          radius: _width * 0.1444,
+                          backgroundColor: Colors.white,
+                          child: Image.asset(
+                              'assets/images/test/profile_image_test.png')),
+                      Positioned(
+                        right: _width * 0.0166,
+                        bottom: _width * 0.0166,
+                        child: CircleAvatar(
+                          radius: _width * 0.0333,
+                          child: Image.asset(
+                              'assets/images/test/kakao_icon_test.png'),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 3.0),
-                          child: Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.black,
-                          ),
-                        )
-                      ],
+                      )
+                    ]),
+                    SizedBox(height: _width * 0.0333),
+                    TextButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MypageInfo()));
+                      },
+                      label: Icon(
+                        CupertinoIcons.right_chevron,
+                        size: _width * 0.0444,
+                      ),
+                      icon: Text(
+                        _nickname,
+                        style: TextStyle(
+                            color: AppColors.cmb_grey[700],
+                            fontWeight: FontWeight.w500,
+                            fontSize: _width * 0.05),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -100,20 +123,23 @@ class MyPageScreen extends StatelessWidget {
                     },
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 40.0),
-                    height: 80.0,
-                    width: 328.0,
-                    margin: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.symmetric(horizontal: _width * 0.1111),
+                    height: _width * 0.2222,
+                    width: _width * 0.9111,
+                    margin: EdgeInsets.symmetric(vertical: _width * 0.0444),
                     decoration: BoxDecoration(
                       color: AppColors.cmb_grey[50],
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(_width * 0.01),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        MypageCard(text: tr(MY_LEVEL), count: '3'),
-                        MypageCard(text: tr(BADGES_EARNED), count: '5'),
-                        MypageCard(text: tr(WORKOUT_DAYS), count: '27')
+                        MypageCard(
+                            text: tr(MY_LEVEL), count: _level.toString()),
+                        MypageCard(
+                            text: tr(BADGES_EARNED), count: _badge.toString()),
+                        MypageCard(
+                            text: tr(WORKOUT_DAYS), count: _record.toString())
                       ],
                     ),
                   )

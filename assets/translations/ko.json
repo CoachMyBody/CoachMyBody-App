@@ -8,6 +8,8 @@
   "COMMON_DAY_TXT": "일",
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " ",
   "COMMON_EDIT_TXT": "수정",
+  "COMMON_COPY_TXT": "복사",
+  "COMMON_SEARCH_TXT": "검색",
 
   "HOME_MAIN_TITLE": "홈스크린",
   "HOME_MAIN_POPULAR_ROUTINES_TXT": "인기 루틴",
@@ -64,7 +66,7 @@
 
 
   "MYPAGE_SUB_TITLE": "마이페이지",
-  "SWITCH_TO_COACH_MODE" : "코치 전환",
+  "SWITCH_TO_COACH_MODE" : "코치전환",
   "PROFILE_SETTING": "프로필 설정",
   "NICKNAME": "닉네임",
   "BIRTHDAY": "생년월일",

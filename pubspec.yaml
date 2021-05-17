@@ -31,7 +31,7 @@ dependencies:
   provider: ^5.0.0
   sembast: ^3.0.0+4
   xxtea: ^2.1.0
-  flutter_native_splash: ^1.1.7+1
+  flutter_native_splash: ^1.1.8+4
   step_progress_indicator: ^0.2.5+8
   flutter_switch: ^0.3.1
 #  kakao_flutter_sdk: ^0.6.0
@@ -80,6 +80,7 @@ flutter:
     - assets/images/
     - assets/images/test/
     - assets/images/record/
+    - assets/splash/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -108,4 +109,4 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_native_splash:
-  background_image: "assets/splash/Splash.png"
+  background_image: "assets/splash/Splash@2x.png"

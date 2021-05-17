@@ -1,8 +1,11 @@
 import 'package:chips_choice/chips_choice.dart';
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/widgets/record_photo_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PhotoHistoryView extends StatelessWidget {
   const PhotoHistoryView();
@@ -15,109 +18,110 @@ class PhotoHistoryView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 17.0, bottom: 12.0),
+          padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
-            tr(RECORD_SUB_STATISTICS_PHOTOS_TXT),
+            tr(RECORD_SUB_STATISTICS_PHOTO_HISTORY_TXT),
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _buildPhotoView(size, true, '', '21.01.13'),
+            _buildPhotoView(size: size, isBefore: true, image: '', date: ''),
             SizedBox(
               width: 8.0,
             ),
             _buildPhotoView(
-                size, false, 'assets/images/test/statistics_test.png', '21.03.12'),
+                size: size,
+                isBefore: false,
+                image: 'assets/images/test/statistics_test.png',
+                date: '21.03.12'),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildPhotoView(Size size, bool isBefore, String image, String date) {
+  Widget _buildPhotoView(
+      {Size size, bool isBefore, String image, String date}) {
+    assert(false == size.isEmpty);
+
     return InkWell(
       onTap: () {
         print(isBefore);
       },
-      child: Container(
-        height: size.width * 0.65,
-        width: size.width * 0.444,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: size.width * 0.65,
-              width: size.width * 0.44,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                border: Border.all(
-                  width: 1,
-                  color: AppColors.cmb_grey[100],
-                ),
-              ),
-              child: image.isEmpty
-                  ? Icon(
-                      Icons.upload_rounded,
-                      color: AppColors.cmb_grey[300],
-                    )
-                  : Image.asset(
-                      image,
-                      fit: BoxFit.fill,
-                    ),
-            ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              child: _buildBottom(size, isBefore, date),
-            )
-          ],
+      child: Card(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4.0),
+          child: Column(
+            children: <Widget>[
+              _buildImageContainer(size: size, image: image),
+              _buildBottom(size: size, isBefore: isBefore, date: date),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildBottom(Size size, bool isBefore, String date) {
+  Widget _buildImageContainer({Size size, String image}) {
     return Container(
-      height: size.width * 0.15,
-      width: size.width * 0.44,
-      decoration: BoxDecoration(
-        color: isBefore ? AppColors.cmb_grey[0] : AppColors.cmb_blue,
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(8.0)),
-        border: Border.all(
-          width: 1,
-          color: isBefore ? AppColors.cmb_grey[100] : AppColors.cmb_blue,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0, top: 9.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            isBefore
-                ? Text(
-                    'before',
-                    style: TextStyle(
-                        color: AppColors.cmb_grey[300], fontSize: 12.0),
-                  )
-                : Text(
-                    'after',
-                    style: TextStyle(
-                        color: AppColors.cmb_grey[100], fontSize: 12.0),
-                  ),
-            SizedBox(
-              height: 3.0,
+      height: size.width * 0.4,
+      width: size.width * 0.43,
+      color: AppColors.cmb_grey[50],
+      child: image.isEmpty
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SvgPicture.asset(Assets.addGreyIconPath),
+                SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  RECORD_SUB_STATISTICS_ADD_HISTORY_BTN,
+                  style: TextStyle(color: AppColors.cmb_grey[200]),
+                ).tr()
+              ],
+            )
+          : Image.asset(
+              image,
+              fit: BoxFit.cover,
             ),
-            Text(
-              date,
-              style: TextStyle(
-                  color: isBefore
-                      ? AppColors.cmb_grey[500]
-                      : AppColors.cmb_grey[100],
-                  fontSize: 14.0),
-            ),
-          ],
-        ),
+    );
+  }
+
+  Widget _buildBottom({Size size, bool isBefore, String date}) {
+    return Container(
+      height: size.width * 0.1444,
+      width: size.width * 0.43,
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          isBefore
+              ? Text(
+                  RECORD_SUB_STATISTICS_BEFORE_TXT,
+                  style: TextStyle(color: Colors.red, fontSize: 14.0),
+                ).tr()
+              : Text(
+                  RECORD_SUB_STATISTICS_AFTER_TXT,
+                  style: TextStyle(color: AppColors.cmb_blue, fontSize: 14.0),
+                ).tr(),
+          date.isEmpty
+              ? Text(
+                  RECORD_SUB_STATISTICS_EMPTY_PHOTO_TXT,
+                  style:
+                      TextStyle(color: AppColors.cmb_grey[500], fontSize: 14.0),
+                ).tr()
+              : Text(
+                  date,
+                  style:
+                      TextStyle(color: AppColors.cmb_grey[500], fontSize: 14.0),
+                ),
+        ],
       ),
     );
   }
@@ -139,10 +143,26 @@ class _PhotoTimelineViewState extends State<PhotoTimelineView> {
         Padding(
           padding: const EdgeInsets.only(top: 37.0),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                tr(RECORD_SUB_STATISTICS_TIMELINE_TXT),
+                tr(RECORD_SUB_STATISTICS_MYPHOTOS_TXT),
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (_) => RecordPhotoModalBottomSheet());
+                },
+                child: Container(
+                  height: 18,
+                  margin: EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(Assets.addBlueIconPath),
+                ),
               ),
             ],
           ),
@@ -159,15 +179,8 @@ class _PhotoTimelineViewState extends State<PhotoTimelineView> {
             value: (i, v) => i,
             label: (i, v) => v,
           ),
-          choiceStyle: C2ChoiceStyle(
-            showCheckmark: false,
-            color: AppColors.cmb_grey[700],
-            borderColor: AppColors.cmb_grey[700],
-          ),
-          choiceActiveStyle: C2ChoiceStyle(
-            brightness: Brightness.dark,
-            color: AppColors.cmb_grey[700],
-          ),
+          choiceStyle: AppColors.default_chip_style,
+          choiceActiveStyle: AppColors.active_chip_style,
         ),
         SizedBox(
           height: 125,

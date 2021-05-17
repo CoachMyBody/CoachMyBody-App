@@ -1,9 +1,12 @@
 import 'package:chips_choice/chips_choice.dart';
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/widgets/record_inbody_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class InbodyHistoryView extends StatefulWidget {
   @override
@@ -21,12 +24,29 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              tr(RECORD_SUB_STATISTICS_INBODY_TXT),
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                tr(RECORD_SUB_STATISTICS_MYINBODY_TXT),
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (_) => RecordInbodyModalBottomSheet());
+                },
+                child: Container(
+                  height: 18,
+                  margin: EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(Assets.addBlueIconPath),
+                ),
+              ),
+            ],
           ),
           ChipsChoice<int>.single(
             value: _tag,
@@ -53,15 +73,8 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
               value: (i, v) => i,
               label: (i, v) => v,
             ),
-            choiceStyle: C2ChoiceStyle(
-              showCheckmark: false,
-              color: AppColors.cmb_grey[700],
-              borderColor: AppColors.cmb_grey[700],
-            ),
-            choiceActiveStyle: C2ChoiceStyle(
-              brightness: Brightness.dark,
-              color: AppColors.cmb_grey[700],
-            ),
+            choiceStyle: AppColors.default_chip_style,
+            choiceActiveStyle: AppColors.active_chip_style,
           ),
           SizedBox(
             height: 230,

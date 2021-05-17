@@ -1,3 +1,4 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -27,4 +28,14 @@ class AppColors {
     700: const Color(0xFF11171C),
     800: const Color(0xFF000000),
   };
+
+  static final C2ChoiceStyle default_chip_style = C2ChoiceStyle(
+      showCheckmark: false,
+      brightness: Brightness.dark,
+      color: AppColors.cmb_grey[50],
+      labelStyle: TextStyle(color: AppColors.cmb_grey[700]));
+  static final C2ChoiceStyle active_chip_style = C2ChoiceStyle(
+      brightness: Brightness.dark,
+      color: AppColors.cmb_grey[700],
+      labelStyle: TextStyle(color: AppColors.cmb_grey[50]));
 }

@@ -16,6 +16,9 @@ class Assets {
   static const String recordStatusIconPath = 'assets/icons/record_status_icon.svg';
   static const String mypageIconPath = 'assets/icons/mypage_icon.svg';
 
+  static const String addBlueIconPath = 'assets/icons/add_blue_icon.svg';
+  static const String addGreyIconPath = 'assets/icons/add_grey_icon.svg';
+
   // record page
   static const String notiEmptyImagePath = 'assets/images/record/empty_notification.png';
 }

@@ -27,11 +27,17 @@ class RoutineScreen extends StatelessWidget {
       pages: _supPages,
       pageNum: _supPages.length,
       actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            bookmarkSelect();
+        Builder(
+          builder: (context) {
+            return TextButton(
+              onPressed: () {
+                var index = DefaultTabController.of(context).index;
+                print('test tab: ' + index.toString());
+                bookmarkSelect();
+              },
+              child: Text('선택'),
+            );
           },
-          child: Text('선택'),
         ),
       ],
     );

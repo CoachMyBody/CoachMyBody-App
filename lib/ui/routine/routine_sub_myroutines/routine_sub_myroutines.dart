@@ -15,7 +15,7 @@ class RoutineSubMyroutinesScreen extends StatelessWidget {
         //child: Column(
         children: <Widget>[
           RoutineSubMyroutinesList(
-            text: tr('0'),
+            text: '0',
             route: () {
               Navigator.push(
                   context,

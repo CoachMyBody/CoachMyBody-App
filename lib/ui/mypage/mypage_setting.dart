@@ -29,23 +29,23 @@ class Setting extends StatelessWidget {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              '알림설정',
+              NOTIFICATION_SETTING,
               style: TextStyle(
                   color: AppColors.cmb_grey[700],
                   fontSize: _width * 0.0444,
                   fontWeight: FontWeight.w700),
-            ),
+            ).tr(),
             SizedBox(height: _width * 0.075),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '푸시알림',
+                  PUSH_ALARM,
                   style: TextStyle(
                       color: AppColors.cmb_grey[700],
                       fontSize: _width * 0.0388,
                       fontWeight: FontWeight.w400),
-                ),
+                ).tr(),
                 FlutterSwitch(
                   width: _width * 0.0777,
                   height: _width * 0.0444,

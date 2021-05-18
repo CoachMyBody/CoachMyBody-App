@@ -79,8 +79,10 @@
   "WORKOUT_DAYS": "Workout days",
   "BADGE" : "Badge",
   "COACH_SEARCHING": "Coach Searching",
+  "COACH_SEARCHING_HINT_TXT": "Enter your coach name",
   "UNIQUE_NUMBER": "My Unique Number",
-  "CONTACT_US": "Contact Us",
   "APP_SETTING":"Setting",
+  "NOTIFICATION_SETTING" : "Notification Setting",
+  "PUSH_ALARM" : "Push Alarm",
   "LOGOUT": "Logout"
 }

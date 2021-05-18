@@ -78,8 +78,10 @@
   "WORKOUT_DAYS": "운동 일수",
   "BADGE" : "뱃지",
   "COACH_SEARCHING": "코치 찾기",
+  "COACH_SEARCHING_HINT_TXT": "코치 이름을 입력하세요",
   "UNIQUE_NUMBER": "내 고유 번호",
-  "CONTACT_US": "문의하기",
-  "APP_SETTING":"설정",
+  "APP_SETTING": "설정",
+  "NOTIFICATION_SETTING": "알림설정",
+  "PUSH_ALARM": "푸시 알림",
   "LOGOUT": "로그아웃"
 }

@@ -4,9 +4,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInputForm extends StatelessWidget {
-  ProfileInputForm({@required this.text, @required this.initialText});
+  ProfileInputForm({
+    @required this.text,
+    @required this.initialText,
+    this.focusNode,
+  });
   final String text;
   String initialText;
+  FocusNode focusNode;
 
   double _width;
 
@@ -33,6 +38,7 @@ class ProfileInputForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(_width * 0.01),
                 color: AppColors.cmb_grey[50]),
             child: TextFormField(
+              focusNode: focusNode,
               initialValue: initialText,
               style: TextStyle(
                   color: AppColors.cmb_grey[700],

@@ -45,7 +45,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
           child: _buildDailyRoutinesTxt(),
         ),
         SizedBox(
-          height: _size.width * 0.536,
+          height: _size.height * 0.26,
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),

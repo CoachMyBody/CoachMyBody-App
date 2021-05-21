@@ -55,7 +55,7 @@ class RecordSubDailyRoutines extends StatelessWidget {
           child: _buildDailyRoutinesTxt(routines: routines),
         ),
         SizedBox(
-          height: _size.width * 0.538,
+          height: _size.height * 0.26,
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),

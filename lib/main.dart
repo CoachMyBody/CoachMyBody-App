@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         debugShowCheckedModeBanner: false,
         title: tr(APP_NAME),
-        initialRoute: Routes.tapPage,
+        initialRoute: Routes.root,
         routes: Routes.routes,
         theme: themeData,
       ),

@@ -30,8 +30,17 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:host="oauth"
-                    android:scheme="${Native app key for Kakao}"/>
+                    android:scheme="kakao${Native app key for Kakao}"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

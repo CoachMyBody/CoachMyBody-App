@@ -1,6 +1,8 @@
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kakao_flutter_sdk/auth.dart';
 import 'package:kakao_flutter_sdk/user.dart';
 
@@ -34,39 +36,47 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/images/routine_testimg_1.png'),
-                  fit: BoxFit.fill)),
-          child: Container(
-            padding: EdgeInsets.all(40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  '로그인을 하시면  회원님의 관심사에 맞는 운동 루틴 추천과 운동 기록, 전문 트레이더의 코치를 받을 수 있습니다.',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      color: AppColors.cmb_grey[0]),
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _login(_isKakaoTalkInstalled);
-                  },
-                  child: Text('로그인'),
-                )
-              ],
+        child: Stack(
+          children: <Widget>[
+            Container(
+              width: size.width,
+              height: size.height,
+              child: Image(
+                image: AssetImage(Assets.kakaoLoginBgImgPath),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.all(size.width * 0.1111),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    '로그인을 하시면  회원님의 관심사에 맞는 운동 루틴 추천과 운동 기록, 전문 트레이더의 코치를 받을 수 있습니다.',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: size.width * 0.0333,
+                        color: AppColors.cmb_grey[0]),
+                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: size.width * 0.0222,
+                  ),
+                  _buildKakaoButton(size),
+                  SizedBox(
+                    height: size.width * 0.0444,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -109,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     print(
         "=========================[kakao account]=================================");
+    print(user.id);
     print(user.kakaoAccount.toString());
     print(user.kakaoAccount.email);
     print(
@@ -123,5 +134,33 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       _loginWithKakao();
     }
+  }
+
+  Widget _buildKakaoButton(Size size) {
+    return InkWell(
+      onTap: () {
+        _login(_isKakaoTalkInstalled);
+      },
+      child: Container(
+          height: size.width * 0.13,
+          decoration: BoxDecoration(
+              color: Color(0xFFFEE500),
+              borderRadius: BorderRadius.all(Radius.circular(12))),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SvgPicture.asset(
+                  Assets.kakaoIconImgPath,
+                  width: 18,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Text('카카오로 로그인하기'),
+              ],
+            ),
+          )),
+    );
   }
 }

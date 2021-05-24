@@ -7,6 +7,10 @@ class Assets {
   // translations string assets
   static const String translationsDirPath = 'assets/translations';
 
+  // kakao login button images
+  static const String kakaoLoginBgImgPath = 'assets/images/kakao_login.png';
+  static const String kakaoIconImgPath = 'assets/images/kakao_icon.svg';
+
   // muscles images
   static const String musclesImgPath = 'assets/images/whole_muscles.svg';
 

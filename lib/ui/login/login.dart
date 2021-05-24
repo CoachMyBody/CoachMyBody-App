@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _test() {
     Navigator.pushNamedAndRemoveUntil(
         context,
-        Routes.home,
+        Routes.tapPage,
         (route) => false
     );
   }

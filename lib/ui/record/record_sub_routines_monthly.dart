@@ -28,7 +28,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: CustomDropDownWidget(
-            label: '21년 4월',
+            label: '21년 5월',
             onPressed: () {
               showModalBottomSheet<int>(
                 backgroundColor: Colors.transparent,
@@ -84,10 +84,10 @@ _MonthlyRoutinesViewState createState() => _MonthlyRoutinesViewState();
 class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
 
   PageController _pageController;
-  double _viewPortFraction = 0.2;
   double _page = 2.0;
   int _currentPage = 2;
 
+  static const double _viewPortFraction = 0.2;
   static const double _fullScale = 1.0;
   static const _minHeightScale = 0.83;
 
@@ -107,8 +107,8 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
   @override
   Widget build(BuildContext context) {
 
-    Size size = MediaQuery.of(context).size;
-    double maxHeight = size.width * 0.305;
+    var size = MediaQuery.of(context).size;
+    var maxHeight = size.width * 0.305;
 
     return Column(
       children: <Widget>[
@@ -142,7 +142,7 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
       itemBuilder: (context, index) {
         final scale = max(_minHeightScale,
             (_fullScale - (index - _page).abs()) + _viewPortFraction);
-        bool bActive = false;
+        var bActive = false;
         if ((index - _page).abs() < 0.5) {
           bActive = true;
         }

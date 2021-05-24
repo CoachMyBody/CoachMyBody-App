@@ -69,7 +69,7 @@ class RecordSubDailyRoutines extends StatelessWidget {
   }
 
   Widget _buildDailyRoutinesTxt({@required List routines}) {
-    String routinesNum = RECORD_SUB_ROUTINES_TODAY_PREFIX_TXT.tr() +
+    var routinesNum = RECORD_SUB_ROUTINES_TODAY_PREFIX_TXT.tr() +
         ' ' +
         routines.length.toString();
     assert(routinesNum.isNotEmpty);
@@ -93,7 +93,7 @@ class DailyRoutinesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
 
     return routines.isEmpty
         ? _buildEmptyItem(context, size)

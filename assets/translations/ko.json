@@ -10,6 +10,15 @@
   "COMMON_EDIT_TXT": "수정",
   "COMMON_COPY_TXT": "복사",
   "COMMON_SEARCH_TXT": "검색",
+  "COMMON_PREV_TXT": "이전",
+  "COMMON_NEXT_TXT": "다음",
+
+
+  "NAV_HOME_NAME": "홈",
+  "NAV_ROUT_MAN_NAME": "루틴관리",
+  "NAV_REC_STAT_NAME": "운동현황",
+  "NAV_MYPAGE_NAME": "마이페이지",
+
 
   "HOME_MAIN_TITLE": "홈스크린",
   "HOME_MAIN_POPULAR_ROUTINES_TXT": "인기 루틴",
@@ -24,10 +33,10 @@
   "HOME_SEARCH_EXERCISE_BY_BODY": "부위별 운동 찾기",
   "HOME_SEARCH_KEYWORDS": "운동 목적 키워드",
 
-  "NAV_HOME_NAME": "홈",
-  "NAV_ROUT_MAN_NAME": "루틴관리",
-  "NAV_REC_STAT_NAME": "운동현황",
-  "NAV_MYPAGE_NAME": "마이페이지",
+
+  "WRITE_MAIN_TITLE": "기록하기",
+  "WRITE_BTN_CLOSE_TXT": "닫기",
+  "WRITE_BTN_SAVE_TXT": "저장",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "나의 루틴",

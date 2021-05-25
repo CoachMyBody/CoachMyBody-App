@@ -10,6 +10,15 @@
   "COMMON_EDIT_TXT": "Edit",
   "COMMON_COPY_TXT": "Copy",
   "COMMON_SEARCH_TXT": "Search",
+  "COMMON_PREV_TXT": "Previous",
+  "COMMON_NEXT_TXT": "Next",
+
+
+  "NAV_HOME_NAME": "Home",
+  "NAV_ROUT_MAN_NAME": "Routines",
+  "NAV_REC_STAT_NAME": "Status",
+  "NAV_MYPAGE_NAME": "MyPage",
+
 
   "HOME_MAIN_TITLE": "HomeScreen",
   "HOME_MAIN_POPULAR_ROUTINES_TXT": "Popular Routines",
@@ -24,16 +33,15 @@
   "HOME_SEARCH_EXERCISE_BY_BODY": "ENG_부위별 운동 찾기",
   "HOME_SEARCH_KEYWORDS": "ENG_운동 목적 키워드",
 
-  "NAV_HOME_NAME": "Home",
-  "NAV_ROUT_MAN_NAME": "Routines",
-  "NAV_REC_STAT_NAME": "Status",
-  "NAV_MYPAGE_NAME": "MyPage",
+
+  "WRITE_MAIN_TITLE": "Today's workout",
+  "WRITE_BTN_CLOSE_TXT": "Close",
+  "WRITE_BTN_SAVE_TXT": "Save",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "My Routines",
   "ROUTINE_SUB_BOOKMARK_TITLE": "Bookmarks",
   "ROUTINE_MAIN_TITLE": "Routines",
-
 
 
   "RECORD_MAIN_TITLE": "My History",

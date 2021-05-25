@@ -43,9 +43,9 @@ class _TabPageState extends State<TabPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          // fixedColor: Colors.black,
           onTap: onTabTapped,
           currentIndex: _pageIndex,
+          backgroundColor: AppColors.cmb_grey[0],
           selectedItemColor: AppColors.cmb_blue,
           unselectedItemColor: AppColors.cmb_grey[700],
           items: <BottomNavigationBarItem>[

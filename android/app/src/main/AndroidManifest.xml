@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="oauth"
-                    android:scheme="kakao49e6abc9a3a10f85635c9696593e0d9e"/>
+                    android:scheme="kakao${Native app key for Kakao}"/>
             </intent-filter>
         </activity>
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
@@ -52,7 +52,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="oauth"
-                    android:scheme="kakao49e6abc9a3a10f85635c9696593e0d9e"/>
+                    android:scheme="kakao${Native app key for Kakao}"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

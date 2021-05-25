@@ -1,5 +1,7 @@
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/models/user_info.dart';
+import 'package:coach_my_body/repository/auth_repository.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -82,24 +84,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
+
+
   void _issueAccessToken(String authCode) async {
     try {
       var token = await AuthApi.instance.issueAccessToken(authCode);
       await AccessTokenStore.instance.toStore(token);
 
-      _sendToCMBServer();
+      await _sendToCMBServer();
 
-      Navigator.pushNamedAndRemoveUntil(
+
+
+      await Navigator.pushNamedAndRemoveUntil(
           context, Routes.tapPage, (route) => false);
     } catch (e) {
-      print("error on issuing access token: $e");
+      print('error on issuing access token: $e');
     }
   }
+
+
 
   void _loginWithKakao() async {
     try {
       var code = await AuthCodeClient.instance.request();
-      await _issueAccessToken(code);
+      _issueAccessToken(code);
     } catch (e) {
       print(e);
     }
@@ -108,14 +117,43 @@ class _LoginScreenState extends State<LoginScreen> {
   void _loginWithTalk() async {
     try {
       var code = await AuthCodeClient.instance.requestWithTalk();
-      await _issueAccessToken(code);
+      _issueAccessToken(code);
     } catch (e) {
-      print(e);
+      print('카톡 로그인 에러 :  $e');
     }
   }
 
   Future<int> _sendToCMBServer() async {
-    final User user = await UserApi.instance.me();
+    final user = await UserApi.instance.me();
+
+    var authRepository = AuthRepository();
+
+    /// result = 201 -> 회원 가입 성공 / 404 -> 존재하지 않는 회원
+    /// 404인 경우 회원가입할건지에 대한 여부 물어야함
+    var result = await authRepository.login(user.id.toString());
+    print('로그인 결과 : $result');
+
+    // 회원가입 로직
+    if (result == 404) {
+      /// *************
+      /// 회원가입 하시겠습니까?
+      /// *************
+
+      UserInfo userInfo = UserInfo(user.kakaoAccount.email, 'KAKAO', user.kakaoAccount.profile.nickname, user.id.toString());
+      result = await authRepository.register(userInfo);
+
+      print('회원가입 결과 : $result');
+      if (result == 201) {
+        print('회원 가입 성공');
+
+      } else if (result == 400) {
+        print('요청 프로퍼티 오류');
+
+      } else if (result == 409) {
+        print('이미 존재하는 회원');
+
+      }
+    }
 
     print(
         "=========================[kakao account]=================================");
@@ -128,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return 0;
   }
 
-  void _login(bool isKakaoTalkInstalled) async {
+  void _login(bool isKakaoTalkInstalled) {
     if (true == _isKakaoTalkInstalled) {
       _loginWithTalk();
     } else {

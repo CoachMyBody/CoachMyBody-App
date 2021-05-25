@@ -2,7 +2,8 @@
     package="com.cmb.coach_my_body">
    <application
         android:label="Coach My Body"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -40,7 +41,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="oauth"
-                    android:scheme="kakao${Native app key for Kakao}"/>
+                    android:scheme="kakao49e6abc9a3a10f85635c9696593e0d9e"/>
             </intent-filter>
         </activity>
         <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
@@ -51,7 +52,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="oauth"
-                    android:scheme="kakao${Native app key for Kakao}"/>
+                    android:scheme="kakao49e6abc9a3a10f85635c9696593e0d9e"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

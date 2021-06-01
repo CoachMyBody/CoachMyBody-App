@@ -1,12 +1,15 @@
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
 class CustomDropDownWidget extends StatelessWidget {
-  CustomDropDownWidget({this.onPressed, @required this.label});
+  CustomDropDownWidget({@required this.label, this.onPressed, this.width});
 
-  final Function onPressed;
   String label;
+  final Function onPressed;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +23,23 @@ class CustomDropDownWidget extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(60.0)),
           )),
       onPressed: onPressed,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text(
-            label,
-            style: TextStyle(
-                fontSize: size.width * 0.038, color: AppColors.cmb_grey[700]),
-          ),
-          Icon(
-            Icons.keyboard_arrow_down_sharp,
-            color: AppColors.cmb_grey[700],
-            size: size.width * 0.063,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              label,
+              style: TextStyle(
+                  fontSize: size.width * 0.038, color: AppColors.cmb_grey[700], fontWeight: FontWeight.w400),
+            ),
+            Icon(
+              Icons.keyboard_arrow_down_sharp,
+              color: AppColors.cmb_grey[700],
+              size: size.width * 0.063,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -45,7 +45,7 @@ class HomeMainPage extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed(Routes.write);
         },
-        backgroundColor: AppColors.cmb_accent[100],
+        backgroundColor: Colors.black,
         child: Icon(Icons.carpenter),
       ),
     );
@@ -209,11 +209,6 @@ class PopularRoutineWidget extends StatelessWidget {
   final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
-  // ComboBox 리스트 예제
-  final _comboBoxLists = ['상세근육 설정', '머리', '어깨', '무릎', '발'];
-  // ComboBox 첫 번째
-  var _selectedValue = '상세근육 설정';
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -234,34 +229,7 @@ class PopularRoutineWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold
                   ),
                 ),
-                Container(
-                  width: 150,
-                  height: 40,
-                  child: DropdownButtonFormField(
-                    value: _selectedValue,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400
-                    ),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide(width: 2.0, style: BorderStyle.solid, color: AppColors.cmb_accent[100])
-                      )
-                    ),
-                    items: _comboBoxLists.map(
-                        (value) {
-                          return DropdownMenuItem(
-                            value: value,
-                            child: Text(value)
-                          );
-                        }
-                    ).toList(),
-                    onChanged: (value) {
-
-                    },
-                  ),
-                )
+                Icon(Icons.clear_all)
               ],
             ),
           ),
@@ -271,8 +239,7 @@ class PopularRoutineWidget extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        ((MediaQuery.of(context).size.height) / 1.5),
+                    childAspectRatio: 2 / 3,
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 8.0,
                   ),

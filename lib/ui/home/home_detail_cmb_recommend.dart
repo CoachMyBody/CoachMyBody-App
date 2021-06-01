@@ -1,6 +1,8 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../routes.dart';
+
 GlobalKey<_BodyRoutineWidgetState> globalKey = GlobalKey();
 
 class DetailCMBRecommendScreen extends StatefulWidget {
@@ -41,6 +43,13 @@ class _DetailCMBRecommendScreenState extends State<DetailCMBRecommendScreen> {
               ],
             ),
           )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(Routes.write);
+        },
+        backgroundColor: AppColors.cmb_accent[100],
+        child: Icon(Icons.carpenter),
       ),
     );
   }

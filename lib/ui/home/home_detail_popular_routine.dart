@@ -55,7 +55,7 @@ class _DetailPopularRoutineScreenState extends State<DetailPopularRoutineScreen>
         onPressed: () {
           Navigator.of(context).pushNamed(Routes.write);
         },
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.cmb_accent[100],
         child: Icon(Icons.carpenter),
       ),
     );

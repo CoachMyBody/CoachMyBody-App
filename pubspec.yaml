@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.0.5
   flutter_time_picker_spinner: ^1.0.6+1
   http: ^0.13.3
+  photo_manager: ^1.2.1
 
   # indicator 구현
   carousel_slider: ^3.0.0

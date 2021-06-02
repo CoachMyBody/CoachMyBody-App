@@ -34,7 +34,7 @@ class WriteFirstStepScreen extends StatelessWidget {
               child: Container(
                 width: 80,
                 height: 44,
-                margin: EdgeInsets.only(top: 20, right: 16),
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                 decoration: BoxDecoration(
                   color: _isSelected
                       ? AppColors.cmb_blue

@@ -2,6 +2,7 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/write/write_navi_model.dart';
+import 'package:coach_my_body/ui/write/write_photo.dart';
 import 'package:coach_my_body/widgets/common_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +26,14 @@ class WriteSecondStepScreen extends StatelessWidget {
             DividerWidget(),
             _buildMyInbody(),
             DividerWidget(),
-            _buildMyPhoto(MediaQuery.of(context).size),
+            _buildMyPhoto(context, MediaQuery.of(context).size),
             DividerWidget(),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: Container(
                 width: 80,
                 height: 44,
-                margin: EdgeInsets.only(top: 20, right: 16),
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                 decoration: BoxDecoration(
                   color: AppColors.cmb_blue,
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -224,7 +225,7 @@ class WriteSecondStepScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMyPhoto(Size size) {
+  Widget _buildMyPhoto(BuildContext context, Size size) {
     return Container(
       width: size.width,
       padding: EdgeInsets.symmetric(
@@ -245,14 +246,17 @@ class WriteSecondStepScreen extends StatelessWidget {
             '최대 1장만 업로드 가능해요.',
             style: TextStyle(fontSize: 12, color: AppColors.cmb_grey[300]),
           ),
+          SizedBox(
+            height: 12,
+          ),
           InkWell(
             onTap: () {
-              // TODO
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => WritePhotoScreen()));
             },
             child: Container(
               width: 104,
               height: 104,
-              margin: EdgeInsets.only(top: 12),
               padding: EdgeInsets.symmetric(vertical: 30),
               decoration: BoxDecoration(
                 color: AppColors.cmb_grey[50],

@@ -25,23 +25,25 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao${Native app key for Kakao}</string>
+				<string>kakao49e6abc9a3a10f85635c9696593e0d9e</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>KAKAO_APP_KEY</key>
-	<string>${Native app key for Kakao}</string>
+	<string>49e6abc9a3a10f85635c9696593e0d9e</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompathauth</string>
-		<string>kakao${Native app key for Kakao}</string>
+		<string>kakao49e6abc9a3a10f85635c9696593e0d9e</string>
 		<string>kakaolink</string>
 		<string>kakaotalk-5.9.7</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You need to allow our access for saving photo.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

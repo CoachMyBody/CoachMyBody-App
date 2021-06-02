@@ -39,7 +39,8 @@ class CustomTabPageView extends StatelessWidget {
     this.actions,
   })  : titleTextStyle = TextStyle(
             color: AppColors.cmb_grey[700],
-            fontFamily: FontFamily.spoqaHanSansNeo),
+            fontFamily: FontFamily.spoqaHanSansNeo,
+            fontWeight: FontWeight.bold),
         titleBackgroundColor = AppColors.cmb_grey[0],
         labelColor = AppColors.cmb_grey[700],
         indicatorColor = AppColors.cmb_grey[700] {

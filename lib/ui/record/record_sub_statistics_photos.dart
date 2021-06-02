@@ -25,12 +25,9 @@ class PhotoHistoryView extends StatelessWidget {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _buildPhotoView(size: size, isBefore: true, image: '', date: ''),
-            SizedBox(
-              width: 8.0,
-            ),
             _buildPhotoView(
                 size: size,
                 isBefore: false,

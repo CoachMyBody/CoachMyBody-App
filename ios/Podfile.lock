@@ -4,6 +4,9 @@ PODS:
     - Flutter
   - package_info (0.0.1):
     - Flutter
+  - photo_manager (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - shared_preferences (0.0.1):
     - Flutter
 
@@ -11,6 +14,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - kakao_flutter_sdk (from `.symlinks/plugins/kakao_flutter_sdk/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - photo_manager (from `.symlinks/plugins/photo_manager/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 EXTERNAL SOURCES:
@@ -20,6 +24,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/kakao_flutter_sdk/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  photo_manager:
+    :path: ".symlinks/plugins/photo_manager/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
@@ -27,6 +33,7 @@ SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   kakao_flutter_sdk: ef3deb25e3ec2fd5a236847fdb1904016b3db2a3
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  photo_manager: 61cdd6835af271b9ad1bb533fccf71d5db02fff3
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
 
 PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d

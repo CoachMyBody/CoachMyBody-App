@@ -84,9 +84,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
-
-
   void _issueAccessToken(String authCode) async {
     try {
       var token = await AuthApi.instance.issueAccessToken(authCode);
@@ -94,16 +91,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       await _sendToCMBServer();
 
-
-
       await Navigator.pushNamedAndRemoveUntil(
           context, Routes.tapPage, (route) => false);
     } catch (e) {
       print('error on issuing access token: $e');
     }
   }
-
-
 
   void _loginWithKakao() async {
     try {
@@ -139,19 +132,17 @@ class _LoginScreenState extends State<LoginScreen> {
       /// 회원가입 하시겠습니까?
       /// *************
 
-      UserInfo userInfo = UserInfo(user.kakaoAccount.email, 'KAKAO', user.kakaoAccount.profile.nickname, user.id.toString());
+      UserInfo userInfo = UserInfo(user.kakaoAccount.email, 'KAKAO',
+          user.kakaoAccount.profile.nickname, user.id.toString());
       result = await authRepository.register(userInfo);
 
       print('회원가입 결과 : $result');
       if (result == 201) {
         print('회원 가입 성공');
-
       } else if (result == 400) {
         print('요청 프로퍼티 오류');
-
       } else if (result == 409) {
         print('이미 존재하는 회원');
-
       }
     }
 
@@ -167,11 +158,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login(bool isKakaoTalkInstalled) {
-    if (true == _isKakaoTalkInstalled) {
-      _loginWithTalk();
-    } else {
-      _loginWithKakao();
-    }
+    // if (true == _isKakaoTalkInstalled) {
+    //   _loginWithTalk();
+    // } else {
+    //   _loginWithKakao();
+    // }
+
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.tapPage, (route) => false);
+
+    return;
   }
 
   Widget _buildKakaoButton(Size size) {

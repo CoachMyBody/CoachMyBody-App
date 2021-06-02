@@ -239,7 +239,8 @@ class PopularRoutineWidget extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 2 / 3,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.5),
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 8.0,
                   ),

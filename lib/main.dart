@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:coach_my_body/constants/app_theme.dart';
 
 void main() async {
-  KakaoContext.clientId = '${Native app key for Kakao}';
+  // KakaoContext.clientId = '${Native app key for Kakao}';
+  KakaoContext.clientId = '49e6abc9a3a10f85635c9696593e0d9e';
 
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();

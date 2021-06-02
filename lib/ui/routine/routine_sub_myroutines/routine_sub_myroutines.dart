@@ -1,4 +1,5 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/ui/routine/routine_create_exercise_type.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,12 @@ class RoutineSubMyroutinesScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => RoutineCreateExerciseTypePage())
+          );
+        },
         icon: Icon(Icons.add),
         label: Text('새 운동루틴 생성'),
         backgroundColor: AppColors.cmb_accent[100],

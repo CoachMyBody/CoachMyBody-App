@@ -12,7 +12,6 @@ class RoutineSubBookmarkList extends StatefulWidget {
 }
 
 class _RoutineSubBookmarkListState extends State<RoutineSubBookmarkList> {
-
   //setState를 위한 변수들
   double opacity_value = 0;
   String btn_text = '선택';
@@ -100,7 +99,6 @@ class _RoutineSubBookmarkListState extends State<RoutineSubBookmarkList> {
           )
         ],
       ),
-
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           change_select_btn();
@@ -111,38 +109,36 @@ class _RoutineSubBookmarkListState extends State<RoutineSubBookmarkList> {
       bottomNavigationBar: BottomAppBar(
         child: bottom_btn_show
             ? Container(
-            color: Colors.black,
-            height: 50.0,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: TextButton(
-                      onPressed: () {
-                        print('Pressed');
-                      },
-                      child: Text('전체 선택'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-
-                    child: TextButton(
-                      onPressed: () {
-                        print('Pressed');
-                      },
-                      child: Text('삭제'),
-                    ),
-                  ),
-                ]))
+                color: Colors.black,
+                height: 50.0,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: TextButton(
+                          onPressed: () {
+                            print('Pressed');
+                          },
+                          child: Text('전체 선택'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: TextButton(
+                          onPressed: () {
+                            print('Pressed');
+                          },
+                          child: Text('삭제'),
+                        ),
+                      ),
+                    ]))
             : Container(
-          height: 0,
-        ),
+                height: 0,
+              ),
       ),
     );
   }
-
 
   void change_select_btn() {
     setState(() {

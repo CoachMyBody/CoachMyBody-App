@@ -2,7 +2,7 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/write/write_navi_model.dart';
-import 'package:coach_my_body/ui/write/write_photo.dart';
+import 'package:coach_my_body/ui/write/write_second_step_photo.dart';
 import 'package:coach_my_body/widgets/common_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

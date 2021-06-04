@@ -1,5 +1,6 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/write/photo_assets_model.dart';
 import 'package:coach_my_body/providers/write/write_navi_model.dart';
 import 'package:coach_my_body/ui/write/write_first_step.dart';
 import 'package:coach_my_body/ui/write/write_second_step.dart';
@@ -14,7 +15,7 @@ class WriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => WriteNaviViewModel())
+        ChangeNotifierProvider(create: (context) => WriteNaviViewModel()),
       ],
       child: Scaffold(
         appBar: _buildAppBar(context),

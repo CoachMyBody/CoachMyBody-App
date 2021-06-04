@@ -53,22 +53,14 @@ class _SelectExerciseTypeWidgetState extends State<SelectExerciseTypeWidget> {
   final List<AssetImage> _imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
+  int _selectedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '1개가 선택됨',
-              style: TextStyle(
-                color: AppColors.cmb_accent[100],
-                fontWeight: FontWeight.w400
-              ),
-            ),
-          ),
           SizedBox(height: 4,),
           Expanded(
             child: GridView.builder(
@@ -82,29 +74,58 @@ class _SelectExerciseTypeWidgetState extends State<SelectExerciseTypeWidget> {
               ),
               itemCount: 8,
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: _imageList[index % 4],
-                      fit: BoxFit.cover,
-                      colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: _imageList[index % 4],
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                      ),
+                      borderRadius: BorderRadius.circular(8)
                     ),
-                    borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          _typeNameList[index % 2],
-                          style: TextStyle(
-                            color: AppColors.cmb_grey[0],
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18
+                    child: Stack(
+                      children: [
+                        _selectedIndex == index
+                          ? Align(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: AppColors.cmb_accent[100].withOpacity(0.8),
+                            ),
+                          )
+                        )
+                          : Container(),
+                        _selectedIndex == index
+                          ? Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Icon(
+                              Icons.check_circle,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                          : Container(),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            _typeNameList[index % 2],
+                            style: TextStyle(
+                                color: AppColors.cmb_grey[0],
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18
+                            ),
                           ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
                 );
               }

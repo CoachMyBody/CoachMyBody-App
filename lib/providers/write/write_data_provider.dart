@@ -1,20 +1,37 @@
 import 'package:coach_my_body/models/routine_info.dart';
 import 'package:coach_my_body/models/write_info.dart';
 import 'package:coach_my_body/repository/record_repository.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class WriteDateProvider extends ChangeNotifier {
-  bool _isRequiredDataFull;
-  RecordRequestInfo _recordData;
+class WriteDataProvider extends ChangeNotifier {
+  bool _bRoutineSelected;
+  bool _bRequiredDataFull;
+  RecordRequestInfo _recordData; // TODO: 지워? 말아? 아직 안 씀
 
-  WriteDateProvider() {
-    _isRequiredDataFull = false;
+  String _date;
+  int _routineId;
+  int _hours;
+  int _minutes;
+
+  WriteDataProvider() {
+    _bRoutineSelected = false;
+
+    DateTime now = DateTime.now();
+    _date = DateFormat('yyyy-MM-dd').format(now);
   }
 
-  bool get isRequiredDataFull => _isRequiredDataFull;
+  bool get isRoutineSelected => _bRoutineSelected;
 
-  set isRequiredDataFull(bool bRequiredDataFull) {
-    _isRequiredDataFull = bRequiredDataFull;
+  set bRoutineSelected(bool bRequiredDataFull) {
+    _bRoutineSelected = bRequiredDataFull;
+    notifyListeners();
+  }
+
+  bool get isRequiredDataFull => _bRequiredDataFull;
+
+  set bRequiredDataFull(bool bRequiredDataFull) {
+    _bRequiredDataFull = bRequiredDataFull;
     notifyListeners();
   }
 
@@ -25,6 +42,30 @@ class WriteDateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String get getDate => _date;
+
+  set date(String date) {
+    _date = date;
+  }
+
+  int get getRoutineId => _routineId;
+
+  set routineId(int routineId) {
+    _routineId = routineId;
+  }
+
+  int get getHours => _hours;
+
+  set hours(int hours) {
+    _hours = hours;
+  }
+
+  int get getMinutes => _minutes;
+
+  set minutes(int minutes) {
+    _minutes = minutes;
+  }
+
   void checkRequiredData() {
     // TODO
   }
@@ -32,6 +73,7 @@ class WriteDateProvider extends ChangeNotifier {
 
 class MyRoutinesProvider extends ChangeNotifier {
   RoutineSimpleInfoList _routines;
+  RoutineDetailInfo _selected;
 
   MyRoutinesProvider() {
     _fetchRoutines();
@@ -48,11 +90,44 @@ class MyRoutinesProvider extends ChangeNotifier {
     var recordRepository = RecordRepository();
 
     var result = await recordRepository.routines();
-    if(200 != result['result']) {
+    if (200 != result['result']) {
       assert(200 == result['result']);
     }
 
     _routines = await result['routinesList'];
+
+    notifyListeners();
+  }
+
+  RoutineDetailInfo get selected => _selected;
+
+  set selected(RoutineDetailInfo data) {
+    _selected = data;
+    notifyListeners();
+  }
+
+  Future<void> fetchDetailRoutine(int id) async {
+    var recordRepository = RecordRepository();
+
+    var result = await recordRepository.details(id);
+    switch(result['result']) {
+      case 200: {
+        break;
+      }
+      case 404: {
+        print('_fetchDetailRoutine: 존재하지 않는 데이터 입니다.');
+        assert(200 == result['result']);
+        break;
+      }
+      default: {
+        print('_fetchDetailRoutine: Unknown error');
+        assert(200 == result['result']);
+        break;
+      }
+    }
+
+    _selected = await result['routineDetail'];
+    print(_selected.title);
 
     notifyListeners();
   }

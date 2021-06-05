@@ -1,10 +1,7 @@
-import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
-import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/providers/write/write_navi_model.dart';
+import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/write/write_second_step_photo.dart';
 import 'package:coach_my_body/widgets/common_widgets.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -22,43 +19,19 @@ class WriteSecondStepScreen extends StatelessWidget {
               'assets/images/write/second_step_frame.svg', // TODO
               width: MediaQuery.of(context).size.width,
             ),
-            _buildSelfFeedback(),
+            _buildSelfFeedbackWidget(),
             DividerWidget(),
-            _buildMyInbody(),
+            _buildMyInbodyWidget(),
             DividerWidget(),
-            _buildMyPhoto(context, MediaQuery.of(context).size),
+            _buildMyPhotoWidget(context, MediaQuery.of(context).size),
             DividerWidget(),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                width: 80,
-                height: 44,
-                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-                decoration: BoxDecoration(
-                  color: AppColors.cmb_blue,
-                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    Provider.of<WriteNaviViewModel>(context, listen: false)
-                        .isFirstPage = true;
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SvgPicture.asset(Assets.commNaviPrevIconPath),
-                      SizedBox(width: 6),
-                      Text(
-                        COMMON_PREV_TXT,
-                        style: TextStyle(
-                            color: AppColors.cmb_grey[0],
-                            fontWeight: FontWeight.w400),
-                      ).tr(),
-                    ],
-                  ),
-                ),
-              ),
+            FlatNaviButton(
+              bSelected: true,
+              bShowNext: false,
+              callback: () {
+                Provider.of<WriteNaviViewModel>(context, listen: false)
+                    .isFirstPage = true;
+              },
             ),
           ],
         ),
@@ -66,7 +39,7 @@ class WriteSecondStepScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSelfFeedback() {
+  Widget _buildSelfFeedbackWidget() {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 16,
@@ -104,7 +77,7 @@ class WriteSecondStepScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMyInbody() {
+  Widget _buildMyInbodyWidget() {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 16,
@@ -225,7 +198,7 @@ class WriteSecondStepScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMyPhoto(BuildContext context, Size size) {
+  Widget _buildMyPhotoWidget(BuildContext context, Size size) {
     return Container(
       width: size.width,
       padding: EdgeInsets.symmetric(

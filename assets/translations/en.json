@@ -3,15 +3,24 @@
 
   "COMMON_OK_TXT" : "OK",
   "COMMON_CANCEL_TXT": "Cancel",
+
   "COMMON_YEAR_TXT": "",
   "COMMON_MONTH_TXT": "",
   "COMMON_DAY_TXT": "",
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " / ",
+  "COMMON_HOUR_TXT": "Hours",
+  "COMMON_MIN_TXT": "Mins",
+  "COMMON_HOUR_HINT": "0hours",
+  "COMMON_MIN_HINT": "00mins",
+
   "COMMON_EDIT_TXT": "Edit",
   "COMMON_COPY_TXT": "Copy",
   "COMMON_SEARCH_TXT": "Search",
   "COMMON_PREV_TXT": "Prev",
   "COMMON_NEXT_TXT": "Next",
+
+  "WORKOUT_EXERCISE_LAB_TXT": "Lab",
+  "WORKOUT_EXERCISE_SET_TXT": "Set",
 
 
   "NAV_HOME_NAME": "Home",
@@ -37,6 +46,11 @@
   "WRITE_MAIN_TITLE": "Today's workout",
   "WRITE_BTN_CLOSE_TXT": "Close",
   "WRITE_BTN_SAVE_TXT": "Save",
+
+  "WRITE_FIRST_STEP_WORKOUT_TIME_TXT": "Workout Time",
+  "WRITE_FIRST_STEP_SELECT_ROUTINE_TXT": "Select Routine",
+  "WRITE_FIRST_STEP_SELECT_ROUTINE_DESC": "Only routine with more than one workout can be recorded.",
+  "WRITE_FIRST_STEP_ROUTINE_SETTING_TXT": "Routine Setting",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "My Routines",

@@ -3,15 +3,24 @@
 
   "COMMON_OK_TXT" : "확인",
   "COMMON_CANCEL_TXT": "취소",
+
   "COMMON_YEAR_TXT": "년",
   "COMMON_MONTH_TXT": "월",
   "COMMON_DAY_TXT": "일",
   "COMMON_YEAR_MONTH_DIVIDER_TXT": " ",
+  "COMMON_HOUR_TXT": "시간",
+  "COMMON_MIN_TXT": "분",
+  "COMMON_HOUR_HINT": "0시간",
+  "COMMON_MIN_HINT": "00분",
+
   "COMMON_EDIT_TXT": "수정",
   "COMMON_COPY_TXT": "복사",
   "COMMON_SEARCH_TXT": "검색",
   "COMMON_PREV_TXT": "이전",
   "COMMON_NEXT_TXT": "다음",
+
+  "WORKOUT_EXERCISE_LAB_TXT": "회",
+  "WORKOUT_EXERCISE_SET_TXT": "세트",
 
 
   "NAV_HOME_NAME": "홈",
@@ -37,6 +46,11 @@
   "WRITE_MAIN_TITLE": "기록하기",
   "WRITE_BTN_CLOSE_TXT": "닫기",
   "WRITE_BTN_SAVE_TXT": "저장",
+
+  "WRITE_FIRST_STEP_WORKOUT_TIME_TXT": "운동 시간",
+  "WRITE_FIRST_STEP_SELECT_ROUTINE_TXT": "루틴 선택",
+  "WRITE_FIRST_STEP_SELECT_ROUTINE_DESC": "운동이 1개 이상인 루틴만 기록 가능해요.",
+  "WRITE_FIRST_STEP_ROUTINE_SETTING_TXT": "루틴 설정",
 
 
   "ROUTINE_SUB_MYROUTINE_TITLE": "나의 루틴",

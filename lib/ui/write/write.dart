@@ -1,8 +1,7 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/providers/write/photo_assets_model.dart';
 import 'package:coach_my_body/providers/write/write_data_provider.dart';
-import 'package:coach_my_body/providers/write/write_navi_model.dart';
+import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/write/write_first_step.dart';
 import 'package:coach_my_body/ui/write/write_second_step.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,7 +16,9 @@ class WriteScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WriteNaviViewModel()),
+        ChangeNotifierProvider(create: (context) => WriteRoutineSettingOpened()),
         ChangeNotifierProvider(create: (context) => MyRoutinesProvider()),
+        ChangeNotifierProvider(create: (context) => WriteDataProvider()),
       ],
       child: Scaffold(
         appBar: _buildAppBar(context),
@@ -51,7 +52,7 @@ class WriteScreen extends StatelessWidget {
         ),
         Center(
           child: InkWell(
-            onTap: () {}, // TODO
+            onTap: () {}, // TODO: send to server
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(

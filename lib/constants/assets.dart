@@ -11,6 +11,7 @@ class Assets {
   // common icons
   static const String commNaviNextIconPath = 'assets/icons/navigator_next_icon.svg';
   static const String commNaviPrevIconPath = 'assets/icons/navigator_prev_icon.svg';
+  static const String checkIconPath = 'assets/icons/check_icon.svg';
 
   // icons
   static const String homeIconPath = 'assets/icons/home_icon.svg';

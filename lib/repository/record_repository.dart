@@ -31,7 +31,7 @@ class RecordRepository {
       );
       result = response.statusCode;
 
-      print('api 호출 결과 : $result');
+      print('users/routines api 호출 결과 : $result');
     } catch (e) {
       print('users/routines api 호출 실패\n에러 : $e');
     } finally {
@@ -42,6 +42,34 @@ class RecordRepository {
     }
 
     return {'result': result, 'routinesList': routinesList};
+  }
+
+  /// details
+  Future<Map<String, dynamic>> details(int id) async {
+    var result = 0;
+    var routineDetail;
+
+    var response;
+    var client = http.Client();
+
+    try {
+      response = await client.get(
+        Uri.parse(apiAddress + 'routines/' + id.toString()),
+        headers: headers,
+      );
+      result = response.statusCode;
+
+      print('routines/$id api 호출 결과 : $result');
+    } catch (e) {
+      print('routines/$id api 호출 실패\n에러 : $e');
+    } finally {
+      routineDetail =
+          RoutineDetailInfo.fromJson(json.decode(response.body));
+
+      client.close();
+    }
+
+    return {'result': result, 'routineDetail': routineDetail};
   }
 
   /// records

@@ -70,6 +70,7 @@ class AuthRepository {
       print('로그인 api 호출 실패\n에러 : $e');
     } finally {
       client.close();
+      // TODO: Save token SharedPreference
     }
 
     return result;

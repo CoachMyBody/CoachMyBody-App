@@ -249,21 +249,12 @@ class WriteSecondStepScreen extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          InkWell(
-            onTap: () {
+          PlusDataContainer(
+            callback: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => WritePhotoScreen()));
             },
-            child: Container(
-              width: 104,
-              height: 104,
-              padding: EdgeInsets.symmetric(vertical: 30),
-              decoration: BoxDecoration(
-                color: AppColors.cmb_grey[50],
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
-              child: SvgPicture.asset(Assets.addBlueIconPath),
-            ),
+            label: '눈바디 추가',
           ),
         ],
       ),

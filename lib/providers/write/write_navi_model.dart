@@ -9,8 +9,8 @@ class WriteNaviViewModel extends ChangeNotifier {
 
   bool get isFirstPage => _isFirstPage;
 
-  set isFirstPage(bool isSearchTapped) {
-    _isFirstPage = isSearchTapped;
+  set isFirstPage(bool bFirstPage) {
+    _isFirstPage = bFirstPage;
     notifyListeners();
   }
 }

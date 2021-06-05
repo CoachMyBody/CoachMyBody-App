@@ -33,6 +33,11 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>49e6abc9a3a10f85635c9696593e0d9e</string>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakaokompathauth</string>

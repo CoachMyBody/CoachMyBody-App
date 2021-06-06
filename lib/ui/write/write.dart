@@ -16,18 +16,25 @@ class WriteScreen extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WriteNaviViewModel()),
-        ChangeNotifierProvider(create: (context) => WriteRoutineSettingOpened()),
-        ChangeNotifierProvider(create: (context) => MyRoutinesProvider()),
-        ChangeNotifierProvider(create: (context) => WriteDataProvider()),
+        ChangeNotifierProvider(
+            create: (context) => WriteRoutineSettingOpened()),
       ],
       child: Scaffold(
-        appBar: _buildAppBar(context),
+        appBar: WriteAppBarWidget(),
         body: WriteBodyWidget(),
       ),
     );
   }
+}
 
-  Widget _buildAppBar(BuildContext context) {
+class WriteAppBarWidget extends StatelessWidget with PreferredSizeWidget {
+  const WriteAppBarWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var writeDataProvider =
+        Provider.of<WriteDataProvider>(context, listen: true);
+
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0.0,
@@ -40,6 +47,7 @@ class WriteScreen extends StatelessWidget {
         Center(
           child: InkWell(
             onTap: () {
+              writeDataProvider.clean();
               Navigator.of(context).pop();
             },
             child: Padding(
@@ -52,12 +60,21 @@ class WriteScreen extends StatelessWidget {
         ),
         Center(
           child: InkWell(
-            onTap: () {}, // TODO: send to server
+            onTap: writeDataProvider.isRequiredDataFull
+                ? () {
+                    writeDataProvider.recordToServer();
+                    writeDataProvider.clean();
+                    Navigator.of(context).pop();
+                  }
+                : null,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 WRITE_BTN_SAVE_TXT,
-                style: TextStyle(color: AppColors.cmb_grey[200]),
+                style: TextStyle(
+                    color: writeDataProvider.isRequiredDataFull
+                        ? AppColors.cmb_blue
+                        : AppColors.cmb_grey[200]),
               ).tr(),
             ),
           ),
@@ -66,10 +83,13 @@ class WriteScreen extends StatelessWidget {
       automaticallyImplyLeading: false,
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
 
 class WriteBodyWidget extends StatelessWidget {
-  const WriteBodyWidget({Key key}) : super(key: key);
+  WriteBodyWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_date_model.dart';
+import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
+        ChangeNotifierProvider(create: (context) => MyRoutinesProvider()),
+        ChangeNotifierProvider(create: (context) => WriteDataProvider()),
+        ChangeNotifierProvider(create: (context) => InbodyDataProvider()),
+        ChangeNotifierProvider(create: (context) => NunbodyDataProvider()),
       ],
       child: MaterialApp(
         // 다국어 지원

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class InbodyRequestInfo {
   String date;
   double weight;
@@ -41,9 +39,9 @@ class NunbodyRequestInfo {
 
 class RecordRequestInfo {
   String date;
-  Uint64 routineId;
-  Uint32 hours;
-  Uint32 minutes;
+  int routineId;
+  int hours;
+  int minutes;
 
   // optional data
   String feedbackBySelf;
@@ -54,9 +52,9 @@ class RecordRequestInfo {
 
   RecordRequestInfo.fromJson(Map<String, dynamic> json)
       : date = json['date'] as String,
-        routineId = json['routineId'] as Uint64,
-        hours = json['hours'] as Uint32,
-        minutes = json['minutes'] as Uint32,
+        routineId = json['routineId'] as int,
+        hours = json['hours'] as int,
+        minutes = json['minutes'] as int,
         feedbackBySelf = (null != json['feedbackBySelf'])
             ? json['feedbackBySelf'] as String
             : null,

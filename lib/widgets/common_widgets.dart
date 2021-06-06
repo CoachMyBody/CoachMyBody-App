@@ -3,6 +3,7 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DividerWidget extends StatelessWidget {
@@ -51,6 +52,54 @@ class PlusDataContainer extends StatelessWidget {
     );
   }
 }
+
+class OutlinedTextField extends StatelessWidget {
+  const OutlinedTextField({Key key, @required this.label,
+  @required this.hint,
+  @required this.controller, @required this.onChanged}) : super(key: key);
+
+  final String label;
+  final String hint;
+  final TextEditingController controller;
+  final Function onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Container(
+        height: 54,
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            color: AppColors.cmb_grey[50],
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            border: Border.all(width: 1, color: AppColors.cmb_grey[100])),
+        child: Stack(
+          children: <Widget>[
+            Text(
+              label,
+              style: TextStyle(fontSize: 12),
+              textAlign: TextAlign.start,
+            ),
+            TextField(
+              controller: controller,
+              textAlign: TextAlign.right,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: hint,
+                hintStyle:
+                TextStyle(fontSize: 16, color: AppColors.cmb_grey[200]),
+              ),
+              onChanged: onChanged,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 class FlatNaviButton extends StatelessWidget {
   FlatNaviButton({Key key, this.bSelected, this.bShowNext, this.callback})

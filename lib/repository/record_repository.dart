@@ -13,7 +13,7 @@ class RecordRepository {
   final Map<String, String> headers = {
     'Accept': 'application/json',
     'content-type': 'application/json',
-    'Authorization': 'Bearer 251cc2cd-dfda-49ba-8ec9-e394ef6412f6' // TODO: Just for test
+    'Authorization': 'Bearer f12cfbba-cd63-46f2-8d84-9b00fc58497c' // TODO: Just for test
   };
 
   /// routines
@@ -36,7 +36,7 @@ class RecordRepository {
       print('users/routines api 호출 실패\n에러 : $e');
     } finally {
       routinesList =
-          RoutineSimpleInfoList.fromJson(json.decode(response.body));
+          RoutineSimpleInfoList.fromJson(json.decode(utf8.decode(response.bodyBytes)));
 
       client.close();
     }
@@ -64,7 +64,7 @@ class RecordRepository {
       print('routines/$id api 호출 실패\n에러 : $e');
     } finally {
       routineDetail =
-          RoutineDetailInfo.fromJson(json.decode(response.body));
+          RoutineDetailInfo.fromJson(json.decode(utf8.decode(response.bodyBytes)));
 
       client.close();
     }
@@ -73,14 +73,16 @@ class RecordRepository {
   }
 
   /// records
-  Future<int> records(RecordRequestInfo userInfo) async {
+  Future<int> records(RecordRequestInfo recordInfo) async {
     var result = 0;
 
     var client = http.Client();
-    var body = json.encode(userInfo.toJson());
+    var body = json.encode(recordInfo.toJson());
+
+    print(body);
 
     try {
-      var response = await client.post(Uri.http(apiAddress, 'records'),
+      var response = await client.post(Uri.parse(apiAddress + 'records'),
           headers: headers, body: body);
 
       result = response.statusCode;

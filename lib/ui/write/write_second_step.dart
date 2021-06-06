@@ -1,39 +1,89 @@
 import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/write/write_second_step_photo.dart';
 import 'package:coach_my_body/widgets/common_widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class WriteSecondStepScreen extends StatelessWidget {
-  const WriteSecondStepScreen({Key key}) : super(key: key);
+  WriteSecondStepScreen({Key key}) : super(key: key);
+
+  final _inbodyWeightCntrl = TextEditingController();
+  final _inbodySmmCntrl = TextEditingController();
+  final _inbodyBfmCntrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/write/second_step_frame.svg', // TODO
-              width: MediaQuery.of(context).size.width,
-            ),
-            _buildSelfFeedbackWidget(),
-            DividerWidget(),
-            _buildMyInbodyWidget(),
-            DividerWidget(),
-            _buildMyPhotoWidget(context, MediaQuery.of(context).size),
-            DividerWidget(),
-            FlatNaviButton(
-              bSelected: true,
-              bShowNext: false,
-              callback: () {
-                Provider.of<WriteNaviViewModel>(context, listen: false)
-                    .isFirstPage = true;
-              },
-            ),
-          ],
+    var writeDataProvider =
+        Provider.of<WriteDataProvider>(context, listen: true);
+    var inbodyDataProvider = Provider.of<InbodyDataProvider>(context, listen: true);
+    var nunbodyDataProvider = Provider.of<NunbodyDataProvider>(context, listen: true);
+
+    _inbodyWeightCntrl.addListener(() {
+      if (true == _inbodyWeightCntrl.text.isEmpty) {
+        return;
+      }
+      inbodyDataProvider.weight = int.parse(_inbodyWeightCntrl.text);
+    });
+
+    if (null != inbodyDataProvider.getWeight && 0 != inbodyDataProvider.getWeight) {
+      _inbodyWeightCntrl.text = inbodyDataProvider.getWeight.toString();
+    }
+
+    _inbodySmmCntrl.addListener(() {
+      if (true == _inbodySmmCntrl.text.isEmpty) {
+        return;
+      }
+      inbodyDataProvider.smm = int.parse(_inbodySmmCntrl.text);
+    });
+
+    if (null != inbodyDataProvider.getSmm && 0 != inbodyDataProvider.getSmm) {
+      _inbodySmmCntrl.text = inbodyDataProvider.getSmm.toString();
+    }
+
+    _inbodyBfmCntrl.addListener(() {
+      if (true == _inbodyBfmCntrl.text.isEmpty) {
+        return;
+      }
+      inbodyDataProvider.bfm = int.parse(_inbodyBfmCntrl.text);
+    });
+
+    if (null != inbodyDataProvider.getBfm && 0 != inbodyDataProvider.getBfm) {
+      _inbodyBfmCntrl.text = inbodyDataProvider.getBfm.toString();
+    }
+
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SvgPicture.asset(
+                'assets/images/write/second_step_frame.svg', // TODO
+                width: MediaQuery.of(context).size.width,
+              ),
+              _buildSelfFeedbackWidget(),
+              DividerWidget(),
+              _buildMyInbodyWidget(),
+              DividerWidget(),
+              _buildMyPhotoWidget(context, MediaQuery.of(context).size),
+              DividerWidget(),
+              FlatNaviButton(
+                bSelected: true,
+                bShowNext: false,
+                callback: () {
+                  Provider.of<WriteNaviViewModel>(context, listen: false)
+                      .isFirstPage = true;
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -49,9 +99,9 @@ class WriteSecondStepScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '셀프 피드백',
+            RECORD_SUB_STATISTICS_SELF_FEEDBACK_TXT,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+          ).tr(),
           SizedBox(
             height: 8,
           ),
@@ -66,7 +116,7 @@ class WriteSecondStepScreen extends StatelessWidget {
               onTap: () {},
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: '오늘 운동 어떠셨나요? (500자 이내)',
+                hintText: tr(WRITE_SECOND_STEP_FEEDBACK_HINT),
                 hintStyle:
                     TextStyle(fontSize: 16, color: AppColors.cmb_grey[200]),
               ),
@@ -87,110 +137,32 @@ class WriteSecondStepScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '마이 인바디',
+            RECORD_SUB_STATISTICS_MYINBODY_TXT,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+          ).tr(),
           SizedBox(
             height: 8,
           ),
           Row(
             children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 54,
-                  margin: const EdgeInsets.only(right: 8.0),
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                      color: AppColors.cmb_grey[50],
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      border:
-                          Border.all(width: 1, color: AppColors.cmb_grey[100])),
-                  child: Stack(
-                    children: <Widget>[
-                      Text(
-                        '체중(kg)',
-                        style: TextStyle(fontSize: 12),
-                        textAlign: TextAlign.start,
-                      ),
-                      TextField(
-                        onTap: () {},
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: '0kg',
-                          hintStyle: TextStyle(
-                              fontSize: 16, color: AppColors.cmb_grey[200]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              OutlinedTextField(
+                  label: tr(WRITE_SECOND_STEP_WEIGHT_TXT),
+                  hint: tr(WRITE_SECOND_STEP_WEIGHT_HINT),
+                  controller: _inbodyWeightCntrl),
+              SizedBox(
+                width: 8.0,
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  height: 54,
-                  margin: const EdgeInsets.only(right: 8.0),
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                      color: AppColors.cmb_grey[50],
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      border:
-                          Border.all(width: 1, color: AppColors.cmb_grey[100])),
-                  child: Stack(
-                    children: <Widget>[
-                      Text(
-                        '골격근량(kg)',
-                        style: TextStyle(fontSize: 12),
-                        textAlign: TextAlign.start,
-                      ),
-                      TextField(
-                        onTap: () {},
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: '0kg',
-                          hintStyle: TextStyle(
-                              fontSize: 16, color: AppColors.cmb_grey[200]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              OutlinedTextField(
+                  label: tr(WRITE_SECOND_STEP_SMM_TXT),
+                  hint: tr(WRITE_SECOND_STEP_SMM_HINT),
+                  controller: _inbodySmmCntrl),
+              SizedBox(
+                width: 8.0,
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: 104,
-                  height: 54,
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                      color: AppColors.cmb_grey[50],
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      border:
-                          Border.all(width: 1, color: AppColors.cmb_grey[100])),
-                  child: Stack(
-                    children: <Widget>[
-                      Text(
-                        '체지방량(kg)',
-                        style: TextStyle(fontSize: 12),
-                        textAlign: TextAlign.start,
-                      ),
-                      TextField(
-                        onTap: () {},
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: '0kg',
-                          hintStyle: TextStyle(
-                              fontSize: 16, color: AppColors.cmb_grey[200]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              OutlinedTextField(
+                  label: tr(WRITE_SECOND_STEP_PBF_TXT),
+                  hint: tr(WRITE_SECOND_STEP_PBF_HINT),
+                  controller: _inbodyBfmCntrl),
             ],
           )
         ],
@@ -209,16 +181,16 @@ class WriteSecondStepScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '마이 눈바디',
+            RECORD_SUB_STATISTICS_MYPHOTOS_TXT,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+          ).tr(),
           SizedBox(
             height: 4,
           ),
           Text(
-            '최대 1장만 업로드 가능해요.',
+            WRITE_SECOND_STEP_MYPHOTOS_DESC,
             style: TextStyle(fontSize: 12, color: AppColors.cmb_grey[300]),
-          ),
+          ).tr(),
           SizedBox(
             height: 12,
           ),
@@ -227,7 +199,7 @@ class WriteSecondStepScreen extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => WritePhotoScreen()));
             },
-            label: '눈바디 추가',
+            label: tr(WRITE_SECOND_STEP_ADD_PHOTO),
           ),
         ],
       ),

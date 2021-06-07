@@ -2,17 +2,20 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/textstyles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-class MyRoutineTile extends StatelessWidget {
+class MyBookMarkTile extends StatelessWidget {
   final String img;
   final String title;
+  final List<String> tags;
   final bool isSelectButtonClicked;
   final bool isSelected;
   final Function tapCallBack;
 
-  MyRoutineTile(
+  MyBookMarkTile(
       {this.img,
       this.title,
+      this.tags,
       this.isSelectButtonClicked,
       this.isSelected,
       this.tapCallBack});
@@ -20,14 +23,15 @@ class MyRoutineTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
+
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(_width * 0.0222),
         child: Image.asset(
           img,
-          width: _width * 0.1666,
-          height: _width * 0.1666,
+          width: _width * 0.2388,
+          height: _width * 0.2388,
         ),
       ),
       title: Text(
@@ -36,6 +40,31 @@ class MyRoutineTile extends StatelessWidget {
             fontSize: _width * 0.0388,
             fontWeight: FontWeight.w400,
             fontFamily: FontFamily.spoqaHanSansNeo),
+      ),
+      subtitle: ListView.builder(
+        itemBuilder: (context, index) {
+          final tag = tags[index];
+          return SingleChildScrollView(
+            child: Container(
+              margin:
+                  EdgeInsets.only(top: _width * 0.0111, right: _width * 0.0111),
+              width: _width * 0.0888,
+              height: _width * 0.0555,
+              decoration: BoxDecoration(color: AppColors.cmb_grey[50]),
+              child: Center(
+                child: Text(
+                  tag,
+                  style: TextStyle(
+                      fontSize: _width * 0.02778,
+                      color: AppColors.cmb_grey[400],
+                      fontFamily: FontFamily.spoqaHanSansNeo),
+                ),
+              ),
+            ),
+          );
+        },
+        itemCount: tags.length,
+        scrollDirection: Axis.horizontal,
       ),
       trailing: isSelectButtonClicked
           ? isSelected

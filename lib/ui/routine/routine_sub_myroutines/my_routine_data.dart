@@ -37,12 +37,14 @@ class MyRoutineData extends ChangeNotifier {
   void selectAllMyRoutine() {
     _myRoutines.forEach((element) {
       element.isSelected = true;
+      notifyListeners();
     });
   }
 
   void unSelectAllMyRoutine() {
     _myRoutines.forEach((element) {
       element.isSelected = false;
+      notifyListeners();
     });
   }
 }

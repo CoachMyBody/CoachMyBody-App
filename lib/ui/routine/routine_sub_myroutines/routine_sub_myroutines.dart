@@ -14,12 +14,19 @@ class RoutineSubMyroutinesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _width = MediaQuery.of(context).size.width;
     final selectButtonProvider =
         Provider.of<RoutineSelectButtonModel>(context, listen: true);
     final myRoutineProvider = Provider.of<MyRoutineData>(context, listen: true);
 
     return Scaffold(
-      body: RoutineSubMyroutinesList(),
+      body: Padding(
+        padding: EdgeInsets.only(
+            left: _width * 0.0444,
+            right: _width * 0.0444,
+            top: _width * 0.0444),
+        child: RoutineSubMyroutinesList(),
+      ),
       floatingActionButton: Visibility(
         visible: selectButtonProvider.isClicked ? false : true,
         child: FloatingActionButton.extended(
@@ -39,7 +46,7 @@ class RoutineSubMyroutinesScreen extends StatelessWidget {
         child: selectButtonProvider.isClicked
             ? Container(
                 color: Colors.black,
-                height: 50.0,
+                height: _width * 0.1166,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -47,6 +54,7 @@ class RoutineSubMyroutinesScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: TextButton(
                           onPressed: () {
+                            myRoutineProvider.selectAllMyRoutine();
                             print('전체 선택 클릭됨');
                           },
                           child: Text('전체 선택'),

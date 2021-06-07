@@ -1,8 +1,12 @@
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_date_model.dart';
+import 'package:coach_my_body/providers/routine/bookmark_selcect_button_model.dart';
+import 'package:coach_my_body/providers/routine/routine_select_button_model.dart';
 import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/routes.dart';
+import 'package:coach_my_body/ui/routine/routine_sub_bookmark/my_bookmark_data.dart';
+import 'package:coach_my_body/ui/routine/routine_sub_myroutines/my_routine_data.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,7 +40,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     // (04/30) 가로 방향 미지원, 추후 지원 예정
@@ -49,6 +52,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => WriteDataProvider()),
         ChangeNotifierProvider(create: (context) => InbodyDataProvider()),
         ChangeNotifierProvider(create: (context) => NunbodyDataProvider()),
+        ChangeNotifierProvider(create: (context) => RoutineSelectButtonModel()),
+        ChangeNotifierProvider(create: (context) => MyRoutineData()),
+        ChangeNotifierProvider(
+            create: (context) => BookMarkSelectButtonModel()),
+        ChangeNotifierProvider(create: (context) => MyBookMarkData())
       ],
       child: MaterialApp(
         // 다국어 지원

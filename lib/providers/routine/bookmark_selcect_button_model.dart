@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-class RoutineSelectButtonModel extends ChangeNotifier {
+class BookMarkSelectButtonModel extends ChangeNotifier {
   bool isClicked;
 
-  RoutineSelectButtonModel() {
+  BookMarkSelectButtonModel() {
     isClicked = false;
   }
 
@@ -12,7 +12,7 @@ class RoutineSelectButtonModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resetRoutineButton() {
+  void resetBookMartButton() {
     isClicked = false;
     notifyListeners();
   }

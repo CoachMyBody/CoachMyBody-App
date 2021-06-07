@@ -11,6 +11,8 @@ class RoutineSubMyroutinesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _width = MediaQuery.of(context).size.width;
+
     final selectButtonProvider =
         Provider.of<RoutineSelectButtonModel>(context, listen: true);
 
@@ -25,20 +27,24 @@ class RoutineSubMyroutinesList extends StatelessWidget {
                       ? 1
                       : 0.5
                   : 1,
-              child: MyRoutineTile(
-                img: myRoutine.myRoutineImg,
-                title: myRoutine.myRoutineTitle,
-                isSelectButtonClicked: selectButtonProvider.isClicked,
-                isSelected: myRoutine.isSelected,
-                tapCallBack: () {
-                  selectButtonProvider.isClicked
-                      ? myRoutineData.selectMyRoutine(myRoutine)
-                      : Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  RoutineSubMyroutinesDetail()));
-                },
+              child: Container(
+                width: double.infinity,
+                height: _width * 0.1888,
+                child: MyRoutineTile(
+                  img: myRoutine.myRoutineImg,
+                  title: myRoutine.myRoutineTitle,
+                  isSelectButtonClicked: selectButtonProvider.isClicked,
+                  isSelected: myRoutine.isSelected,
+                  tapCallBack: () {
+                    selectButtonProvider.isClicked
+                        ? myRoutineData.selectMyRoutine(myRoutine)
+                        : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    RoutineSubMyroutinesDetail()));
+                  },
+                ),
               ),
             )
           ]);

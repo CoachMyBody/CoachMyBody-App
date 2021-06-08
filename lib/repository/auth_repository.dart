@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
 import 'package:coach_my_body/models/user_info.dart';
 import 'package:http/http.dart' as http;
 
@@ -12,6 +13,17 @@ class AuthRepository {
     'Accept': 'application/json',
     'content-type': 'application/json'
   };
+
+  void _saveTokens(String body) {
+    var pref = AuthPreferences();
+    var token = CMBTokenInfo.fromJson(json.decode(body));
+
+    pref.setAccessToken(token.accessToken);
+    pref.setRefreshToken(token.refreshToken);
+    pref.setExpiredAt(token.expiredAt);
+
+    print(token.accessToken);
+  }
 
   /// auth/register
   Future<int> register(UserInfo userInfo) async{
@@ -61,7 +73,8 @@ class AuthRepository {
 
       if (response.statusCode == 200) {
         print('로그인 성공');
-
+        // save token
+        _saveTokens(utf8.decode(response.bodyBytes));
       } else if (response.statusCode == 400) {
         print('존재하지 않는 회원');
       }
@@ -70,7 +83,6 @@ class AuthRepository {
       print('로그인 api 호출 실패\n에러 : $e');
     } finally {
       client.close();
-      // TODO: Save token SharedPreference
     }
 
     return result;

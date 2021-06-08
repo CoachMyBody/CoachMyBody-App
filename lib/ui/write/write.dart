@@ -34,6 +34,10 @@ class WriteAppBarWidget extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     var writeDataProvider =
         Provider.of<WriteDataProvider>(context, listen: true);
+    var myRoutinesProvider = Provider.of<MyRoutinesProvider>(context, listen: true);
+
+    // TODO: This function should be not called here..
+    myRoutinesProvider.fetchRoutines();
 
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -45,9 +49,10 @@ class WriteAppBarWidget extends StatelessWidget with PreferredSizeWidget {
       ).tr(),
       actions: <Widget>[
         Center(
-          child: InkWell(
+          child: GestureDetector(
             onTap: () {
               writeDataProvider.clean();
+              myRoutinesProvider.clean();
               Navigator.of(context).pop();
             },
             child: Padding(
@@ -59,11 +64,12 @@ class WriteAppBarWidget extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
         Center(
-          child: InkWell(
+          child: GestureDetector(
             onTap: writeDataProvider.isRequiredDataFull
                 ? () {
                     writeDataProvider.recordToServer();
                     writeDataProvider.clean();
+                    myRoutinesProvider.clean();
                     Navigator.of(context).pop();
                   }
                 : null,
@@ -95,6 +101,7 @@ class WriteBodyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var writeNaviViewProvider =
         Provider.of<WriteNaviViewModel>(context, listen: true);
+
     return writeNaviViewProvider.isFirstPage
         ? WriteFirstStepScreen()
         : WriteSecondStepScreen();

@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
-import 'package:coach_my_body/ui/login/login.dart';
 import 'package:flutter/material.dart';
 
 import '../../routes.dart';
@@ -98,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   void _onSkipButtonClicked() {
-    var preferences = Preferences();
+    var preferences = AuthPreferences();
 
     preferences.setIsFirstClient(false);
 

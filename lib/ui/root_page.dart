@@ -46,7 +46,7 @@ class _RootPageState extends State<RootPage> {
   Future<bool> checkIsFirstClient() async {
     print('Debug1');
 
-    var preferences = Preferences();
+    var preferences = AuthPreferences();
 
     var result = await preferences.getIsFirstClient();
 

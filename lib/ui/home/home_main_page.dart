@@ -271,16 +271,16 @@ class PopularRoutineWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Padding(padding: EdgeInsets.only(top: 4.0)),
+                          SizedBox(height: 8,),
                           Text(
                             titleList[index % 2],
                             style: TextStyle(
                                 fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w400,
                                 color: AppColors.cmb_grey[700]
                             ),
                           ),
-                          Padding(padding: EdgeInsets.only(top: 8.0)),
+                          SizedBox(height: 4,),
                           Row(
                             children: [
                               SizedBox(
@@ -288,17 +288,17 @@ class PopularRoutineWidget extends StatelessWidget {
                                 height: 18.0,
                                 child: CircleAvatar(
                                   child: Image.asset(
-                                      'assets/images/test_image.png'
+                                    'assets/images/test_image.png'
                                   ),
                                 ),
                               ),
-                              Padding(padding: EdgeInsets.only(right: 4)),
+                              SizedBox(width: 4,),
                               Text(
                                 '홍길동 코치',
                                 style: TextStyle(
                                     color: AppColors.cmb_grey[500],
                                     fontSize: 12,
-                                    fontWeight: FontWeight.bold
+                                    fontWeight: FontWeight.w400
                                 ),
                               )
                             ],

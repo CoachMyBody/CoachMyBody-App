@@ -15,7 +15,13 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('코마바님의 운동루틴'),
+        titleTextStyle: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: AppColors.cmb_grey[700]
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -49,10 +55,11 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: Container(
           width: screenSize.width,
+          height: 80,
           padding: EdgeInsets.all(10.0),
           child: TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: AppColors.cmb_grey[800],
+              backgroundColor: AppColors.cmb_accent[100],
               padding: EdgeInsets.all(10.0),
             ),
             onPressed: () {},

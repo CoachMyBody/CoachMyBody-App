@@ -1,67 +1,98 @@
+import 'package:coach_my_body/constants/colors.dart';
+import 'package:coach_my_body/models/routine_exercise_detail.dart';
 import 'package:flutter/material.dart';
 
-class RoutineSubMyroutinesDetailList extends StatelessWidget {
-  RoutineSubMyroutinesDetailList({@required this.text, @required this.route});
-
+class RoutineSubMyroutinesDetailList extends StatefulWidget {
   final String text;
   final Function route;
 
+  const RoutineSubMyroutinesDetailList({Key key, @required this.text, @required this.route}) : super(key: key);
+
+  @override
+  _RoutineSubMyroutinesDetailListState createState() => _RoutineSubMyroutinesDetailListState();
+}
+
+class _RoutineSubMyroutinesDetailListState extends State<RoutineSubMyroutinesDetailList> {
+  final List<RoutineExerciseDetail> _routineExerciseDetailLists = [
+    RoutineExerciseDetail(
+        'assets/images/routine_testimg_1.png',
+        '데드리프트',
+        '15회·4세트',
+        ['#헬스, #전신']
+    ),
+    RoutineExerciseDetail(
+        'assets/images/routine_testimg_3.png',
+        '스쿼트',
+        '15회·4세트',
+        ['#헬스, #전신']
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(12.0),
-        child: Container(
-          width: 90,
-          height: 90,
-          padding: EdgeInsets.symmetric(vertical: 1.0),
-          child: Image.asset(
-            myExerciseList[int.parse(text)].imageUrl,
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-      ),
-      title: Container(
-        // padding: const EdgeInsets.all(32),
-        child: Row(
-          children: [
-            Expanded(
-              /*1*/
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Expanded(
+      child: ListView.builder(
+          itemCount: _routineExerciseDetailLists.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            var isSelected = false;
+
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              margin: EdgeInsets.only(bottom: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  /*2*/
                   Container(
-                    child: Text(
-                      'tets',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    height: 88,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 75,
+                          width: 75,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(_routineExerciseDetailLists[index].imageURL),
+                                  fit: BoxFit.fill
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(8))
+                          ),
+                        ),
+                        SizedBox(width: 12,),
+                        Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_routineExerciseDetailLists[index].exerciseName, style: TextStyle(color: AppColors.cmb_grey[400], fontSize: 12, fontWeight: FontWeight.w400),),
+                              SizedBox(height: 4,),
+                              Text(_routineExerciseDetailLists[index].exerciseSet, style: TextStyle(color: AppColors.cmb_grey[700], fontSize: 16, fontWeight: FontWeight.w400),),
+                              SizedBox(height: 8,)
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   Text(
-                    '15회, 4세트',
+                    '수정',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: AppColors.cmb_grey[700],
+                      fontWeight: FontWeight.w400
                     ),
-                  ),
-                  Text(
-                    '#헬스, #전신',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey[500],
-                    ),
-                  ),
+                  )
                 ],
               ),
-            ),
-            Text('편집'),
-          ],
-        ),
+            );
+          }
       ),
     );
   }
 }
+
+
+
 
 class MyExercise {
   int index;

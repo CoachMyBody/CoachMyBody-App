@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TabPage extends StatefulWidget {
+  int index;
+
+  TabPage({this.index = 0});
+
   @override
   _TabPageState createState() => _TabPageState();
 }
@@ -29,6 +33,7 @@ class _TabPageState extends State<TabPage> {
   @override
   void initState() {
     super.initState();
+    _pageIndex = widget.index;
     _pageController = PageController(initialPage: _pageIndex);
   }
 

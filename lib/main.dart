@@ -2,6 +2,7 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/providers/routine/bookmark_selcect_button_model.dart';
+import 'package:coach_my_body/providers/routine/routine_exercise_detail_model.dart';
 import 'package:coach_my_body/providers/routine/routine_select_button_model.dart';
 import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/routes.dart';
@@ -56,7 +57,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MyRoutineData()),
         ChangeNotifierProvider(
             create: (context) => BookMarkSelectButtonModel()),
-        ChangeNotifierProvider(create: (context) => MyBookMarkData())
+        ChangeNotifierProvider(create: (context) => MyBookMarkData()),
+        ChangeNotifierProvider(create: (context) => RoutineExerciseDetailViewModel()) // 운동 정보 가져오는 Provider
       ],
       child: MaterialApp(
         // 다국어 지원

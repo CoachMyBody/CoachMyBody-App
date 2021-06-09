@@ -1,9 +1,17 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/models/routine_exercise_detail.dart';
+import 'package:coach_my_body/providers/routine/routine_exercise_detail_model.dart';
+import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+String bodyPart;
+String exerciseName;
 
 class RoutineCreateExerciseDetailPage extends StatefulWidget {
-  const RoutineCreateExerciseDetailPage({Key key}) : super(key: key);
+  final String exerciseName;
+
+  const RoutineCreateExerciseDetailPage({Key key, @required this.exerciseName}) : super(key: key);
 
   @override
   _RoutineCreateExerciseDetailPageState createState() => _RoutineCreateExerciseDetailPageState();
@@ -32,7 +40,7 @@ class _RoutineCreateExerciseDetailPageState extends State<RoutineCreateExerciseD
               SizedBox(height: 16,),
               WholeExerciseTypeWidget(),
               SizedBox(height: 20,),
-              ExerciseListWidget(),
+              ExerciseListWidget(exerciseName: widget.exerciseName),
               SizedBox(height: 80,)
             ],
           ),
@@ -43,7 +51,11 @@ class _RoutineCreateExerciseDetailPageState extends State<RoutineCreateExerciseD
         height: 52,
         width: MediaQuery.of(context).size.width,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TabPage(index: 1)),);
+          },
           backgroundColor: AppColors.cmb_accent[100],
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0))),
           child: Text(
@@ -71,6 +83,14 @@ class WholeExerciseTypeWidget extends StatefulWidget {
 class _WholeExerciseTypeWidgetState extends State<WholeExerciseTypeWidget> {
   final _typeList = <String>['전체', '전신', '상체', '하체'];
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    bodyPart = _typeList[_selectedIndex];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,13 +137,17 @@ class _WholeExerciseTypeWidgetState extends State<WholeExerciseTypeWidget> {
 }
 
 class ExerciseListWidget extends StatefulWidget {
-  const ExerciseListWidget({Key key}) : super(key: key);
+  final String exerciseName;
+
+  const ExerciseListWidget({Key key, @required this.exerciseName}) : super(key: key);
 
   @override
   _ExerciseListWidgetState createState() => _ExerciseListWidgetState();
 }
 
 class _ExerciseListWidgetState extends State<ExerciseListWidget> {
+  RoutineExerciseDetailViewModel _routineExerciseDetailViewModel;
+
   final List<AssetImage> _imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
@@ -155,7 +179,18 @@ class _ExerciseListWidgetState extends State<ExerciseListWidget> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print('전달받은 운동이름 : ${widget.exerciseName}');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // _routineExerciseDetailViewModel = Provider.of<RoutineExerciseDetailViewModel>(context, listen: true);
+    // _routineExerciseDetailViewModel.loadExerciseInfoLists(bodyPart, exerciseName);
+
     return Expanded(
         child: ListView.builder(
           itemCount: _routineExerciseDetailLists.length,
@@ -188,10 +223,11 @@ class _ExerciseListWidgetState extends State<ExerciseListWidget> {
                         Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(_routineExerciseDetailLists[index].exerciseName),
+                              Text(_routineExerciseDetailLists[index].exerciseName, style: TextStyle(color: AppColors.cmb_grey[700], fontSize: 16),),
                               SizedBox(height: 4,),
-                              Text(_routineExerciseDetailLists[index].exerciseSet),
+                              Text(_routineExerciseDetailLists[index].exerciseSet, style: TextStyle(color: AppColors.cmb_grey[700], fontSize: 16),),
                               SizedBox(height: 8,)
                             ],
                           ),

@@ -2,6 +2,8 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/ui/routine/routine_create_exercise_detail.dart';
 import 'package:flutter/material.dart';
 
+String exerciseName;
+
 class RoutineCreateExerciseTypePage extends StatefulWidget {
   const RoutineCreateExerciseTypePage({Key key}) : super(key: key);
 
@@ -21,7 +23,7 @@ class _RoutineCreateExerciseTypePageState extends State<RoutineCreateExerciseTyp
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RoutineCreateExerciseDetailPage())
+                MaterialPageRoute(builder: (context) => RoutineCreateExerciseDetailPage(exerciseName: exerciseName))
               );
             },
             child: Text(
@@ -49,7 +51,7 @@ class SelectExerciseTypeWidget extends StatefulWidget {
 }
 
 class _SelectExerciseTypeWidgetState extends State<SelectExerciseTypeWidget> {
-  final List<String> _typeNameList = <String>['헬스', '필라테스'];
+  final List<String> _typeNameList = <String>['헬스', '필라테스', 'NONE', 'NONE', 'NONE', 'NONE', 'NONE', 'NONE'];
   final List<AssetImage> _imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
@@ -78,6 +80,7 @@ class _SelectExerciseTypeWidgetState extends State<SelectExerciseTypeWidget> {
                   onTap: () {
                     setState(() {
                       _selectedIndex = index;
+                      exerciseName = _typeNameList[index];
                     });
                   },
                   child: Container(
@@ -116,7 +119,7 @@ class _SelectExerciseTypeWidgetState extends State<SelectExerciseTypeWidget> {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            _typeNameList[index % 2],
+                            _typeNameList[index],
                             style: TextStyle(
                                 color: AppColors.cmb_grey[0],
                                 fontWeight: FontWeight.w500,

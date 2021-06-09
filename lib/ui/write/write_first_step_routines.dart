@@ -1,4 +1,3 @@
-
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
@@ -19,19 +18,24 @@ class RoutinesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var myRoutinesProvider =
-    Provider.of<MyRoutinesProvider>(context, listen: true);
+    var myRoutinesProvider = Provider.of<MyRoutinesProvider>(context, listen: true);
 
     var bNeedtoAddRoutine = false;
-    var numOfViews = MAX_NUM_ROUTINE_SIMPLE_VIEW;
+    var numOfViews = 1;
 
     if (null == myRoutinesProvider.routines) {
       bNeedtoAddRoutine = true;
     } else {
       var numOfRoutines = myRoutinesProvider.routines.routines.length;
-      numOfViews = (numOfRoutines > MAX_NUM_ROUTINE_SIMPLE_VIEW)
-          ? MAX_NUM_ROUTINE_SIMPLE_VIEW
-          : numOfRoutines;
+      if (0 == numOfRoutines) {
+        bNeedtoAddRoutine = true;
+      }
+      else {
+        bNeedtoAddRoutine = false;
+        numOfViews = (numOfRoutines > MAX_NUM_ROUTINE_SIMPLE_VIEW)
+            ? MAX_NUM_ROUTINE_SIMPLE_VIEW
+            : numOfRoutines;
+      }
     }
 
     return Container(

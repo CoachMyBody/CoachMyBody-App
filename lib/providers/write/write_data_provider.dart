@@ -229,7 +229,17 @@ class MyRoutinesProvider extends ChangeNotifier {
   RoutineDetailInfo _selected;
 
   MyRoutinesProvider() {
-    _fetchRoutines();
+    fetchRoutines();
+  }
+
+  void clean() {
+    if (null != _routines) {
+      _routines = null;
+    }
+
+    if (null != _selected) {
+      _selected != null;
+    }
   }
 
   RoutineSimpleInfoList get routines => _routines;
@@ -239,7 +249,12 @@ class MyRoutinesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _fetchRoutines() async {
+  Future<void> fetchRoutines() async {
+    if (null != _routines) {
+      print('fetchRoutines: _routines is already exist');
+      return;
+    }
+
     var recordRepository = RecordRepository();
 
     var result = await recordRepository.routines();

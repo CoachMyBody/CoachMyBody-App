@@ -3,6 +3,7 @@ import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/home/home_search_model.dart';
 import 'package:coach_my_body/ui/home/home_search.dart';
+import 'package:coach_my_body/ui/routine/routine_sub_bookmark/routine_sub_bookmark_detail.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -208,7 +209,7 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
 
 class PopularRoutineWidget extends StatelessWidget {
 
-  final List<String> titleList = <String>['홍길동 코치의 7일만에 어깡 만들기 루틴!', '7일만에 허벅지 다이어트 일주일 루틴!'];
+  final List<String> titleList = <String>['따라하면 절반은 가는, 헬스장 기본 루틴', '2주만에 11자복근 만드는 데일리 루틴', '홍길동 코치의 7일만에 어깡 만들기 루틴!', '7일만에 허벅지 다이어트 일주일 루틴!'];
   final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
@@ -249,135 +250,143 @@ class PopularRoutineWidget extends StatelessWidget {
                   ),
                   itemCount: 6,
                   itemBuilder: (context, index) {
-                    return Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: MediaQuery.of(context).size.width * 114 / 160 / 2,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: imageList[index % 4],
-                                    fit: BoxFit.cover
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RoutineSubBookmarkDetail(index: 0,)),);
+                      },
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.width * 114 / 160 / 2,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: imageList[index % 4],
+                                      fit: BoxFit.cover
+                                  ),
+                                  borderRadius: BorderRadius.circular(8)
+                              ),
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
+                                alignment: Alignment.bottomRight,
+                                child: Icon(
+                                  index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
+                                  color: index % 2 == 0 ? Colors.white : Colors.white,
                                 ),
-                                borderRadius: BorderRadius.circular(8)
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 8, 8),
-                              alignment: Alignment.bottomRight,
-                              child: Icon(
-                                index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
-                                color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 8,),
-                          Text(
-                            titleList[index % 2],
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.cmb_grey[700]
+                            SizedBox(height: 8,),
+                            Text(
+                              titleList[index % 4],
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.cmb_grey[700]
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 4,),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: 18.0,
-                                height: 18.0,
-                                child: CircleAvatar(
-                                  child: Image.asset(
-                                    'assets/images/test_image.png'
+                            SizedBox(height: 4,),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 18.0,
+                                  height: 18.0,
+                                  child: CircleAvatar(
+                                    radius: 100,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/test_image.png'
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(width: 4,),
-                              Text(
-                                '홍길동 코치',
-                                style: TextStyle(
-                                    color: AppColors.cmb_grey[500],
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(padding: EdgeInsets.only(top: 8)),
-                          Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Colors.grey[100],
-                                ),
-                                margin: EdgeInsets.only(right: 4),
-                                padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-                                child: Text(
-                                  '#헬스',
+                                SizedBox(width: 4,),
+                                Text(
+                                  '홍길동 코치',
                                   style: TextStyle(
-                                      fontSize: 10,
-                                      color: AppColors.cmb_grey[600]
+                                      color: AppColors.cmb_grey[500],
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 8)),
+                            Row(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: Colors.grey[100],
+                                  ),
+                                  margin: EdgeInsets.only(right: 4),
+                                  padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+                                  child: Text(
+                                    '#헬스',
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color: AppColors.cmb_grey[600]
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: Colors.grey[100],
-                                ),
-                                margin: EdgeInsets.only(right: 4),
-                                padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
-                                child: Text(
-                                  '#다이어트',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: AppColors.cmb_grey[600]
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4),
+                                    color: Colors.grey[100],
+                                  ),
+                                  margin: EdgeInsets.only(right: 4),
+                                  padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+                                  child: Text(
+                                    '#다이어트',
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color: AppColors.cmb_grey[600]
+                                    ),
                                   ),
                                 ),
-                              ),
-                              // TextButton(
-                              //   onPressed: () {},
-                              //   style: TextButton.styleFrom(
-                              //     shape: RoundedRectangleBorder(
-                              //       borderRadius: BorderRadius.circular(8)
-                              //     ),
-                              //     backgroundColor: AppColors.cmb_grey[100],
-                              //   ),
-                              //   child: Padding(
-                              //     padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
-                              //     child: Text(
-                              //       '#헬스',
-                              //       style: TextStyle(
-                              //         fontSize: 10,
-                              //         fontWeight: FontWeight.bold,
-                              //         color: AppColors.cmb_grey[400]),
-                              //     ),
-                              //   )
-                              // ),
-                              // Padding(padding: EdgeInsets.all(4)),
-                              // TextButton(
-                              //     onPressed: () {},
-                              //     style: TextButton.styleFrom(
-                              //       shape: RoundedRectangleBorder(
-                              //           borderRadius: BorderRadius.circular(8)
-                              //       ),
-                              //       backgroundColor: AppColors.cmb_grey[100],
-                              //     ),
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
-                              //       child: Text(
-                              //         '#다이어트',
-                              //         style: TextStyle(
-                              //             fontSize: 10,
-                              //             fontWeight: FontWeight.bold,
-                              //             color: AppColors.cmb_grey[400]),
-                              //       ),
-                              //     )
-                              // )
-                            ],
-                          )
-                        ],
+                                // TextButton(
+                                //   onPressed: () {},
+                                //   style: TextButton.styleFrom(
+                                //     shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(8)
+                                //     ),
+                                //     backgroundColor: AppColors.cmb_grey[100],
+                                //   ),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                //     child: Text(
+                                //       '#헬스',
+                                //       style: TextStyle(
+                                //         fontSize: 10,
+                                //         fontWeight: FontWeight.bold,
+                                //         color: AppColors.cmb_grey[400]),
+                                //     ),
+                                //   )
+                                // ),
+                                // Padding(padding: EdgeInsets.all(4)),
+                                // TextButton(
+                                //     onPressed: () {},
+                                //     style: TextButton.styleFrom(
+                                //       shape: RoundedRectangleBorder(
+                                //           borderRadius: BorderRadius.circular(8)
+                                //       ),
+                                //       backgroundColor: AppColors.cmb_grey[100],
+                                //     ),
+                                //     child: Padding(
+                                //       padding: const EdgeInsets.fromLTRB(4, 4, 4, 2),
+                                //       child: Text(
+                                //         '#다이어트',
+                                //         style: TextStyle(
+                                //             fontSize: 10,
+                                //             fontWeight: FontWeight.bold,
+                                //             color: AppColors.cmb_grey[400]),
+                                //       ),
+                                //     )
+                                // )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }
@@ -414,6 +423,8 @@ class CMBRecommendWidget extends StatelessWidget {
   final int LIST_COUNT = 5;
   final double CARD_HEIGHT = 88.0;
 
+  final List<String> titleList = <String>['핏의 완성, 어깨 집중 강화 운동', '힘의 원천, 파워하우스 코어 운동', '홍길동 코치의 7일만에 어깡 만들기 루틴!', '7일만에 허벅지 다이어트 일주일 루틴!'];
+
   final List<AssetImage> imageList = <AssetImage>[AssetImage('assets/images/routine_testimg_1.png'), AssetImage('assets/images/routine_testimg_2.png'),
     AssetImage('assets/images/routine_testimg_3.png'), AssetImage('assets/images/routine_testimg_4.png')];
 
@@ -439,11 +450,13 @@ class CMBRecommendWidget extends StatelessWidget {
           Expanded(
             child: ListView.builder(
                 primary: false,
-                itemCount: LIST_COUNT,
+                itemCount: titleList.length + 1,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RoutineSubBookmarkDetail(index: 1,)),);
                     },
                     child: Container(
                       height: CARD_HEIGHT,
@@ -465,7 +478,7 @@ class CMBRecommendWidget extends StatelessWidget {
                               alignment: Alignment.bottomRight,
                               child: Icon(
                                 index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
-                                color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
+                                color: index % 2 == 0 ? Colors.white : Colors.white,
                               ),
                             ),
                           ),
@@ -474,16 +487,17 @@ class CMBRecommendWidget extends StatelessWidget {
                             child: Container(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '코마바가 추천하는 다이어트 루틴 짜는 팁',
+                                    titleList[index % 4],
                                     style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.cmb_grey[700]
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.cmb_grey[700]
                                     ),
                                   ),
-                                  Padding(padding: EdgeInsets.only(top: 4)),
+                                  SizedBox(height: 8,),
                                   Row(
                                       children: [
                                         Container(
@@ -496,8 +510,9 @@ class CMBRecommendWidget extends StatelessWidget {
                                           child: Text(
                                             '#헬스',
                                             style: TextStyle(
-                                                fontSize: 10,
-                                                color: AppColors.cmb_grey[600]
+                                              fontSize: 10,
+                                              color: AppColors.cmb_grey[400],
+                                              fontWeight: FontWeight.w400
                                             ),
                                           ),
                                         ),
@@ -512,7 +527,8 @@ class CMBRecommendWidget extends StatelessWidget {
                                             '#다이어트',
                                             style: TextStyle(
                                                 fontSize: 10,
-                                                color: AppColors.cmb_grey[600]
+                                                color: AppColors.cmb_grey[400],
+                                                fontWeight: FontWeight.w400
                                             ),
                                           ),
                                         ),

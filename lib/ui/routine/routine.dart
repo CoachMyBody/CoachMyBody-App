@@ -44,6 +44,7 @@ class _RoutineScreenState extends State<RoutineScreen>
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.width * 0.26),
         child: AppBar(
+          centerTitle: false,
           title: Text('루틴관리'),
           actions: [
             _selectedIndex == 0 ? RoutineSelectButton() : BookMarkSelectButton()

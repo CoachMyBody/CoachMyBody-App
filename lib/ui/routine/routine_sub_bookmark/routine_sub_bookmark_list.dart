@@ -44,7 +44,9 @@ class RoutineSubBookmarkList extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      RoutineSubBookmarkDetail()));
+                                      RoutineSubBookmarkDetail(
+                                        index: 2,
+                                      )));
                     },
                   ),
                 ),

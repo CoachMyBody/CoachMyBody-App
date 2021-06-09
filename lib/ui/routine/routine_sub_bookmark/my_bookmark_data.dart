@@ -7,11 +7,11 @@ class MyBookMarkData extends ChangeNotifier {
     MyBookMark(
         imageUrl: 'assets/images/routine_testimg_2.png',
         title: '홍길동 코치의 7일만에 어깡 만들기 루틴!',
-        tags: ['#헬스']),
+        tags: ['#헬스', '#어깨', '#근력']),
     MyBookMark(
         imageUrl: 'assets/images/routine_testimg_2.png',
         title: '홍길동 코치의 7일만에 어깡 만들기 루틴!!',
-        tags: ['#헬스', '#어깨']),
+        tags: ['#헬스', '#어깨', '#근력']),
   ];
 
   UnmodifiableListView<MyBookMark> get myBookMarks {

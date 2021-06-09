@@ -20,40 +20,56 @@ class MyRoutineTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(_width * 0.0222),
-        child: Image.asset(
-          img,
-          width: _width * 0.1666,
-          height: _width * 0.1666,
-        ),
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-            fontSize: _width * 0.0388,
-            fontWeight: FontWeight.w400,
-            fontFamily: FontFamily.spoqaHanSansNeo),
-      ),
-      trailing: isSelectButtonClicked
-          ? isSelected
-              ? Icon(
-                  CupertinoIcons.check_mark,
-                  color: AppColors.cmb_blue,
-                  size: _width * 0.0388,
-                )
-              : SizedBox(
-                  width: _width * 0.0388,
-                  height: _width * 0.0388,
-                )
-          : Icon(
-              CupertinoIcons.right_chevron,
-              color: AppColors.cmb_grey[700],
-              size: _width * 0.0388,
-            ),
+    return GestureDetector(
       onTap: tapCallBack,
+      child: Card(
+          elevation: 0,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 18,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(_width * 0.0222),
+                  child: Image.asset(
+                    img,
+                    width: _width * 0.1666,
+                    height: _width * 0.1666,
+                  ),
+                ),
+              ),
+              Spacer(flex: 4),
+              Expanded(
+                flex: 70,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: _width * 0.0388,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              Spacer(flex: 4),
+              Expanded(
+                flex: 4,
+                child: isSelectButtonClicked
+                    ? isSelected
+                        ? Icon(
+                            CupertinoIcons.check_mark,
+                            color: AppColors.cmb_blue,
+                            size: _width * 0.0388,
+                          )
+                        : SizedBox(
+                            width: _width * 0.0388,
+                            height: _width * 0.0388,
+                          )
+                    : Icon(
+                        CupertinoIcons.right_chevron,
+                        color: AppColors.cmb_grey[700],
+                        size: _width * 0.0388,
+                      ),
+              )
+            ],
+          )),
     );
   }
 }

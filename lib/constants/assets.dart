@@ -24,6 +24,8 @@ class Assets {
   static const String addBlueIconPath = 'assets/icons/add_blue_icon.svg';
   static const String addGreyIconPath = 'assets/icons/add_grey_icon.svg';
 
+  static const String notificationIconPath = 'assets/icons/notification_icon.svg';
+
   // kakao login button images
   static const String kakaoLoginBgImgPath = 'assets/images/kakao_login.png';
   static const String kakaoIconImgPath = 'assets/images/kakao_icon.svg';
@@ -32,5 +34,5 @@ class Assets {
   static const String musclesImgPath = 'assets/images/whole_muscles.svg';
 
   // record page
-  static const String notiEmptyImagePath = 'assets/images/record/empty_notification.png';
+  static const String notiEmptySvgPath = 'assets/images/record/empty_notification.svg';
 }

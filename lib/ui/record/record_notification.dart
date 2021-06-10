@@ -4,6 +4,7 @@ import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_noti_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class RecordNotificationScreen extends StatelessWidget {
@@ -42,8 +43,9 @@ class RecordEmptyNotification extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-              width: size.width * 0.6444,
-              child: Image.asset(Assets.notiEmptyImagePath)),
+            width: size.width * 0.6444,
+            child: SvgPicture.asset(Assets.notiEmptySvgPath),
+          ),
           SizedBox(
             height: size.width * 0.1111,
           ),

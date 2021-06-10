@@ -45,11 +45,14 @@ class RecordRepository {
     } catch (e) {
       print('users/routines api 호출 실패\n에러 : $e');
     } finally {
-      print(response.body);
-      routinesList =
-          RoutineSimpleInfoList.fromJson(json.decode(utf8.decode(response.bodyBytes)));
 
       client.close();
+    }
+
+    if (200 == result) {
+      // print(response.body);
+      routinesList = RoutineSimpleInfoList.fromJson(
+          json.decode(utf8.decode(response.bodyBytes)));
     }
 
     return {'result': result, 'routinesList': routinesList};
@@ -63,7 +66,10 @@ class RecordRepository {
     var response;
     var client = http.Client();
 
+    await _getAccessToken();
+
     try {
+      print('details: ' + id.toString());
       response = await client.get(
         Uri.parse(apiAddress + 'routines/' + id.toString()),
         headers: headers,
@@ -73,13 +79,19 @@ class RecordRepository {
     } catch (e) {
       print('routines/$id api 호출 실패\n에러 : $e');
     } finally {
-      routineDetail =
-          RoutineDetailInfo.fromJson(json.decode(utf8.decode(response.bodyBytes)));
 
       client.close();
     }
 
-    return {'result': result, 'routineDetail': routineDetail};
+    if(200 == result) {
+      routineDetail = RoutineDetailInfo.fromJson(
+          json.decode(utf8.decode(response.bodyBytes)));
+    }
+
+    return {
+      'result': result,
+      'routineDetail': routineDetail
+    };
   }
 
   /// records
@@ -89,6 +101,8 @@ class RecordRepository {
     var client = http.Client();
     var body = json.encode(recordInfo.toJson());
     // print(body);
+
+    await _getAccessToken();
 
     try {
       var response = await client.post(Uri.parse(apiAddress + 'records'),

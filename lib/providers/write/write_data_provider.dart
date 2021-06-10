@@ -281,6 +281,13 @@ class MyRoutinesProvider extends ChangeNotifier {
     switch (result['result']) {
       case 200:
         {
+          print('_fetchDetailRoutine: success');
+          break;
+        }
+      case 401:
+        {
+          print('_fetchDetailRoutine: 인증 실패');
+          assert(200 == result['result']);
           break;
         }
       case 404:

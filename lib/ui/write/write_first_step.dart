@@ -51,7 +51,6 @@ class WriteFirstStepScreen extends StatelessWidget {
                 bSelected: writeDataProvider.isRequiredDataFull,
                 bShowNext: true,
                 callback: () {
-                  print(writeDataProvider.isRequiredDataFull);
                   Provider.of<WriteNaviViewModel>(context, listen: false)
                       .isFirstPage = false;
                 },

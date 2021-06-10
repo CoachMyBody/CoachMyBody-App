@@ -178,7 +178,6 @@ class RoutineSimpleView extends StatelessWidget {
                 .fetchDetailRoutine(writeDataProvider.getRoutineId);
           }
           writeDataProvider.checkRequiredData();
-          print(writeDataProvider.isRequiredDataFull);
         },
         onDoubleTap: () {
           print('show detail view');

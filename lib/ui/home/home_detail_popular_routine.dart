@@ -1,6 +1,8 @@
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../routes.dart';
 
@@ -56,7 +58,8 @@ class _DetailPopularRoutineScreenState extends State<DetailPopularRoutineScreen>
           Navigator.of(context).pushNamed(Routes.write);
         },
         backgroundColor: AppColors.cmb_accent[100],
-        child: Icon(Icons.carpenter),
+        child: SvgPicture.asset(Assets.writeFloatingIconPath,
+    color: AppColors.cmb_grey[0]),
       ),
     );
   }
@@ -218,7 +221,7 @@ class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
             Container(
               height: 24,
               alignment: Alignment.centerRight,
-              child: Icon(Icons.clear_all),
+              child: SvgPicture.asset(Assets.filteringIconPath),
             ),
             SizedBox(height: 16,),
             GridView.builder(
@@ -251,7 +254,7 @@ class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
                           alignment: Alignment.bottomRight,
                           child: Icon(
                             index % 2 == 0 ? Icons.bookmark : Icons.bookmark_border,
-                            color: index % 2 == 0 ? Color(0xFF1CB9FF) : Color(0xFFFFFFFF),
+                            color: AppColors.cmb_grey[0],
                           ),
                         ),
                       ),

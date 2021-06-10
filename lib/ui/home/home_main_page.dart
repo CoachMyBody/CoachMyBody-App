@@ -143,14 +143,28 @@ class _SearchAppBarState extends State<SearchAppBar> {
 }
 
 class HomeMenuWidget extends StatefulWidget {
-  final List<String> menuList = <String>['전체', '헬스', '필라테스', '요가', '유산소', '스트레스'];
-  final List<Icon> iconList = <Icon>[Icon(Icons.padding), Icon(Icons.bookmark_border), Icon(Icons.search), Icon(Icons.ac_unit_sharp), Icon(Icons.account_balance_wallet_outlined), Icon(Icons.add_alarm_rounded)];
 
   @override
   _HomeMenuWidgetState createState() => _HomeMenuWidgetState();
 }
 
 class _HomeMenuWidgetState extends State<HomeMenuWidget> {
+  final List<String> _menuList = <String>['전체', '헬스', '필라테스', '요가', '유산소'];
+  final List<SvgPicture> _iconFalseList = <SvgPicture>[
+    SvgPicture.asset(Assets.homeMenuAllFalsePath ),
+    SvgPicture.asset(Assets.homeMenuFitnessFalsePath),
+    SvgPicture.asset(Assets.homeMenuPilatesFalsePath),
+    SvgPicture.asset(Assets.homeMenuYogaFalsePath),
+    SvgPicture.asset(Assets.homeMenuCardioFalsePath),
+  ];
+  final List<SvgPicture> _iconTrueList = <SvgPicture>[
+    SvgPicture.asset(Assets.homeMenuAllTruePath),
+    SvgPicture.asset(Assets.homeMenuFitnessTruePath),
+    SvgPicture.asset(Assets.homeMenuPilatesTruePath),
+    SvgPicture.asset(Assets.homeMenuYogaTruePath),
+    SvgPicture.asset(Assets.homeMenuCardioTruePath),
+  ];
+
   int _currentIndex = 0;
 
   @override
@@ -164,7 +178,7 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
         ),
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: widget.menuList.length,
+            itemCount: _menuList.length,
             itemBuilder: (BuildContext context, int index) {
               var isSelected = _currentIndex == index;
 
@@ -180,21 +194,13 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
                       color: isSelected ? AppColors.cmb_grey[50] : Colors.white10
                   ),
                   margin: EdgeInsets.fromLTRB(0, 0, 4, 0),
-                  width: 60,
+                  width: 70,
                   height: 84,
                   child: Center(
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                          child: Icon(widget.iconList[index].icon),
-                        ),
-                        Text(
-                          '${widget.menuList[index]}',
-                          style: TextStyle(
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal
-                          ),
-                        ),
+                        Expanded(child: isSelected ? _iconTrueList[index] : _iconFalseList[index]),
+
                       ],
                     ),
                   ),
@@ -233,7 +239,7 @@ class PopularRoutineWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold
                   ),
                 ),
-                Icon(Icons.clear_all)
+                Container(child: SvgPicture.asset(Assets.filteringIconPath))
               ],
             ),
           ),

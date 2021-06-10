@@ -1,7 +1,9 @@
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/ui/routine/routine_sub_myroutines/routine_sub_myroutines_detail_list.dart';
+import 'package:flutter_svg/svg.dart';
 
 const IconData bookmark = IconData(0xe5f8, fontFamily: 'MaterialIcons');
 const IconData upload = IconData(59100, fontFamily: 'MaterialIcons');
@@ -30,7 +32,7 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(test2),
+            icon: SvgPicture.asset(Assets.moreIconPath),
             tooltip: 'Next choice',
             onPressed: () {},
           ),

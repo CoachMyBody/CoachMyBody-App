@@ -49,6 +49,7 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
             ],
           ),
           ChipsChoice<int>.single(
+            padding: EdgeInsets.all(0),
             value: _tag,
             onChanged: (val) {
               setState(() {

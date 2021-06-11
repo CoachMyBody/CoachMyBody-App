@@ -33,11 +33,8 @@ class CustomDropDownWidget extends StatelessWidget {
               style: TextStyle(
                   fontSize: size.width * 0.038, color: AppColors.cmb_grey[700], fontWeight: FontWeight.w400),
             ),
-            Icon(
-              Icons.keyboard_arrow_down_sharp,
-              color: AppColors.cmb_grey[700],
-              size: size.width * 0.063,
-            ),
+            SizedBox(width: 4,),
+            SvgPicture.asset(Assets.commDropDownIconPath)
           ],
         ),
       ),

@@ -131,7 +131,7 @@ class DailyRoutinesView extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(Routes.write);
+                  Navigator.of(context).pushReplacementNamed(Routes.write);
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

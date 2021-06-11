@@ -47,3 +47,5 @@ app.*.map.json
 
 # Xcode
 ios/build/XCBuildData/
+ios/build/Products/
+ios/build/Intermediates.noindex/

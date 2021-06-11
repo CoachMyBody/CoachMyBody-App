@@ -18,7 +18,8 @@ class RoutinesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var myRoutinesProvider = Provider.of<MyRoutinesProvider>(context, listen: true);
+    var myRoutinesProvider =
+        Provider.of<MyRoutinesProvider>(context, listen: true);
 
     var bNeedtoAddRoutine = false;
     var numOfViews = 1;
@@ -29,8 +30,7 @@ class RoutinesListWidget extends StatelessWidget {
       var numOfRoutines = myRoutinesProvider.routines.routines.length;
       if (0 == numOfRoutines) {
         bNeedtoAddRoutine = true;
-      }
-      else {
+      } else {
         bNeedtoAddRoutine = false;
         numOfViews = (numOfRoutines > MAX_NUM_ROUTINE_SIMPLE_VIEW)
             ? MAX_NUM_ROUTINE_SIMPLE_VIEW
@@ -49,38 +49,44 @@ class RoutinesListWidget extends StatelessWidget {
             ? numOfViews + 1
             : numOfViews,
         itemBuilder: (BuildContext context, int index) => Container(
-          width: 104,
           height: 108,
           child: Padding(
             padding: const EdgeInsets.only(right: 4.0),
             child: bNeedtoAddRoutine
-                ? PlusDataContainer(
-              callback: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            RoutineCreateExerciseTypePage()));
-              },
-              label: tr(WRITE_FIRST_STEP_ADD_ROUTINE_TXT),
-            )
+                ? Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 20,
+                      ),
+                      PlusDataContainer(
+                        callback: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RoutineCreateExerciseTypePage()));
+                        },
+                        label: tr(WRITE_FIRST_STEP_ADD_ROUTINE_TXT),
+                      ),
+                    ],
+                  )
                 : ((numOfViews == index &&
-                numOfViews >= MAX_NUM_ROUTINE_SIMPLE_VIEW)
-                ? PlusDataContainer(
-              callback: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RoutineItemsGridView(
-                          routines: myRoutinesProvider
-                              .routines.routines,
-                        )));
-              },
-              label: tr(COMMON_VIEW_MORE_TXT),
-            )
-                : RoutineSimpleView(
-              routine: myRoutinesProvider.routines.routines[index],
-            )),
+                        numOfViews >= MAX_NUM_ROUTINE_SIMPLE_VIEW)
+                    ? PlusDataContainer(
+                        callback: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RoutineItemsGridView(
+                                        routines: myRoutinesProvider
+                                            .routines.routines,
+                                      )));
+                        },
+                        label: tr(COMMON_VIEW_MORE_TXT),
+                      )
+                    : RoutineSimpleView(
+                        routine: myRoutinesProvider.routines.routines[index],
+                      )),
           ),
         ),
       ),
@@ -96,7 +102,7 @@ class RoutineItemsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var writeDataProvider =
-    Provider.of<WriteDataProvider>(context, listen: true);
+        Provider.of<WriteDataProvider>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -110,7 +116,7 @@ class RoutineItemsGridView extends StatelessWidget {
           },
           child: Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 11.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 11.0, horizontal: 16.0),
             child: Text(COMMON_CANCEL_TXT).tr(),
           ),
         ),
@@ -137,18 +143,18 @@ class RoutineItemsGridView extends StatelessWidget {
         child: null == routines
             ? Text('There is no routine.')
             : GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-          ),
-          itemCount: routines.length,
-          itemBuilder: (_, index) {
-            return RoutineSimpleView(
-              routine: routines[index],
-            );
-          },
-        ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemCount: routines.length,
+                itemBuilder: (_, index) {
+                  return RoutineSimpleView(
+                    routine: routines[index],
+                  );
+                },
+              ),
       ),
     );
   }
@@ -162,9 +168,9 @@ class RoutineSimpleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myRoutinesProvider =
-    Provider.of<MyRoutinesProvider>(context, listen: true);
+        Provider.of<MyRoutinesProvider>(context, listen: true);
     var writeDataProvider =
-    Provider.of<WriteDataProvider>(context, listen: true);
+        Provider.of<WriteDataProvider>(context, listen: true);
 
     return InkWell(
         onTap: () {
@@ -192,7 +198,7 @@ class RoutineSimpleView extends StatelessWidget {
               image: AssetImage('assets/images/test/routine_test_img.png'),
               colorFilter: ColorFilter.mode(
                   (writeDataProvider.isRoutineSelected &&
-                      routine.id == writeDataProvider.getRoutineId)
+                          routine.id == writeDataProvider.getRoutineId)
                       ? AppColors.cmb_blue.withOpacity(0.8)
                       : AppColors.cmb_grey[700].withOpacity(0.6),
                   BlendMode.srcATop),
@@ -230,10 +236,10 @@ class RoutineSettingsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var myRoutinesProvider =
-    Provider.of<MyRoutinesProvider>(context, listen: true);
+        Provider.of<MyRoutinesProvider>(context, listen: true);
 
     var openedProvider =
-    Provider.of<WriteRoutineSettingOpened>(context, listen: true);
+        Provider.of<WriteRoutineSettingOpened>(context, listen: true);
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -285,13 +291,13 @@ class RoutineSettingsWidget extends StatelessWidget {
                               .selected.exercises[index].name),
                           Text(
                             myRoutinesProvider
-                                .selected.exercises[index].exerciseLab
-                                .toString() +
+                                    .selected.exercises[index].exerciseLab
+                                    .toString() +
                                 tr(WORKOUT_EXERCISE_LAB_TXT) +
                                 ' ' +
                                 (myRoutinesProvider
-                                    .selected.exercises[index].exerciseSet
-                                    .toString() +
+                                        .selected.exercises[index].exerciseSet
+                                        .toString() +
                                     tr(WORKOUT_EXERCISE_SET_TXT)),
                           )
                         ],

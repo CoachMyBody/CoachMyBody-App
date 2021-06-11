@@ -123,6 +123,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               onPressed: () {
                 print('취소 버튼 눌림');
                 searchProvider.isSearchTapped = false;
+                FocusScope.of(context).unfocus();
                 // setState(() {
                 //   isSearchTap = false;
                 // });

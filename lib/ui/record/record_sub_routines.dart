@@ -4,6 +4,7 @@ import 'package:coach_my_body/providers/record/record_noti_model.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_monthly.dart';
+import 'package:coach_my_body/widgets/cmb_muscles_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -40,12 +41,9 @@ class RecordSubRoutinesScreen extends StatelessWidget {
                 var bAnt = muscleView.getIsAnterior();
                 muscleView.setIsAnterior(!bAnt);
               },
-              child: SvgPicture.asset(
-                muscleView.getIsAnterior()
-                    ? Assets.musclesAntImgPath
-                    : Assets.musclesPostImgPath,
-                width: size.width * 0.246,
-              ),
+              child: muscleView.getIsAnterior()
+                  ? AnteriorMuscles()
+                  : PosteriorMuscles(),
             ),
           ),
         ],

@@ -9,10 +9,9 @@ class Assets {
   static const String translationsDirPath = 'assets/translations';
 
   // # common icons
-  static const String commNaviNextIconPath =
-      'assets/icons/navigator_next_icon.svg';
-  static const String commNaviPrevIconPath =
-      'assets/icons/navigator_prev_icon.svg';
+  static const String commNaviNextIconPath = 'assets/icons/navigator_next_icon.svg';
+  static const String commNaviPrevIconPath = 'assets/icons/navigator_prev_icon.svg';
+  static const String commDropDownIconPath = 'assets/icons/drop_down_icon.svg';
   static const String checkIconPath = 'assets/icons/check_icon.svg';
 
   // # icons
@@ -59,9 +58,17 @@ class Assets {
   static const String kakaoIconImgPath = 'assets/images/kakao_icon.svg';
 
   // # muscles images
-  static const String musclesAntImgPath = 'assets/images/whole_muscles_ant.svg';
-  static const String musclesPostImgPath =
-      'assets/images/whole_muscles_post.svg';
+  static const String musclesAntImgPath = 'assets/images/muscles/whole_muscles_ant.svg';
+  static const String musclesPostImgPath = 'assets/images/muscles/whole_muscles_post.svg';
+  static const String activeDeltoidImgPath = 'assets/images/muscles/active_deltoid.svg';
+  static const String activeExtObliqueImgPath = 'assets/images/muscles/active_external_oblique.svg';
+  static const String activeLatDolsiImgPath = 'assets/images/muscles/active_latdolsi.svg';
+  static const String activePecMajorImgPath = 'assets/images/muscles/active_pec_major.svg';
+  static const String activeQuadFemorisImgPath = 'assets/images/muscles/active_quadriceps_femoris.svg';
+  static const String activeRecAbdominisImgPath = 'assets/images/muscles/active_rectus_abdominis.svg';
+  static const String activeSerratusAnteriorImgPath = 'assets/images/muscles/active_serratus_anterior.svg';
+  static const String activeTrapeziusImgPath = 'assets/images/muscles/active_trapezius.svg';
+  static const String activeTricepsImgPath = 'assets/images/muscles/active_triceps_brachii.svg';
 
   // # record page
   static const String notiEmptySvgPath =

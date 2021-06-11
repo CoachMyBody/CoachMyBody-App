@@ -102,22 +102,22 @@ class PhotoHistoryView extends StatelessWidget {
           isBefore
               ? Text(
                   RECORD_SUB_STATISTICS_BEFORE_TXT,
-                  style: TextStyle(color: Colors.red, fontSize: 14.0),
+                  style: TextStyle(color: Colors.red, fontSize: 14.0, fontWeight: FontWeight.w500),
                 ).tr()
               : Text(
                   RECORD_SUB_STATISTICS_AFTER_TXT,
-                  style: TextStyle(color: AppColors.cmb_blue, fontSize: 14.0),
+                  style: TextStyle(color: AppColors.cmb_blue, fontSize: 14.0, fontWeight: FontWeight.w500),
                 ).tr(),
           date.isEmpty
               ? Text(
                   RECORD_SUB_STATISTICS_EMPTY_PHOTO_TXT,
                   style:
-                      TextStyle(color: AppColors.cmb_grey[500], fontSize: 14.0),
+                      TextStyle(color: AppColors.cmb_grey[300], fontSize: 14.0),
                 ).tr()
               : Text(
                   date,
                   style:
-                      TextStyle(color: AppColors.cmb_grey[500], fontSize: 14.0),
+                      TextStyle(color: AppColors.cmb_grey[300], fontSize: 14.0),
                 ),
         ],
       ),
@@ -163,6 +163,7 @@ class _PhotoTimelineViewState extends State<PhotoTimelineView> {
           ),
         ),
         ChipsChoice<int>.single(
+          padding: EdgeInsets.all(0),
           value: _tag,
           onChanged: (val) {
             setState(() {

@@ -45,7 +45,7 @@ class _RoutineScreenState extends State<RoutineScreen>
         preferredSize: Size.fromHeight(size.width * 0.26),
         child: AppBar(
           centerTitle: false,
-          title: Text('루틴관리'),
+          title: Text('루틴관리', style: TextStyle(fontWeight: FontWeight.w700),),
           actions: [
             _selectedIndex == 0 ? RoutineSelectButton() : BookMarkSelectButton()
           ],
@@ -56,6 +56,8 @@ class _RoutineScreenState extends State<RoutineScreen>
               child: TabBar(
                 indicatorColor: AppColors.cmb_grey[700],
                 labelColor: AppColors.cmb_grey[700],
+                labelStyle: TextStyle(fontSize: size.width * 0.0388, fontWeight: FontWeight.w700),
+                unselectedLabelStyle: TextStyle(fontSize: size.width * 0.0388, fontWeight: FontWeight.w400),
                 isScrollable: true,
                 onTap: (int index) {
                   if (index == 0) {

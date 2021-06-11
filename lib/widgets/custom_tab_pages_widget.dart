@@ -136,6 +136,8 @@ class CustomTabPageView extends StatelessWidget {
                   isScrollable: true,
                   indicatorColor: indicatorColor,
                   labelColor: labelColor,
+                  labelStyle: TextStyle(fontSize: size.width * 0.0388, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: TextStyle(fontSize: size.width * 0.0388, fontWeight: FontWeight.w400),
                   tabs: _buildTabTitleList(),
                 ),
               ),

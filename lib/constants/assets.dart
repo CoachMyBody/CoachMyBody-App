@@ -15,11 +15,13 @@ class Assets {
   static const String checkIconPath = 'assets/icons/check_icon.svg';
 
   // # icons
-  static const String homeIconPath = 'assets/icons/home_icon.svg';
-  static const String routineManIconPath = 'assets/icons/routine_man_icon.svg';
-  static const String recordStatusIconPath =
-      'assets/icons/record_status_icon.svg';
-  static const String mypageIconPath = 'assets/icons/mypage_icon.svg';
+  static const String homeIconPath = 'assets/icons/bottom/home_icon.svg';
+  static const String routineManIconPath = 'assets/icons/bottom/routine_man_icon.svg';
+  static const String recordStatusIconPath = 'assets/icons/bottom/record_status_icon.svg';
+  static const String mypageIconPath = 'assets/icons/bottom/mypage_icon.svg';
+  static const String activeHomeIconPath = 'assets/icons/bottom/active_home_icon.svg';
+  static const String activeMypageIconPath = 'assets/icons/bottom/active_mypage_icon.svg';
+
   static const String filteringIconPath = 'assets/icons/filtering_icon.svg';
   static const String moreIconPath = 'assets/icons/more_icon.svg';
 

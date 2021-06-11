@@ -89,6 +89,7 @@ flutter:
     - assets/icons/
     - assets/icons/badge/
     - assets/icons/home/
+    - assets/icons/bottom/
     - assets/images/
     - assets/images/muscles/
     - assets/images/test/

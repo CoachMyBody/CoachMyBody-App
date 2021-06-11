@@ -57,10 +57,11 @@ class _TabPageState extends State<TabPage> {
           unselectedFontSize: 12.0,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(Assets.homeIconPath,
-                    color: 0 == _pageIndex
-                        ? AppColors.cmb_blue
-                        : AppColors.cmb_grey[700]),
+                icon: (0 == _pageIndex)
+                    ? SvgPicture.asset(Assets.activeHomeIconPath,
+                        color: AppColors.cmb_blue)
+                    : SvgPicture.asset(Assets.homeIconPath,
+                        color: AppColors.cmb_grey[700]),
                 label: tr(NAV_HOME_NAME)),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(Assets.routineManIconPath,
@@ -75,10 +76,11 @@ class _TabPageState extends State<TabPage> {
                         : AppColors.cmb_grey[700]),
                 label: tr(NAV_REC_STAT_NAME)),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(Assets.mypageIconPath,
-                    color: 3 == _pageIndex
-                        ? AppColors.cmb_blue
-                        : AppColors.cmb_grey[700]),
+                icon: (3 == _pageIndex)
+                    ? SvgPicture.asset(Assets.mypageIconPath,
+                        color: AppColors.cmb_blue)
+                    : SvgPicture.asset(Assets.activeMypageIconPath,
+                        color: AppColors.cmb_grey[700]),
                 label: tr(NAV_MYPAGE_NAME))
           ]),
     );

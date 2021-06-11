@@ -16,6 +16,7 @@ class RecordNotificationScreen extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text(RECORD_NOTI_TITLE).tr(),
         ),
         body: Consumer<NotiStatusModel>(

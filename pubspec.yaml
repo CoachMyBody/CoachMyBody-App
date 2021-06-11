@@ -87,6 +87,7 @@ flutter:
   assets:
     - assets/translations/
     - assets/icons/
+    - assets/icons/badge/
     - assets/icons/home/
     - assets/images/
     - assets/images/test/

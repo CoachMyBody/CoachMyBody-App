@@ -1,9 +1,11 @@
+import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/mypage/mypage_badge.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class MyActivity extends StatelessWidget {
@@ -129,7 +131,7 @@ class MyActivity extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    '획득 뱃지 0',
+                    '획득 뱃지 4',
                     style: TextStyle(
                       color: AppColors.cmb_grey[700],
                       fontSize: _width * 0.0444,
@@ -140,7 +142,7 @@ class MyActivity extends StatelessWidget {
                   Flexible(
                     child: GridView.builder(
                         shrinkWrap: true,
-                        itemCount: 12,
+                        itemCount: 9,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           mainAxisSpacing: _width * 0.0222,
@@ -148,11 +150,16 @@ class MyActivity extends StatelessWidget {
                           childAspectRatio: 3.45 / 4,
                         ),
                         itemBuilder: (context, index) {
+                          MyBadge myBadge = myBadgeList[index];
                           return GestureDetector(
                             onTap: () {
                               showDialog(
                                   context: context,
-                                  builder: (context) => Badge(),
+                                  builder: (context) => Badge(
+                                      myBadge.title,
+                                      myBadge.img,
+                                      myBadge.description,
+                                      myBadge.check),
                                   barrierColor: Color(0xCC000000));
                             },
                             child: GridTile(
@@ -168,14 +175,22 @@ class MyActivity extends StatelessWidget {
                                           _width * 0.0222),
                                     ),
                                     child: Center(
-                                      child: Icon(CupertinoIcons.lock,
-                                          color: Color(0xFFBFC6CD),
-                                          size: _width * 0.0666),
+                                      child: myBadge.check == true
+                                          ? SvgPicture.asset(
+                                              myBadge.img,
+                                              width: _width * 0.2222,
+                                              height: _width * 0.2222,
+                                            )
+                                          : Icon(CupertinoIcons.lock,
+                                              color: Color(0xFFBFC6CD),
+                                              size: _width * 0.0666),
                                     ),
                                   ),
                                   SizedBox(height: _width * 0.0111),
                                   Text(
-                                    '비공개',
+                                    myBadge.check == true
+                                        ? myBadge.title
+                                        : '비공개',
                                     style: TextStyle(
                                         color: AppColors.cmb_grey[200],
                                         fontSize: _width * 0.0388,
@@ -196,3 +211,31 @@ class MyActivity extends StatelessWidget {
     );
   }
 }
+
+class MyBadge {
+  String title;
+  String img;
+  String description;
+  bool check;
+
+  MyBadge({this.title, this.img, this.description, this.check});
+}
+
+List myBadgeList = [
+  MyBadge(
+      title: '꾸준함에 치얼스', img: Assets.badge1Path, description: '', check: true),
+  MyBadge(
+      title: '시작이 반',
+      img: Assets.badge2Path,
+      description: '코치마바디에 오신걸 환영해요!\n꾸준히 운동해서 뱃지를 수집해 보세요',
+      check: true),
+  MyBadge(
+      title: '프로 꾸준러', img: Assets.badge3Path, description: '', check: true),
+  MyBadge(
+      title: '4주만 더하자', img: Assets.badge4Path, description: '', check: true),
+  MyBadge(title: '', img: '', description: '', check: false),
+  MyBadge(title: '', img: '', description: '', check: false),
+  MyBadge(title: '', img: '', description: '', check: false),
+  MyBadge(title: '', img: '', description: '', check: false),
+  MyBadge(title: '', img: '', description: '', check: false),
+];

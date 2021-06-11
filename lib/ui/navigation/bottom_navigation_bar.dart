@@ -77,9 +77,9 @@ class _TabPageState extends State<TabPage> {
                 label: tr(NAV_REC_STAT_NAME)),
             BottomNavigationBarItem(
                 icon: (3 == _pageIndex)
-                    ? SvgPicture.asset(Assets.mypageIconPath,
+                    ? SvgPicture.asset(Assets.activeMypageIconPath,
                         color: AppColors.cmb_blue)
-                    : SvgPicture.asset(Assets.activeMypageIconPath,
+                    : SvgPicture.asset(Assets.mypageIconPath,
                         color: AppColors.cmb_grey[700]),
                 label: tr(NAV_MYPAGE_NAME))
           ]),

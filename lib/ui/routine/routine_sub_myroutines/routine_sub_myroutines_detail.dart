@@ -38,21 +38,18 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        child: ListView(
-          //child: Column(
-          children: <Widget>[
-            RoutineSubMyroutinesDetailList(
-              text: tr('0'),
-              route: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RoutineSubMyroutinesDetail()));
-              },
-            ),
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[
+          RoutineSubMyroutinesDetailList(
+            text: tr('0'),
+            route: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RoutineSubMyroutinesDetail()));
+            },
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(

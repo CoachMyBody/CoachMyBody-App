@@ -30,63 +30,61 @@ class _RoutineSubMyroutinesDetailListState extends State<RoutineSubMyroutinesDet
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-          itemCount: _routineExerciseDetailLists.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            var isSelected = false;
+    return ListView.builder(
+        itemCount: _routineExerciseDetailLists.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          var isSelected = false;
 
-            return Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              margin: EdgeInsets.only(bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 88,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 75,
-                          width: 75,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(_routineExerciseDetailLists[index].imageURL),
-                                  fit: BoxFit.fill
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(8))
-                          ),
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            margin: EdgeInsets.only(bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 88,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 75,
+                        width: 75,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(_routineExerciseDetailLists[index].imageURL),
+                                fit: BoxFit.fill
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(8))
                         ),
-                        SizedBox(width: 12,),
-                        Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(_routineExerciseDetailLists[index].exerciseName, style: TextStyle(color: AppColors.cmb_grey[400], fontSize: 12, fontWeight: FontWeight.w400),),
-                              SizedBox(height: 4,),
-                              Text(_routineExerciseDetailLists[index].exerciseSet, style: TextStyle(color: AppColors.cmb_grey[700], fontSize: 16, fontWeight: FontWeight.w400),),
-                              SizedBox(height: 8,)
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(width: 12,),
+                      Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(_routineExerciseDetailLists[index].exerciseName, style: TextStyle(color: AppColors.cmb_grey[400], fontSize: 12, fontWeight: FontWeight.w400),),
+                            SizedBox(height: 4,),
+                            Text(_routineExerciseDetailLists[index].exerciseSet, style: TextStyle(color: AppColors.cmb_grey[700], fontSize: 16, fontWeight: FontWeight.w400),),
+                            SizedBox(height: 8,)
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    '수정',
-                    style: TextStyle(
+                ),
+                Text(
+                  '수정',
+                  style: TextStyle(
                       fontSize: 14,
                       color: AppColors.cmb_grey[700],
                       fontWeight: FontWeight.w400
-                    ),
-                  )
-                ],
-              ),
-            );
-          }
-      ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }
     );
   }
 }

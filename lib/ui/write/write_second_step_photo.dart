@@ -5,6 +5,7 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/write/photo_assets_model.dart';
+import 'package:coach_my_body/repository/record_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -38,19 +39,28 @@ class WritePhotoScreen extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        InkWell(
-          onTap: () {
-            // TODO: Sync selected photo
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding:
+        Builder(
+          builder: (context) {
+            var photoAssetModel = Provider.of<PhotoAssetModel>(context);
+
+            return InkWell(
+              onTap: () async {
+                // TODO: Sync selected photo
+                var recordRepo = RecordRepository();
+                var image = await photoAssetModel.selectedImage;
+                await recordRepo.nunbody_image(image);
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding:
                 const EdgeInsets.symmetric(vertical: 11.0, horizontal: 16.0),
-            child: Text(
-              COMMON_OK_TXT,
-              style: TextStyle(color: AppColors.cmb_blue),
-            ).tr(),
-          ),
+                child: Text(
+                  COMMON_OK_TXT,
+                  style: TextStyle(color: AppColors.cmb_blue),
+                ).tr(),
+              ),
+            );
+          },
         )
       ],
     );

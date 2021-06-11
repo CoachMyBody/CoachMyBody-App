@@ -28,17 +28,17 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: CustomDropDownWidget(
-            label: '21년 5월',
-            onPressed: () {
-              showModalBottomSheet<int>(
-                backgroundColor: Colors.transparent,
-                isScrollControlled: true,
-                context: context,
-                builder: (context) {
-                  return MonthModalBottomSheet();
-                },
-              );
-            }),
+              label: '21년 6월',
+              onPressed: () {
+                // showModalBottomSheet<int>(
+                //   backgroundColor: Colors.transparent,
+                //   isScrollControlled: true,
+                //   context: context,
+                //   builder: (context) {
+                //     return MonthModalBottomSheet();
+                //   },
+                // );
+              }),
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0555, top: 12),
@@ -49,7 +49,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
-          child: MonthlyRoutinesView(),
+          child: Stack(children: <Widget>[MonthlyRoutinesView()]),
         ),
       ],
     );
@@ -62,7 +62,7 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
             color: AppColors.cmb_grey[700], fontSize: _size.width * 0.0667),
         children: <TextSpan>[
           TextSpan(
-              text: '총 3일', // TODO: provider
+              text: '총 4일', // TODO: provider
               style: TextStyle(fontWeight: FontWeight.bold)),
           TextSpan(text: '동안\n운동했어요.'),
         ],
@@ -71,21 +71,19 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
   }
 }
 
-
 ///
 /// Day routine lists
-/// 
+///
 
 class MonthlyRoutinesView extends StatefulWidget {
-@override
-_MonthlyRoutinesViewState createState() => _MonthlyRoutinesViewState();
+  @override
+  _MonthlyRoutinesViewState createState() => _MonthlyRoutinesViewState();
 }
 
 class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
-
   PageController _pageController;
-  double _page = 2.0;
-  int _currentPage = 2;
+  double _page = 5.0;
+  int _currentPage = 5;
 
   static const double _viewPortFraction = 0.2;
   static const double _fullScale = 1.0;
@@ -106,7 +104,6 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     var maxHeight = size.width * 0.305;
 
@@ -143,15 +140,17 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
         final scale = max(_minHeightScale,
             (_fullScale - (index - _page).abs()) + _viewPortFraction);
         var bActive = false;
-        if ((index - _page).abs() < 0.5) {
+        if ((index - _page).abs() <= 0.5) {
           bActive = true;
         }
-        return _buildDailyContent(dailyRoutinesData[index], dailyRoutinesData[index]['num'], scale, bActive, height);
+        return _buildDailyContent(dailyRoutinesData[index],
+            dailyRoutinesData[index]['num'], scale, bActive, height);
       },
     );
   }
 
-  Widget _buildDailyContent(Map content, String num, double scale, bool b, double height) {
+  Widget _buildDailyContent(
+      Map content, String num, double scale, bool b, double height) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Center(
@@ -161,17 +160,24 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if ('0' != num) Icon(Icons.check),
+              if ('0' != num)
+                Icon(
+                  Icons.check,
+                  color: b ? AppColors.cmb_grey[700] : AppColors.cmb_grey[400],
+                ),
               Text(
                 content['day'],
                 style: TextStyle(
-                    color: Colors.black,
+                    color:
+                        b ? AppColors.cmb_grey[700] : (('0' != num)? AppColors.cmb_grey[400] : AppColors.cmb_grey[200]),
                     fontSize: 15 * scale,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 content['date'],
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                  color: b ? AppColors.cmb_grey[700] : (('0' != num)? AppColors.cmb_grey[400] : AppColors.cmb_grey[200]),
+                ),
               ),
               if (true == b)
                 Container(
@@ -179,8 +185,7 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
                   padding: EdgeInsets.all(4.0),
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
-                      borderRadius: BorderRadius.all(Radius.circular(4.0))
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(4.0))),
                   child: Text('$num개 기록'),
                 ),
             ],
@@ -192,12 +197,12 @@ class _MonthlyRoutinesViewState extends State<MonthlyRoutinesView> {
 }
 
 List<Map<String, String>> dailyRoutinesData = [
-  {'day': '월요일', 'date': '5/3', 'num': '0'},
-  {'day': '화요일', 'date': '5/4', 'num': '1'},
-  {'day': '수요일', 'date': '5/5', 'num': '2'},
-  {'day': '목요일', 'date': 'Today', 'num': '0'},
-  {'day': '금요일', 'date': '5/7', 'num': '0'},
-  {'day': '토요일', 'date': '5/8', 'num': '0'},
-  {'day': '일요일', 'date': '5/9', 'num': '0'},
+  {'day': '월요일', 'date': '6/07', 'num': '0'},
+  {'day': '화요일', 'date': '6/08', 'num': '1'},
+  {'day': '수요일', 'date': '6/09', 'num': '2'},
+  {'day': '목요일', 'date': '6/10', 'num': '1'},
+  {'day': '금요일', 'date': '6/11', 'num': '0'},
+  {'day': '토요일', 'date': 'Today', 'num': '1'},
+  {'day': '일요일', 'date': '6/13', 'num': '0'},
+  {'day': '일요일', 'date': '6/14', 'num': '0'},
 ];
-

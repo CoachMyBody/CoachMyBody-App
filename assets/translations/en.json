@@ -18,6 +18,7 @@
   "COMMON_SEARCH_TXT": "Search",
   "COMMON_PREV_TXT": "Prev",
   "COMMON_NEXT_TXT": "Next",
+  "COMMON_VIEW_MORE_TXT": "View more",
 
   "WORKOUT_EXERCISE_LAB_TXT": "Lab",
   "WORKOUT_EXERCISE_SET_TXT": "Set",
@@ -51,6 +52,7 @@
   "WRITE_FIRST_STEP_SELECT_ROUTINE_TXT": "Select Routine",
   "WRITE_FIRST_STEP_SELECT_ROUTINE_DESC": "Only routine with more than one workout can be recorded.",
   "WRITE_FIRST_STEP_ROUTINE_SETTING_TXT": "Routine Setting",
+  "WRITE_FIRST_STEP_ADD_ROUTINE_TXT": "Add Routine",
 
   "WRITE_SECOND_STEP_FEEDBACK_HINT": "How was your workout? (1000 Bytes or less)",
   "WRITE_SECOND_STEP_WEIGHT_TXT": "Weight(kg)",

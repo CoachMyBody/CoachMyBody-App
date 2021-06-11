@@ -62,7 +62,7 @@ class RoutinesListWidget extends StatelessWidget {
                         builder: (context) =>
                             RoutineCreateExerciseTypePage()));
               },
-              label: '루틴 추가',
+              label: tr(WRITE_FIRST_STEP_ADD_ROUTINE_TXT),
             )
                 : ((numOfViews == index &&
                 numOfViews >= MAX_NUM_ROUTINE_SIMPLE_VIEW)
@@ -76,7 +76,7 @@ class RoutinesListWidget extends StatelessWidget {
                               .routines.routines,
                         )));
               },
-              label: '더보기',
+              label: tr(COMMON_VIEW_MORE_TXT),
             )
                 : RoutineSimpleView(
               routine: myRoutinesProvider.routines.routines[index],
@@ -309,7 +309,7 @@ class RoutineSettingsWidget extends StatelessWidget {
                               fontSize: 14.0,
                               fontWeight: FontWeight.w400,
                               color: AppColors.cmb_grey[700]),
-                        ),
+                        ).tr(),
                       ),
                     )
                   ],

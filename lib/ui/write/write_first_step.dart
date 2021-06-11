@@ -91,22 +91,27 @@ class WriteFirstStepScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 16,
-        horizontal: 20,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            WRITE_FIRST_STEP_SELECT_ROUTINE_TXT,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ).tr(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              WRITE_FIRST_STEP_SELECT_ROUTINE_TXT,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ).tr(),
+          ),
           SizedBox(
             height: 4,
           ),
-          Text(
-            WRITE_FIRST_STEP_SELECT_ROUTINE_DESC,
-            style: TextStyle(fontSize: 12, color: AppColors.cmb_grey[300]),
-          ).tr(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              WRITE_FIRST_STEP_SELECT_ROUTINE_DESC,
+              style: TextStyle(fontSize: 12, color: AppColors.cmb_grey[300]),
+            ).tr(),
+          ),
           RoutinesListWidget(),
         ],
       ),

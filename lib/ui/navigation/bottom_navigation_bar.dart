@@ -58,29 +58,47 @@ class _TabPageState extends State<TabPage> {
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: (0 == _pageIndex)
-                    ? SvgPicture.asset(Assets.activeHomeIconPath,
-                        color: AppColors.cmb_blue)
-                    : SvgPicture.asset(Assets.homeIconPath,
-                        color: AppColors.cmb_grey[700]),
+                    ? SvgPicture.asset(
+                        Assets.activeHomeIconPath,
+                        color: AppColors.cmb_blue,
+                        width: 18,
+                      )
+                    : SvgPicture.asset(
+                        Assets.homeIconPath,
+                        color: AppColors.cmb_grey[700],
+                        width: 18,
+                      ),
                 label: tr(NAV_HOME_NAME)),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(Assets.routineManIconPath,
-                    color: 1 == _pageIndex
-                        ? AppColors.cmb_blue
-                        : AppColors.cmb_grey[700]),
+                icon: SvgPicture.asset(
+                  Assets.routineManIconPath,
+                  color: 1 == _pageIndex
+                      ? AppColors.cmb_blue
+                      : AppColors.cmb_grey[700],
+                  width: 18,
+                ),
                 label: tr(NAV_ROUT_MAN_NAME)),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(Assets.recordStatusIconPath,
-                    color: 2 == _pageIndex
-                        ? AppColors.cmb_blue
-                        : AppColors.cmb_grey[700]),
+                icon: SvgPicture.asset(
+                  Assets.recordStatusIconPath,
+                  color: 2 == _pageIndex
+                      ? AppColors.cmb_blue
+                      : AppColors.cmb_grey[700],
+                  width: 18,
+                ),
                 label: tr(NAV_REC_STAT_NAME)),
             BottomNavigationBarItem(
                 icon: (3 == _pageIndex)
-                    ? SvgPicture.asset(Assets.activeMypageIconPath,
-                        color: AppColors.cmb_blue)
-                    : SvgPicture.asset(Assets.mypageIconPath,
-                        color: AppColors.cmb_grey[700]),
+                    ? SvgPicture.asset(
+                        Assets.activeMypageIconPath,
+                        color: AppColors.cmb_blue,
+                        width: 18,
+                      )
+                    : SvgPicture.asset(
+                        Assets.mypageIconPath,
+                        color: AppColors.cmb_grey[700],
+                        width: 18,
+                      ),
                 label: tr(NAV_MYPAGE_NAME))
           ]),
     );

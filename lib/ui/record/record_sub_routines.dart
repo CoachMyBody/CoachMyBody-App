@@ -1,4 +1,5 @@
 import 'package:coach_my_body/providers/record/record_date_model.dart';
+import 'package:coach_my_body/providers/record/record_muscle_view_model.dart';
 import 'package:coach_my_body/providers/record/record_noti_model.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_daily.dart';
 import 'package:coach_my_body/constants/assets.dart';
@@ -12,8 +13,8 @@ class RecordSubRoutinesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Size size = MediaQuery.of(context).size;
+    var muscleView = Provider.of<RecordMuscleViewModel>(context, listen: true);
 
     return MultiProvider(
       providers: [
@@ -22,16 +23,6 @@ class RecordSubRoutinesScreen extends StatelessWidget {
       ],
       child: Stack(
         children: <Widget>[
-          Positioned(
-            // TODO: Apply Muscles State
-            top: size.width * 0.0893,
-            right: size.width * 0.1421,
-            child: SvgPicture.asset(
-              Assets.musclesImgPath,
-              // height: size.height * 0.567,
-              width: size.width * 0.246,
-            ),
-          ),
           PageView(
             controller: _pageController,
             scrollDirection: Axis.vertical,
@@ -39,6 +30,23 @@ class RecordSubRoutinesScreen extends StatelessWidget {
               RecordSubDailyRoutines(),
               RecordSubMonthlyRoutines()
             ],
+          ),
+          Positioned(
+            // TODO: Apply Muscles State
+            top: size.width * 0.0893,
+            right: size.width * 0.1421,
+            child: GestureDetector(
+              onTap: () {
+                var bAnt = muscleView.getIsAnterior();
+                muscleView.setIsAnterior(!bAnt);
+              },
+              child: SvgPicture.asset(
+                muscleView.getIsAnterior()
+                    ? Assets.musclesAntImgPath
+                    : Assets.musclesPostImgPath,
+                width: size.width * 0.246,
+              ),
+            ),
           ),
         ],
       ),

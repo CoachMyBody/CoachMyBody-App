@@ -46,7 +46,8 @@ class Assets {
   static const String kakaoIconImgPath = 'assets/images/kakao_icon.svg';
 
   // # muscles images
-  static const String musclesImgPath = 'assets/images/whole_muscles.svg';
+  static const String musclesAntImgPath = 'assets/images/whole_muscles_ant.svg';
+  static const String musclesPostImgPath = 'assets/images/whole_muscles_post.svg';
 
   // # record page
   static const String notiEmptySvgPath = 'assets/images/record/empty_notification.svg';

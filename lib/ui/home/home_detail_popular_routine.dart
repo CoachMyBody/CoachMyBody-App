@@ -221,7 +221,7 @@ class _BodyRoutineWidgetState extends State<BodyRoutineWidget> {
             Container(
               height: 24,
               alignment: Alignment.centerRight,
-              child: SvgPicture.asset(Assets.filteringIconPath),
+              child: SvgPicture.asset(Assets.homeFilteringIconPath),
             ),
             SizedBox(height: 16,),
             GridView.builder(

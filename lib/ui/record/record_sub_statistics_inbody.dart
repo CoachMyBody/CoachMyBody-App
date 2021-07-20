@@ -43,7 +43,7 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
                 child: Container(
                   height: 18,
                   margin: EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(Assets.addBlueIconPath),
+                  child: SvgPicture.asset(Assets.commAddBlueIconPath),
                 ),
               ),
             ],

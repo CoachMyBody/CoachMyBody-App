@@ -32,7 +32,7 @@ class RoutineSubMyroutinesDetail extends StatelessWidget {
         ),
         actions: <Widget>[
           IconButton(
-            icon: SvgPicture.asset(Assets.moreIconPath),
+            icon: SvgPicture.asset(Assets.homeMoreIconPath),
             tooltip: 'Next choice',
             onPressed: () {},
           ),

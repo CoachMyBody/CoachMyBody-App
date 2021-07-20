@@ -72,7 +72,7 @@ class PhotoHistoryView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SvgPicture.asset(Assets.addGreyIconPath),
+                SvgPicture.asset(Assets.commAddGreyIconPath),
                 SizedBox(
                   height: 4,
                 ),
@@ -156,7 +156,7 @@ class _PhotoTimelineViewState extends State<PhotoTimelineView> {
                 child: Container(
                   height: 18,
                   margin: EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(Assets.addBlueIconPath),
+                  child: SvgPicture.asset(Assets.commAddBlueIconPath),
                 ),
               ),
             ],

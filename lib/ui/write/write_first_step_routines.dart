@@ -221,7 +221,7 @@ class RoutineSimpleView extends StatelessWidget {
                   right: 0,
                   child: Container(
                     margin: EdgeInsets.only(top: 8, right: 8),
-                    child: SvgPicture.asset(Assets.checkIconPath),
+                    child: SvgPicture.asset(Assets.commCheckIconPath),
                   ),
                 ),
             ],

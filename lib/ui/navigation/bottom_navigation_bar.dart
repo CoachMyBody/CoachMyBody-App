@@ -59,19 +59,19 @@ class _TabPageState extends State<TabPage> {
             BottomNavigationBarItem(
                 icon: (0 == _pageIndex)
                     ? SvgPicture.asset(
-                        Assets.activeHomeIconPath,
+                        Assets.bottomActiveHomeIconPath,
                         color: AppColors.cmb_blue,
                         width: 18,
                       )
                     : SvgPicture.asset(
-                        Assets.homeIconPath,
+                        Assets.bottomHomeIconPath,
                         color: AppColors.cmb_grey[700],
                         width: 18,
                       ),
                 label: tr(NAV_HOME_NAME)),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  Assets.routineManIconPath,
+                  Assets.bottomRoutineIconPath,
                   color: 1 == _pageIndex
                       ? AppColors.cmb_blue
                       : AppColors.cmb_grey[700],
@@ -80,7 +80,7 @@ class _TabPageState extends State<TabPage> {
                 label: tr(NAV_ROUT_MAN_NAME)),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  Assets.recordStatusIconPath,
+                  Assets.bottomStatusIconPath,
                   color: 2 == _pageIndex
                       ? AppColors.cmb_blue
                       : AppColors.cmb_grey[700],
@@ -90,12 +90,12 @@ class _TabPageState extends State<TabPage> {
             BottomNavigationBarItem(
                 icon: (3 == _pageIndex)
                     ? SvgPicture.asset(
-                        Assets.activeMypageIconPath,
+                        Assets.bottomActiveMypageIconPath,
                         color: AppColors.cmb_blue,
                         width: 18,
                       )
                     : SvgPicture.asset(
-                        Assets.mypageIconPath,
+                        Assets.bottomMypageIconPath,
                         color: AppColors.cmb_grey[700],
                         width: 18,
                       ),

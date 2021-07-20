@@ -1,4 +1,4 @@
-import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
+import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
 import 'package:coach_my_body/ui/login/login.dart';
 import 'package:coach_my_body/ui/login/onboarding.dart';
 import 'package:flutter/material.dart';

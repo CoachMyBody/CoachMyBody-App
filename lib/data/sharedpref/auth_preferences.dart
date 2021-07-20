@@ -1,13 +1,8 @@
+import 'package:coach_my_body/data/sharedpref/constants/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPreferences {
   // AuthPreferences._();
-
-  static String isLoggedIn = 'isLoggedIn';
-
-  static String accessToken = 'accessToken';
-  static String refreshToken = 'refreshToken';
-  static String expiredAt = 'expiredAt';
 
   /// true : 앱 첫실행 (OnBoarding 페이지 띄워줘야함)
   /// false : 바로 로그인페이지
@@ -27,39 +22,39 @@ class AuthPreferences {
   Future setAccessToken(String token) async {
     var sp = await SharedPreferences.getInstance();
 
-    await sp.setString(accessToken, token);
+    await sp.setString(Auth.accessToken, token);
   }
 
   Future<String> getAccessToken() async {
     var sp = await SharedPreferences.getInstance();
 
-    var token = sp.getString(accessToken);
+    var token = sp.getString(Auth.accessToken);
     return token;
   }
 
   Future setRefreshToken(String token) async {
     var sp = await SharedPreferences.getInstance();
 
-    await sp.setString(refreshToken, token);
+    await sp.setString(Auth.refreshToken, token);
   }
 
   Future<String> getRefreshToken() async {
     var sp = await SharedPreferences.getInstance();
 
-    var token = sp.getString(refreshToken);
+    var token = sp.getString(Auth.refreshToken);
     return token;
   }
 
   Future setExpiredAt(String token) async {
     var sp = await SharedPreferences.getInstance();
 
-    await sp.setString(expiredAt, token);
+    await sp.setString(Auth.expiredAt, token);
   }
 
   Future<String> getExpiredAt() async {
     var sp = await SharedPreferences.getInstance();
 
-    var date = sp.getString(expiredAt);
+    var date = sp.getString(Auth.expiredAt);
     return date;
   }
 }

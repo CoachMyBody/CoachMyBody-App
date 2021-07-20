@@ -38,7 +38,7 @@ class PlusDataContainer extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            SvgPicture.asset(Assets.addBlueIconPath),
+            SvgPicture.asset(Assets.commAddBlueIconPath),
             SizedBox(
               height: 4,
             ),

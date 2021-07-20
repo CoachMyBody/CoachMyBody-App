@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:coach_my_body/constants/colors.dart';
-import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
+import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
+import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
 import 'package:coach_my_body/models/user_info.dart';
 import 'package:http/http.dart' as http;
 

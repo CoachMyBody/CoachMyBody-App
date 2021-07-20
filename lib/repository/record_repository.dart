@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:coach_my_body/data/sharedpref/constants/preferences.dart';
+import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
 import 'package:coach_my_body/models/routine_info.dart';
 import 'package:coach_my_body/models/write_info.dart';
 import 'package:http/http.dart' as http;
@@ -23,8 +23,7 @@ class RecordRepository {
   }
 
   // 따로 관리할 예정
-  final String apiAddress =
-      'http://ec2-3-36-145-144.ap-northeast-2.compute.amazonaws.com:8080/api/v1/';
+  final String apiAddress = 'http://ec2-3-36-145-144.ap-northeast-2.compute.amazonaws.com:8080/api/v1/';
   Map<String, String> _headers;
 
   /// routines

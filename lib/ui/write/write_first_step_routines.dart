@@ -84,9 +84,22 @@ class RoutinesListWidget extends StatelessWidget {
                         },
                         label: tr(COMMON_VIEW_MORE_TXT),
                       )
-                    : RoutineSimpleView(
-                        routine: myRoutinesProvider.routines.routines[index],
-                      )),
+                    : ((index == 0)
+                        ? Row(
+                            children: <Widget>[
+                              SizedBox(
+                                width: 20,
+                              ),
+                              RoutineSimpleView(
+                                routine:
+                                    myRoutinesProvider.routines.routines[index],
+                              ),
+                            ],
+                          )
+                        : RoutineSimpleView(
+                            routine:
+                                myRoutinesProvider.routines.routines[index],
+                          ))),
           ),
         ),
       ),

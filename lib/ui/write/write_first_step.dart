@@ -5,6 +5,7 @@ import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/write/write_first_step_routines.dart';
 import 'package:coach_my_body/widgets/common_widgets.dart';
 import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
+import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -143,7 +144,13 @@ class WorkOutTimeWidget extends StatelessWidget {
           padding: const EdgeInsets.only(right: 8.0),
           child: CustomDropDownWidget(
             label: viewedDate,
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (_) => DayModalBottomSheet());
+            },
           ),
         ),
         OutlinedTextField(

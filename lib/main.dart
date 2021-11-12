@@ -49,14 +49,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SelectedDateViewModel()),
+        ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
         ChangeNotifierProvider(create: (context) => MyRoutinesProvider()),
         ChangeNotifierProvider(create: (context) => WriteDataProvider()),
         ChangeNotifierProvider(create: (context) => InbodyDataProvider()),
         ChangeNotifierProvider(create: (context) => NunbodyDataProvider()),
         ChangeNotifierProvider(create: (context) => RoutineSelectButtonModel()),
         ChangeNotifierProvider(create: (context) => MyRoutineData()),
-        ChangeNotifierProvider(
-            create: (context) => BookMarkSelectButtonModel()),
+        ChangeNotifierProvider(create: (context) => BookMarkSelectButtonModel()),
         ChangeNotifierProvider(create: (context) => MyBookMarkData()),
         ChangeNotifierProvider(create: (context) => RoutineExerciseDetailViewModel()) // 운동 정보 가져오는 Provider
       ],

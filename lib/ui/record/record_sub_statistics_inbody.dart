@@ -2,7 +2,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/widgets/record_inbody_modal_bottom_sheet.dart';
+import 'package:coach_my_body/widgets/modals/inbody_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _InbodyHistoryViewState extends State<InbodyHistoryView> {
                       backgroundColor: Colors.transparent,
                       isScrollControlled: true,
                       context: context,
-                      builder: (_) => RecordInbodyModalBottomSheet());
+                      builder: (_) => InbodyModalBottomSheet());
                 },
                 child: Container(
                   height: 18,

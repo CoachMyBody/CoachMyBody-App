@@ -5,7 +5,7 @@ import 'package:coach_my_body/models/routine_info.dart';
 import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/routine/routine_create_exercise_type.dart';
-import 'package:coach_my_body/widgets/common_widgets.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_common_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

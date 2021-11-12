@@ -3,7 +3,6 @@ import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/ui/write/write_second_step_photo.dart';
-import 'package:coach_my_body/widgets/record_photo_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

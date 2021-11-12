@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:coach_my_body/constants/colors.dart';
-import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
-import 'package:coach_my_body/widgets/month_modal_bottom_sheet.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_dropdown_widget.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/models/cmb_dropdown_model.dart';
+import 'package:coach_my_body/widgets/modals/month_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -27,18 +27,16 @@ class RecordSubMonthlyRoutines extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
-          child: CustomDropDownWidget(
-              label: '21년 6월',
-              onPressed: () {
-                // showModalBottomSheet<int>(
-                //   backgroundColor: Colors.transparent,
-                //   isScrollControlled: true,
-                //   context: context,
-                //   builder: (context) {
-                //     return MonthModalBottomSheet();
-                //   },
-                // );
-              }),
+          child: CMBDropDownWithSheetWidget(
+            label: '21년 6월',
+            data: CMBDropDownSheetData(
+              whenCompleted: () {
+                print('whenCompleted RecordSubMonthlyRoutines');
+              },
+              sheet: MonthModalBottomSheet(),
+              // sheet: CMBBottomSheet()
+            ),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0555, top: 12),

@@ -1,7 +1,8 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:coach_my_body/providers/record/record_date_model.dart';
-import 'package:coach_my_body/widgets/common_bottom_sheet_widget.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_bottom_sheet.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/models/cmb_dropdown_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,33 +18,34 @@ class DayModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
-        ],
-        child: Builder(builder: (context) {
-          return Popover(
-            child: Column(
-              children: <Widget>[
-                MonthlyIndicatorWidget(),
-                Consumer<SelectedDateViewModel>(builder: (_, selected, child) {
-                  return OKButtonInBottomSheet(
-                    selected.getSelected(),
-                    onPressed: () => _callBackDayModalOKBtn(context),
-                  );
-                }),
-              ],
-            ),
-          );
-        }),
-      ),
+    return MultiProvider(
+      providers: <ChangeNotifierProvider>[
+        ChangeNotifierProvider(create: (context) => MonthlyViewModel()),
+      ],
+      child: Builder(builder: (context) {
+        return Consumer<SelectedDateViewModel> (
+          builder: (_, selected, child) {
+            return CMBBottomSheet(
+              buttonData: CMBBottomSheetButtonData(
+                isEnable: selected.getSelected(), // TODO: provider
+                label: tr(COMMON_OK_TXT), // TODO: constant
+                onPressed: () => _callBackDayModalOKBtn(context), // TODO: callback function if clicking the button
+              ),
+              child: Column(
+                children: <Widget>[
+                  CalendarWidget(),
+                ],
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }
 
 // ignore: must_be_immutable
-class MonthlyIndicatorWidget extends StatelessWidget {
+class CalendarWidget extends StatelessWidget {
   double _width;
 
   @override
@@ -55,44 +57,11 @@ class MonthlyIndicatorWidget extends StatelessWidget {
       width: _width,
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.navigate_before),
-                  onPressed: () {
-                    Provider.of<MonthlyViewModel>(context, listen: false)
-                        .setToPreviousMonth();
-                    Provider.of<SelectedDateViewModel>(context, listen: false)
-                        .setSelected(false);
-                  },
-                ),
-                Consumer<MonthlyViewModel>(
-                  builder: (_, date, child) => Text(
-                      date.getCurrentYear().toString() +
-                          tr(COMMON_YEAR_TXT) +
-                          tr(COMMON_YEAR_MONTH_DIVIDER_TXT) +
-                          date.getCurrentMonth().toString() +
-                          tr(COMMON_MONTH_TXT)),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.navigate_next),
-                  onPressed: () {
-                    Provider.of<MonthlyViewModel>(context, listen: false)
-                        .setToNextMonth();
-                    Provider.of<SelectedDateViewModel>(context, listen: false)
-                        .setSelected(false);
-                  },
-                ),
-              ],
-            ),
-          ),
+          MonthlyIndicatorWidget(),
           Expanded(
             // child: MonthlyCalendarWidget(),
             child: Consumer<MonthlyViewModel>(
-              builder: (_, date, child) => MonthlyCalendarWidget(
+              builder: (_, date, child) => MonthlyDatesWidget(
                   date.getCurrentYear(), date.getCurrentMonth(), _width),
             ),
           ),
@@ -102,9 +71,52 @@ class MonthlyIndicatorWidget extends StatelessWidget {
   }
 }
 
+class MonthlyIndicatorWidget extends StatelessWidget {
+  const MonthlyIndicatorWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.navigate_before),
+            onPressed: () {
+              Provider.of<MonthlyViewModel>(context, listen: false)
+                  .setToPreviousMonth();
+              Provider.of<SelectedDateViewModel>(context, listen: false)
+                  .setSelected(false);
+            },
+          ),
+          Consumer<MonthlyViewModel>(
+            builder: (_, date, child) => Text(
+                date.getCurrentYear().toString() +
+                    tr(COMMON_YEAR_TXT) +
+                    tr(COMMON_YEAR_MONTH_DIVIDER_TXT) +
+                    date.getCurrentMonth().toString() +
+                    tr(COMMON_MONTH_TXT)),
+          ),
+          IconButton(
+            icon: const Icon(Icons.navigate_next),
+            onPressed: () {
+              Provider.of<MonthlyViewModel>(context, listen: false)
+                  .setToNextMonth();
+              Provider.of<SelectedDateViewModel>(context, listen: false)
+                  .setSelected(false);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
 // ignore: must_be_immutable
-class MonthlyCalendarWidget extends StatefulWidget {
-  MonthlyCalendarWidget(this.year, this.month, this.width) {
+class MonthlyDatesWidget extends StatefulWidget {
+  MonthlyDatesWidget(this.year, this.month, this.width) {
     assert(year > 0 && month < 13);
     _lastDate = DateTime(year, month + 1, 0).day;
     _startDayOfWeek = DateTime.utc(year, month, 1).weekday;
@@ -121,15 +133,22 @@ class MonthlyCalendarWidget extends StatefulWidget {
   final int month;
   final double width;
 
+  /// This variable refers to the number of date every month
   int _lastDate;
+
+  /// This variable indicates the day of the week that starts every month
+  /// Mon to Sun
   int _startDayOfWeek;
+
+  /// This variable indicates the day of the week that ends every month
+  /// Mon to Sun
   int _endDayOfWeek;
 
   @override
-  _MonthlyCalendarWidgetState createState() => _MonthlyCalendarWidgetState();
+  _MonthlyDatesWidgetState createState() => _MonthlyDatesWidgetState();
 }
 
-class _MonthlyCalendarWidgetState extends State<MonthlyCalendarWidget> {
+class _MonthlyDatesWidgetState extends State<MonthlyDatesWidget> {
   int _selectedIndex = 0;
 
   @override

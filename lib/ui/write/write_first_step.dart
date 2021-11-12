@@ -1,11 +1,13 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/providers/write/write_view_model.dart';
 import 'package:coach_my_body/ui/write/write_first_step_routines.dart';
-import 'package:coach_my_body/widgets/common_widgets.dart';
-import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
-import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_dropdown_widget.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/models/cmb_dropdown_model.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_common_widgets.dart';
+import 'package:coach_my_body/widgets/modals/day_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -142,16 +144,34 @@ class WorkOutTimeWidget extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
-          child: CustomDropDownWidget(
+          child: CMBDropDownWithSheetWidget(
             label: viewedDate,
-            onPressed: () {
-              showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (_) => DayModalBottomSheet());
-            },
+            data: CMBDropDownSheetData(
+              whenCompleted: () {
+                print('whenCompleted here');
+
+                var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
+                selected.setSelected(false);
+              },
+              sheet: DayModalBottomSheet(),
+              // sheet: CMBBottomSheet()
+            ),
           ),
+          // child: CustomDropDownWidget(
+          //   label: viewedDate,
+          //   onPressed: () {
+          //     showModalBottomSheet(
+          //         backgroundColor: Colors.transparent,
+          //         isScrollControlled: true,
+          //         context: context,
+          //         builder: (_) => DayModalBottomSheet()).whenComplete(() {
+          //       // do something when closing modal
+          //       print('bye');
+          //       var selected = Provider.of<SelectedDateViewModel>(context, listen: false);
+          //       selected.setSelected(false);
+          //     });
+          //   },
+          // ),
         ),
         OutlinedTextField(
             label: tr(COMMON_HOUR_TXT),

@@ -1,12 +1,21 @@
+import 'package:coach_my_body/widgets/cmb_widgets/models/cmb_dropdown_model.dart';
 import 'package:coach_my_body/constants/colors.dart';
-import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class Popover extends StatelessWidget {
-  const Popover({this.child});
+class CMBBottomSheet extends StatelessWidget {
+  const CMBBottomSheet(
+      {Key key,
+      this.bHandle = true,
+      this.bBottomButton = true,
+      this.buttonData,
+      this.child})
+      : super(key: key);
 
+  final bool bHandle;
+  final bool bBottomButton;
   final Widget child;
+
+  final CMBBottomSheetButtonData buttonData;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,16 @@ class Popover extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: <Widget>[_buildHandle(context), if (child != null) child],
+        children: <Widget>[
+          if (true == bHandle) _buildHandle(context),
+          if (null != child) child,
+          if (true == bBottomButton)
+            CMBBottomSheetButton(
+              data: (null != buttonData)
+                  ? buttonData
+                  : CMBBottomSheetButtonData(),
+            ),
+        ],
       ),
     );
   }
@@ -44,11 +62,10 @@ class Popover extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class OKButtonInBottomSheet extends StatelessWidget {
-  OKButtonInBottomSheet(this.isEnable, {this.onPressed});
+class CMBBottomSheetButton extends StatelessWidget {
+  CMBBottomSheetButton({this.data});
 
-  final bool isEnable;
-  final Function onPressed;
+  final CMBBottomSheetButtonData data;
 
   double _width;
 
@@ -61,15 +78,17 @@ class OKButtonInBottomSheet extends StatelessWidget {
       width: _width * 0.911,
       height: _width * 0.144,
       decoration: BoxDecoration(
-        color: isEnable ? AppColors.cmb_blue : AppColors.cmb_grey[200],
+        color: data.isEnable ? AppColors.cmb_blue : AppColors.cmb_grey[200],
         borderRadius: const BorderRadius.all(Radius.circular(4.0)),
       ),
       child: TextButton(
-        onPressed: false == isEnable || null == onPressed ? null : onPressed,
+        onPressed: false == data.isEnable || null == data.onPressed
+            ? null
+            : data.onPressed,
         child: Text(
-          COMMON_OK_TXT,
+          data.label,
           style: TextStyle(color: AppColors.cmb_grey[0]),
-        ).tr(),
+        ),
       ),
     );
   }

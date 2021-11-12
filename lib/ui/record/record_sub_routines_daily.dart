@@ -4,8 +4,9 @@ import 'package:coach_my_body/providers/record/record_date_model.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/record/record_sub_routines_detail.dart';
 import 'package:coach_my_body/ui/record/routine_data.dart';
-import 'package:coach_my_body/widgets/day_modal_bottom_sheet.dart';
-import 'package:coach_my_body/widgets/custom_drop_down_widget.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/cmb_dropdown_widget.dart';
+import 'package:coach_my_body/widgets/cmb_widgets/models/cmb_dropdown_model.dart';
+import 'package:coach_my_body/widgets/modals/day_modal_bottom_sheet.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,7 @@ class RecordSubDailyRoutines extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: _size.width * 0.0444),
           child: Consumer<SelectedDateViewModel>(builder: (_, selected, child) {
+            // shown date of today
             var viewedDate = selected.getReturnedDate().month.toString() +
                 COMMON_MONTH_TXT.tr() +
                 COMMON_YEAR_MONTH_DIVIDER_TXT.tr() +
@@ -38,15 +40,16 @@ class RecordSubDailyRoutines extends StatelessWidget {
                 COMMON_DAY_TXT.tr();
             assert(viewedDate.isNotEmpty);
 
-            return CustomDropDownWidget(
+            return CMBDropDownWithSheetWidget(
               label: viewedDate,
-              onPressed: () {
-                showModalBottomSheet(
-                    backgroundColor: Colors.transparent,
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (_) => DayModalBottomSheet());
-              },
+              data: CMBDropDownSheetData(
+                whenCompleted: () {
+                  var selected = Provider.of<SelectedDateViewModel>(context,
+                      listen: false);
+                  selected.setSelected(false);
+                },
+                sheet: DayModalBottomSheet(),
+              ),
             );
           }),
         ),
@@ -80,7 +83,9 @@ class RecordSubDailyRoutines extends StatelessWidget {
             color: AppColors.cmb_grey[700], fontSize: _size.width * 0.0667),
         children: <TextSpan>[
           TextSpan(
-              text: routinesNum, style: TextStyle(fontWeight: FontWeight.bold)),
+            text: routinesNum,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           TextSpan(text: RECORD_SUB_ROUTINES_TODAY_SUFFIX_TXT.tr()),
         ],
       ),

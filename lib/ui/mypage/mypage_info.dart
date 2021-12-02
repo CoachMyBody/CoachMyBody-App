@@ -24,12 +24,13 @@ class MypageInfo extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text(
             PROFILE_SETTING,
             style: TextStyle(
               color: AppColors.cmb_grey[700],
               fontSize: _width * 0.0444,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
             ),
           ).tr(),
         ),

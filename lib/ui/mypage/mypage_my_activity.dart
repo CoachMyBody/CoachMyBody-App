@@ -75,8 +75,8 @@ class MyActivity extends StatelessWidget {
                 children: [
                   Text(
                     tr(WORKOUT_DAYS),
-                    style:
-                        TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: _width * 0.0444, fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: _width * 0.0277),
                   Row(

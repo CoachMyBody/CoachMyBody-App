@@ -3,6 +3,7 @@ import 'package:coach_my_body/constants/translations_key.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MypageCoachSearching extends StatelessWidget {
   double _width;
@@ -61,7 +62,9 @@ class MypageCoachSearching extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(text: _uniqueNumber));
+                      },
                       child: Text(
                         COMMON_COPY_TXT,
                         style: TextStyle(
@@ -93,6 +96,7 @@ class MypageCoachSearching extends StatelessWidget {
                       width: _width * 0.9111,
                       height: _width * 0.0833,
                       decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xFFE9EDEF)),
                           borderRadius: BorderRadius.circular(_width * 0.01),
                           color: AppColors.cmb_grey[50]),
                       child: TextFormField(

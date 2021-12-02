@@ -35,6 +35,7 @@ class ProfileInputForm extends StatelessWidget {
             width: _width * 0.9111,
             height: _width * 0.1111,
             decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFFE9EDEF)),
                 borderRadius: BorderRadius.circular(_width * 0.01),
                 color: AppColors.cmb_grey[50]),
             child: TextFormField(

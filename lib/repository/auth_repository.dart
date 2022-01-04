@@ -19,12 +19,11 @@ class AuthRepository {
     var token = CMBTokenInfo.fromJson(json.decode(body));
 
     pref.setAccessToken(token.accessToken);
-    print(token.accessToken);
     pref.setRefreshToken(token.refreshToken);
     pref.setExpiredAt(token.expiredAt);
-    print(token.expiredAt);
 
-    print(token.accessToken);
+    // Set LogIn pref
+    pref.setIsLoggedIn(true);
   }
 
   /// auth/register

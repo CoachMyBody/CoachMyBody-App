@@ -1,10 +1,13 @@
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
+import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
+import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/mypage/mypage_coach_searching.dart';
 import 'package:coach_my_body/ui/mypage/mypage_info.dart';
 import 'package:coach_my_body/ui/mypage/mypage_card_widget.dart';
 import 'package:coach_my_body/ui/mypage/mypage_my_activity.dart';
 import 'package:coach_my_body/ui/mypage/mypage_setting.dart';
+import 'package:coach_my_body/utils/managers/auth_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +16,6 @@ import 'mypage_list_widget.dart';
 
 class MyPageScreen extends StatelessWidget {
   double _width;
-  bool isCoachMode = false;
   final String _nickname = '코마바';
   final int _level = 3;
   final int _badge = 5;
@@ -42,15 +44,25 @@ class MyPageScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FlutterSwitch(
-                      width: _width * 0.0777,
-                      height: _width * 0.0444,
-                      padding: _width * 0.005,
-                      toggleSize: _width * 0.0333,
-                      value: isCoachMode,
-                      onToggle: (value) {},
-                      activeColor: AppColors.cmb_blue,
-                      inactiveColor: AppColors.cmb_grey[100],
+                    FutureBuilder(
+                      future: (AuthMan().checkAuthStatus()),
+                      builder: (context, snapshot) {
+                        return FlutterSwitch(
+                          width: _width * 0.0777,
+                          height: _width * 0.0444,
+                          padding: _width * 0.005,
+                          toggleSize: _width * 0.0333,
+                          value: (AuthStat.coach == snapshot.hasData),
+                          onToggle: (value) {
+                            AuthPreferences().setIsCoachMode(true);
+
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, Routes.coachTapPage, (route) => false);
+                          },
+                          activeColor: AppColors.cmb_blue,
+                          inactiveColor: AppColors.cmb_grey[100],
+                        );
+                      },
                     ),
                     SizedBox(
                       width: _width * 0.0222,

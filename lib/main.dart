@@ -8,6 +8,7 @@ import 'package:coach_my_body/providers/write/write_data_provider.dart';
 import 'package:coach_my_body/routes.dart';
 import 'package:coach_my_body/ui/routine/routine_sub_bookmark/my_bookmark_data.dart';
 import 'package:coach_my_body/ui/routine/routine_sub_myroutines/my_routine_data.dart';
+import 'package:coach_my_body/utils/managers/auth_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,9 @@ void main() async {
 
   await SystemChrome.setEnabledSystemUIOverlays(
       [SystemUiOverlay.bottom, SystemUiOverlay.top]);
+
+  // init
+  AuthMan();
 
   runApp(EasyLocalization(
     // 다국어 지원

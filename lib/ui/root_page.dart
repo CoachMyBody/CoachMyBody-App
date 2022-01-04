@@ -1,6 +1,8 @@
-import 'package:coach_my_body/data/sharedpref/auth_preferences.dart';
+import 'package:coach_my_body/coaches/ui/navigation/coach_bottom_navigation_bar.dart';
 import 'package:coach_my_body/ui/login/login.dart';
 import 'package:coach_my_body/ui/login/onboarding.dart';
+import 'package:coach_my_body/ui/navigation/bottom_navigation_bar.dart';
+import 'package:coach_my_body/utils/managers//auth_manager.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatefulWidget {
@@ -18,7 +20,8 @@ class _RootPageState extends State<RootPage> {
     super.initState();
 
     print('Debug RootPage initState');
-    _checkIsFirstClient = checkIsFirstClient();
+    _checkIsFirstClient = AuthMan().checkAuthStatus();
+    print('_checkIsFirstClient: $_checkIsFirstClient');
   }
 
   @override
@@ -30,27 +33,23 @@ class _RootPageState extends State<RootPage> {
         if (snapshot.hasData) {
           var result = snapshot.data;
 
-          // 처음으로 앱 실행
-          if (result) {
-            return OnBoardingScreen();
-          } else {
-            return LoginScreen();
+          switch (result)
+          {
+            case AuthStat.initialed:
+              return OnBoardingScreen();
+            case AuthStat.member:
+              return MemberBottomTabScreen();
+            case AuthStat.coach:
+              return CoachBottomNaviBar();
+            default:
+              return LoginScreen();
           }
         } else {
+          // 아직 로딩중...
           return LoginScreen();
         }
       }
     );
-  }
-
-  Future<bool> checkIsFirstClient() async {
-    print('Debug1');
-
-    var preferences = AuthPreferences();
-
-    var result = await preferences.getIsFirstClient();
-
-    return result;
   }
 }
 

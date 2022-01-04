@@ -1,33 +1,33 @@
+import 'package:coach_my_body/coaches/ui/home/coach_home.dart';
+import 'package:coach_my_body/coaches/ui/mymembers/mymembers.dart';
+import 'package:coach_my_body/coaches/ui/mypage/coach_page.dart';
+import 'package:coach_my_body/coaches/ui/routine/coach_routine.dart';
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
 import 'package:coach_my_body/constants/translations_key.dart';
-import 'package:coach_my_body/ui/home/home.dart';
-import 'package:coach_my_body/ui/routine/routine.dart';
-import 'package:coach_my_body/ui/mypage/mypage.dart';
-import 'package:coach_my_body/ui/record/record.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class MemberBottomTabScreen extends StatefulWidget {
+class CoachBottomNaviBar extends StatefulWidget {
   int index;
 
-  MemberBottomTabScreen({this.index = 0});
+  CoachBottomNaviBar({this.index = 0});
 
   @override
-  _MemberBottomTabScreenState createState() => _MemberBottomTabScreenState();
+  _TabPageState createState() => _TabPageState();
 }
 
-class _MemberBottomTabScreenState extends State<MemberBottomTabScreen> {
+class _TabPageState extends State<CoachBottomNaviBar> {
   PageController _pageController;
 
   int _pageIndex = 0;
 
   final List<Widget> _tabPages = [
-    HomeScreen(),
-    RoutineScreen(),
-    RecordScreen(),
-    MyPageScreen()
+    CoachHomeScreen(),
+    CoachRoutineScreen(),
+    MyMembersScreen(),
+    CoachPageScreen()
   ];
 
   @override
@@ -41,7 +41,7 @@ class _MemberBottomTabScreenState extends State<MemberBottomTabScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        physics: NeverScrollableScrollPhysics(),
+        // physics: NeverScrollableScrollPhysics(),
         onPageChanged: onPageChanged,
         controller: _pageController,
         children: _tabPages,
@@ -59,15 +59,15 @@ class _MemberBottomTabScreenState extends State<MemberBottomTabScreen> {
             BottomNavigationBarItem(
                 icon: (0 == _pageIndex)
                     ? SvgPicture.asset(
-                        Assets.bottomActiveHomeIconPath,
-                        color: AppColors.cmb_blue,
-                        width: 18,
-                      )
+                  Assets.bottomActiveHomeIconPath,
+                  color: AppColors.cmb_blue,
+                  width: 18,
+                )
                     : SvgPicture.asset(
-                        Assets.bottomHomeIconPath,
-                        color: AppColors.cmb_grey[700],
-                        width: 18,
-                      ),
+                  Assets.bottomHomeIconPath,
+                  color: AppColors.cmb_grey[700],
+                  width: 18,
+                ),
                 label: tr(NAV_HOME_NAME)),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
@@ -90,15 +90,15 @@ class _MemberBottomTabScreenState extends State<MemberBottomTabScreen> {
             BottomNavigationBarItem(
                 icon: (3 == _pageIndex)
                     ? SvgPicture.asset(
-                        Assets.bottomActiveMypageIconPath,
-                        color: AppColors.cmb_blue,
-                        width: 18,
-                      )
+                  Assets.bottomActiveMypageIconPath,
+                  color: AppColors.cmb_blue,
+                  width: 18,
+                )
                     : SvgPicture.asset(
-                        Assets.bottomMypageIconPath,
-                        color: AppColors.cmb_grey[700],
-                        width: 18,
-                      ),
+                  Assets.bottomMypageIconPath,
+                  color: AppColors.cmb_grey[700],
+                  width: 18,
+                ),
                 label: tr(NAV_MYPAGE_NAME))
           ]),
     );

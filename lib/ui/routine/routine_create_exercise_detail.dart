@@ -54,7 +54,7 @@ class _RoutineCreateExerciseDetailPageState extends State<RoutineCreateExerciseD
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => TabPage(index: 1)),);
+              MaterialPageRoute(builder: (context) => MemberBottomTabScreen(index: 1)),);
           },
           backgroundColor: AppColors.cmb_accent[100],
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0))),

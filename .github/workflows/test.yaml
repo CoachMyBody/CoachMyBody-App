@@ -1,21 +1,18 @@
-name:  Test, build and deploy
+name:  Test and build
 on: [push,pull_request]
 jobs:
   test:
     runs-on: macos-latest
     steps:
-      # The branch or tag ref that triggered the workflow will be checked out.
-      # https://github.com/actions/checkout
       - uses: actions/checkout@v2
-      # Setup a flutter environment.
-      # https://github.com/marketplace/actions/flutter-action
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.0.2'
           channel: 'stable'
       - run: flutter pub get
-      - run: flutter analyze
       - run: flutter test --coverage
+      - run: flutter build apk --debug --split-per-abi
+      - run: flutter build appbundle
       # Upload coverage reports to Codecov
       # https://github.com/marketplace/actions/codecov
       - name: Upload coverage to Codecov

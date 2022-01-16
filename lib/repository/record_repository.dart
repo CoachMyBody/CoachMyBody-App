@@ -23,7 +23,8 @@ class RecordRepository {
   }
 
   // 따로 관리할 예정
-  final String apiAddress = 'http://ec2-3-36-145-144.ap-northeast-2.compute.amazonaws.com:8080/api/v1/';
+  final String apiAddress =
+      'http://ec2-3-36-145-144.ap-northeast-2.compute.amazonaws.com:8080/api/v1/';
   Map<String, String> _headers;
 
   /// routines
@@ -134,9 +135,11 @@ class RecordRepository {
       //   data: formData,
       // );
 
-      var request = http.MultipartRequest('POST', Uri.parse(apiAddress + 'nunbody/image'));
+      var request = http.MultipartRequest(
+          'POST', Uri.parse(apiAddress + 'nunbody/image'));
       // var pic = await http.MultipartFile('image', image.readAsBytes().asStream(), image.lengthSync(), contentType: );
-      var pic = http.MultipartFile.fromBytes('file', image.readAsBytesSync(), contentType: MediaType('multipart', 'form-data'));
+      var pic = http.MultipartFile.fromBytes('file', image.readAsBytesSync(),
+          contentType: MediaType('multipart', 'form-data'));
       print(pic.contentType);
       request.files.add(pic);
       request.headers.addAll(_headers);

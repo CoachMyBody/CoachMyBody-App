@@ -119,5 +119,9 @@
   "APP_SETTING": "설정",
   "NOTIFICATION_SETTING": "알림설정",
   "PUSH_ALARM": "푸시 알림",
-  "LOGOUT": "로그아웃"
+  "LOGOUT": "로그아웃",
+
+  "COACH_HOME_NEW_TITLE": "타이틀이 없네?",
+  "COACH_HOME_NEW_FEEDBACK_TXT": "새 피드백",
+  "COACH_HOME_OLD_FEEDBACK_TXT": "완료된 피드백"
 }

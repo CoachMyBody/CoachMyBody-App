@@ -119,5 +119,9 @@
   "APP_SETTING":"Setting",
   "NOTIFICATION_SETTING" : "Notification Setting",
   "PUSH_ALARM" : "Push Alarm",
-  "LOGOUT": "Logout"
+  "LOGOUT": "Logout",
+
+  "COACH_HOME_NEW_TITLE": "No title",
+  "COACH_HOME_NEW_FEEDBACK_TXT": "New",
+  "COACH_HOME_OLD_FEEDBACK_TXT": "Done"
 }

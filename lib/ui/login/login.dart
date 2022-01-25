@@ -158,15 +158,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login(bool isKakaoTalkInstalled) {
-    if (true == _isKakaoTalkInstalled) {
-      _loginWithTalk();
-    } else {
-      _loginWithKakao();
-    }
+    // if (true == _isKakaoTalkInstalled) {
+    //   _loginWithTalk();
+    // } else {
+    //   _loginWithKakao();
+    // }
 
     // 테스트 코드
-    // Navigator.pushNamedAndRemoveUntil(
-    //     context, Routes.tapPage, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(
+        context, Routes.tapPage, (route) => false);
 
     return;
   }

@@ -9,12 +9,14 @@ class Assets {
   static const String translationsDirPath = 'assets/translations';
 
   // # common icons
-  static const String commCheckIconPath = 'assets/icons/check_icon.svg';
-  static const String commDropDownIconPath = 'assets/icons/drop_down_icon.svg';
-  static const String commNaviNextIconPath = 'assets/icons/navigator_next_icon.svg';
-  static const String commNaviPrevIconPath = 'assets/icons/navigator_prev_icon.svg';
-  static const String commAddBlueIconPath = 'assets/icons/add_blue_icon.svg';
-  static const String commAddGreyIconPath = 'assets/icons/add_grey_icon.svg';
+  static const String commAddBlueIconPath = 'assets/icons/common/add_blue_icon.svg';
+  static const String commAddGreyIconPath = 'assets/icons/common/add_grey_icon.svg';
+  static const String commCheckIconPath = 'assets/icons/common/check_icon.svg';
+  static const String commDropDownIconPath = 'assets/icons/common/drop_down_icon.svg';
+  static const String commFilteringIconPath = 'assets/icons/common/filtering_icon.svg';
+  static const String commNaviNextIconPath = 'assets/icons/common/navigator_next_icon.svg';
+  static const String commNaviPrevIconPath = 'assets/icons/common/navigator_prev_icon.svg';
+  static const String commNewIconPath = 'assets/icons/common/new_blue_icon.svg';
 
   // # kakao login button images
   static const String kakaoLoginBgImgPath = 'assets/images/kakao_login.png';
@@ -40,7 +42,6 @@ class Assets {
   static const String homeMenuCardioFalsePath = 'assets/icons/home/home_menu_cardio_false.svg';
   static const String homeMenuCardioTruePath = 'assets/icons/home/home_menu_cardio_true.svg';
 
-  static const String homeFilteringIconPath = 'assets/icons/filtering_icon.svg';
   static const String homeMoreIconPath = 'assets/icons/more_icon.svg';
 
   // ## write icons

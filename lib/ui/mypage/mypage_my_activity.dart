@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import 'mypage.dart';
+
 class MyActivity extends StatelessWidget {
   double _width;
 
@@ -212,30 +214,30 @@ class MyActivity extends StatelessWidget {
   }
 }
 
-class MyBadge {
-  String title;
-  String img;
-  String description;
-  bool check;
-
-  MyBadge({this.title, this.img, this.description, this.check});
-}
-
-List myBadgeList = [
-  MyBadge(
-      title: '꾸준함에 치얼스', img: Assets.badge1Path, description: '', check: true),
-  MyBadge(
-      title: '시작이 반',
-      img: Assets.badge2Path,
-      description: '코치마바디에 오신걸 환영해요!\n꾸준히 운동해서 뱃지를 수집해 보세요',
-      check: true),
-  MyBadge(
-      title: '프로 꾸준러', img: Assets.badge3Path, description: '', check: true),
-  MyBadge(
-      title: '4주만 더하자', img: Assets.badge4Path, description: '', check: true),
-  MyBadge(title: '', img: '', description: '', check: false),
-  MyBadge(title: '', img: '', description: '', check: false),
-  MyBadge(title: '', img: '', description: '', check: false),
-  MyBadge(title: '', img: '', description: '', check: false),
-  MyBadge(title: '', img: '', description: '', check: false),
-];
+// class MyBadge {
+//   String title;
+//   String img;
+//   String description;
+//   bool check;
+//
+//   MyBadge({this.title, this.img, this.description, this.check});
+// }
+//
+// List myBadgeList = [
+//   MyBadge(
+//       title: '꾸준함에 치얼스', img: Assets.badge1Path, description: '', check: true),
+//   MyBadge(
+//       title: '시작이 반',
+//       img: Assets.badge2Path,
+//       description: '코치마바디에 오신걸 환영해요!\n꾸준히 운동해서 뱃지를 수집해 보세요',
+//       check: true),
+//   MyBadge(
+//       title: '프로 꾸준러', img: Assets.badge3Path, description: '', check: true),
+//   MyBadge(
+//       title: '4주만 더하자', img: Assets.badge4Path, description: '', check: true),
+//   MyBadge(title: '', img: '', description: '', check: false),
+//   MyBadge(title: '', img: '', description: '', check: false),
+//   MyBadge(title: '', img: '', description: '', check: false),
+//   MyBadge(title: '', img: '', description: '', check: false),
+//   MyBadge(title: '', img: '', description: '', check: false),
+// ];

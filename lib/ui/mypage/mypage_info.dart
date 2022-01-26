@@ -23,7 +23,9 @@ class MypageInfo extends StatelessWidget {
         focusNode3.unfocus();
       },
       child: Scaffold(
+        backgroundColor: AppColors.cmb_grey[50],
         appBar: AppBar(
+          backgroundColor: AppColors.cmb_grey[50],
           centerTitle: true,
           title: Text(
             PROFILE_SETTING,
@@ -33,15 +35,39 @@ class MypageInfo extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ).tr(),
+          actions: [
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  '완료',
+                  style: TextStyle(
+                      color: AppColors.cmb_blue,
+                      fontSize: _width * 0.04444,
+                      fontWeight: FontWeight.w400),
+                ))
+          ],
         ),
         body: SingleChildScrollView(
-          child: Container(
-            width: _width * 0.9111,
-            height: _width * 0.5666,
-            margin: EdgeInsets.symmetric(horizontal: _width * 0.0444),
+          child: Padding(
+            padding: EdgeInsets.all(_width * 0.0444),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Stack(
+                  children: [
+                    CircleAvatar(
+                        radius: _width * 0.1444,
+                        backgroundColor: Colors.white,
+                        child: Image.asset(
+                            'assets/images/test/profile_image_test.png')),
+                    Positioned(
+                        right: _width * 0.0166,
+                        bottom: _width * 0.0166,
+                        child: CircleAvatar(
+                            radius: _width * 0.0333,
+                            child: Image.asset(
+                                'assets/images/test/kakao_icon_test.png')))
+                  ],
+                ),
                 ProfileInputForm(
                   text: NICKNAME.tr(),
                   initialText: _nickname,

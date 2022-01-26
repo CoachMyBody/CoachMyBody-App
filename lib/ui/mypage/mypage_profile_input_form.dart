@@ -20,48 +20,43 @@ class ProfileInputForm extends StatelessWidget {
     _width = MediaQuery.of(context).size.width;
 
     return MergeSemantics(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-              color: AppColors.cmb_grey[500],
-              fontSize: _width * 0.0333,
-            ),
-          ),
-          SizedBox(height: _width * 0.01),
-          Container(
-            width: _width * 0.9111,
-            height: _width * 0.1111,
-            decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFFE9EDEF)),
-                borderRadius: BorderRadius.circular(_width * 0.01),
-                color: AppColors.cmb_grey[50]),
-            child: TextFormField(
-              focusNode: focusNode,
-              initialValue: initialText,
+      child: Container(
+        width: _width * 0.9111,
+        height: _width * 0.1722,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              text,
               style: TextStyle(
-                  color: AppColors.cmb_grey[700],
-                  fontSize: _width * 0.0444,
-                  fontWeight: FontWeight.w400),
-              decoration: InputDecoration(
+                color: AppColors.cmb_grey[500],
+                fontSize: _width * 0.0333,
+              ),
+            ),
+            SizedBox(height: _width * 0.01),
+            Container(
+              width: _width * 0.9111,
+              height: _width * 0.1111,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFFE9EDEF)),
+                  borderRadius: BorderRadius.circular(_width * 0.01),
+                  color: AppColors.cmb_grey[00]),
+              child: TextFormField(
+                focusNode: focusNode,
+                initialValue: initialText,
+                style: TextStyle(
+                    color: AppColors.cmb_grey[700],
+                    fontSize: _width * 0.0444,
+                    fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(
                       top: _width * 0.025, left: _width * 0.0222),
                   border: InputBorder.none,
-                  suffix: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      COMMON_EDIT_TXT,
-                      style: TextStyle(
-                          color: AppColors.cmb_blue,
-                          fontSize: _width * 0.0333,
-                          fontWeight: FontWeight.w400),
-                    ).tr(),
-                  )),
-            ),
-          )
-        ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:coach_my_body/coaches/ui/home/coach_home.dart';
 import 'package:coach_my_body/coaches/ui/mymembers/mymembers.dart';
-import 'package:coach_my_body/coaches/ui/mypage/coach_page.dart';
+import 'package:coach_my_body/coaches/ui/mypage/coach_mypage.dart';
 import 'package:coach_my_body/coaches/ui/navigation/coach_bottom_navigation_bar.dart';
 import 'package:coach_my_body/coaches/ui/routine/coach_routine.dart';
 import 'package:coach_my_body/ui/home/home.dart';
@@ -38,18 +38,16 @@ class Routes {
   static final routes = <String, WidgetBuilder>{
     root: (BuildContext context) => RootPage(),
     login: (BuildContext context) => LoginScreen(),
-
     tapPage: (BuildContext context) => MemberBottomTabScreen(),
     home: (BuildContext context) => HomeScreen(),
     routine: (BuildContext context) => RoutineScreen(),
     record: (BuildContext context) => RecordScreen(),
     mypage: (BuildContext context) => MyPageScreen(),
     write: (BuildContext context) => WriteScreen(),
-
     coachTapPage: (BuildContext context) => CoachBottomNaviBar(),
     coachHome: (BuildContext context) => CoachHomeScreen(),
     coachRoutine: (BuildContext context) => CoachRoutineScreen(),
     coachMembers: (BuildContext context) => MyMembersScreen(),
-    coachPage: (BuildContext context) => CoachPageScreen(),
+    coachPage: (BuildContext context) => CoachMyPageScreen(),
   };
 }

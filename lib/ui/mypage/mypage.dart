@@ -55,44 +55,6 @@ class MyPageScreen extends StatelessWidget {
                       })
                 ],
               ),
-              //코치전환
-              // MergeSemantics(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.end,
-              //     children: [
-              //       FutureBuilder(
-              //         future: (AuthMan().checkAuthStatus()),
-              //         builder: (context, snapshot) {
-              //           return FlutterSwitch(
-              //             width: _width * 0.0777,
-              //             height: _width * 0.0444,
-              //             padding: _width * 0.005,
-              //             toggleSize: _width * 0.0333,
-              //             value: (AuthStat.coach == snapshot.hasData),
-              //             onToggle: (value) {
-              //               AuthPreferences().setIsCoachMode(true);
-              //
-              //               Navigator.pushNamedAndRemoveUntil(
-              //                   context, Routes.coachTapPage, (route) => false);
-              //             },
-              //             activeColor: AppColors.cmb_blue,
-              //             inactiveColor: AppColors.cmb_grey[100],
-              //           );
-              //         },
-              //       ),
-              //       SizedBox(
-              //         width: _width * 0.0222,
-              //       ),
-              //       Text(
-              //         SWITCH_TO_COACH_MODE,
-              //         style: TextStyle(
-              //             color: AppColors.cmb_grey[700],
-              //             fontSize: _width * 0.0444,
-              //             fontWeight: FontWeight.w400),
-              //       ).tr(),
-              //     ],
-              //   ),
-              // ),
               SizedBox(
                 height: _width * 0.0472,
               ),

@@ -1,6 +1,6 @@
 import 'package:coach_my_body/coaches/ui/home/coach_home.dart';
 import 'package:coach_my_body/coaches/ui/mymembers/mymembers.dart';
-import 'package:coach_my_body/coaches/ui/mypage/coach_page.dart';
+import 'package:coach_my_body/coaches/ui/mypage/coach_mypage.dart';
 import 'package:coach_my_body/coaches/ui/routine/coach_routine.dart';
 import 'package:coach_my_body/constants/assets.dart';
 import 'package:coach_my_body/constants/colors.dart';
@@ -27,7 +27,7 @@ class _TabPageState extends State<CoachBottomNaviBar> {
     CoachHomeScreen(),
     CoachRoutineScreen(),
     MyMembersScreen(),
-    CoachPageScreen()
+    CoachMyPageScreen()
   ];
 
   @override
@@ -59,15 +59,15 @@ class _TabPageState extends State<CoachBottomNaviBar> {
             BottomNavigationBarItem(
                 icon: (0 == _pageIndex)
                     ? SvgPicture.asset(
-                  Assets.bottomActiveHomeIconPath,
-                  color: AppColors.cmb_blue,
-                  width: 18,
-                )
+                        Assets.bottomActiveHomeIconPath,
+                        color: AppColors.cmb_blue,
+                        width: 18,
+                      )
                     : SvgPicture.asset(
-                  Assets.bottomHomeIconPath,
-                  color: AppColors.cmb_grey[700],
-                  width: 18,
-                ),
+                        Assets.bottomHomeIconPath,
+                        color: AppColors.cmb_grey[700],
+                        width: 18,
+                      ),
                 label: tr(NAV_HOME_NAME)),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
@@ -90,15 +90,15 @@ class _TabPageState extends State<CoachBottomNaviBar> {
             BottomNavigationBarItem(
                 icon: (3 == _pageIndex)
                     ? SvgPicture.asset(
-                  Assets.bottomActiveMypageIconPath,
-                  color: AppColors.cmb_blue,
-                  width: 18,
-                )
+                        Assets.bottomActiveMypageIconPath,
+                        color: AppColors.cmb_blue,
+                        width: 18,
+                      )
                     : SvgPicture.asset(
-                  Assets.bottomMypageIconPath,
-                  color: AppColors.cmb_grey[700],
-                  width: 18,
-                ),
+                        Assets.bottomMypageIconPath,
+                        color: AppColors.cmb_grey[700],
+                        width: 18,
+                      ),
                 label: tr(NAV_MYPAGE_NAME))
           ]),
     );
